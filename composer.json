@@ -1,0 +1,23 @@
+{
+    "name": "reinholdjesse/components",
+    "autoload": {
+        "psr-4": {
+            "Reinholdjesse\\Components\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Reinhold-Jesse",
+            "email": "reinhold.jesse@gmx.de"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Reinholdjesse\\Components\\ComponentServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {}
+}
