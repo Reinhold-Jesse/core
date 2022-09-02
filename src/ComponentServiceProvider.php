@@ -5,7 +5,9 @@ namespace Reinholdjesse\Components;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Reinholdjesse\Components\Contracts\BladeComponentCompiler;
+use Reinholdjesse\Components\View\Components\Element\Datepicker;
+use Reinholdjesse\Components\View\Components\Element\DropFile;
+use Reinholdjesse\Components\View\Components\Element\Modal;
 
 class ComponentServiceProvider extends ServiceProvider
 {
@@ -32,7 +34,21 @@ class ComponentServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->publishes([__DIR__ . '/../resources/views/components' => resource_path('/views/vendor/reinholdjesse/components')], 'components');
+        $this->publishes([
+            __DIR__ . '/../resources/views/components' => resource_path('/views/components'),
+            __DIR__ . '/View/Components/Element' => app_path('View/Components/Element'),
+        ], 'components');
+
+        $this->publishes([
+            __DIR__ . '/../resources/views/layouts' => resource_path('/views/layouts'),
+            __DIR__ . '/View/Components/AppLayout.php' => app_path('View/Components/AppLayout.php'),
+            __DIR__ . '/View/Components/DashboardLayout.php' => app_path('View/Components/DashboardLayout.php'),
+            __DIR__ . '/View/Components/GuestLayout.php' => app_path('View/Components/GuestLayout.php'),
+        ], 'layouts');
+
+        Blade::component('component::element.modal', Modal::class);
+        Blade::component('component::element.datepicker', Datepicker::class);
+        Blade::component('component::element.drop-file', DropFile::class);
 
         //$this->registerBladeComponents();
 

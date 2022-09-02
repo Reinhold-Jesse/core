@@ -28,6 +28,9 @@ Dann kann die Komponente ganz normal aufgerufen werden.
 
 ```bash
 php artisan vendor:publish --tag=components
+
+Layout
+php artisan vendor:publish --tag=layouts
 ```
 
 ## Einbingung
@@ -47,4 +50,39 @@ php artisan vendor:publish --tag=components
 
 
 <x:component::icon.search class="h-16" />
+```
+
+## Modal
+
+```php
+<x:component::element.modal>
+    <x-slot:event>
+        <button @click.prevent="modal=true" type="button"
+            class="flex items-center justify-center text-red-500 border-2 border-red-500 rounded-md shadow-sm hover:text-white w-9 h-9 hover:bg-red-600 default-transition">
+            <x:component::icon.delete class="h-6" />
+
+        </button>
+    </x-slot:event>
+
+    <x-slot:content>
+        <div class="flex justify-center ">
+            <div
+                class="flex items-center justify-center text-red-500 bg-red-200 rounded-full shadow-sm w-28 h-28">
+                <x:component::icon.delete class="h-16" />
+            </div>
+        </div>
+        <div class="flex justify-center mt-7">
+            <h3 class="text-lg font-bold text-center text-gray-700">
+                löschen?</h3>
+        </div>
+    </x-slot:content>
+
+    <x-slot:controller>
+        <button @click.prevent="modal=false" type="button"
+            class="flex justify-center w-full px-4 py-2 mr-2 font-medium text-center text-white bg-gray-300 border border-transparent rounded-md shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">Abbrechen</button>
+
+        <button @click.prevent="modal=false" type="button"
+            class="flex justify-center w-full px-4 py-2 font-medium text-center text-white bg-red-500 border border-transparent rounded-md shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">löschen</button>
+    </x-slot:controller>
+</x:component::element.modal>
 ```

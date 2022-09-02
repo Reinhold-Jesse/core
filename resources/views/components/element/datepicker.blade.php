@@ -1,28 +1,27 @@
 <div x-data="app()" x-init="[initDate($wire.{{ $model }}), getNoOfDays()]" x-cloak class="relative">
-    <div x-on:click="showDatepicker = !showDatepicker" x-on:keyup.tab="showDatepicker = !showDatepicker"
-        class="relative">
+    <div x-on:click="showDatepicker = !showDatepicker" x-on:keyup.tab="showDatepicker = !showDatepicker" class="relative">
         <input type="hidden" name="date" x-ref="date"
             :value="$wire.set('{{ $model }}', datepickerValue, true)" />
 
         <div
-            class="flex justify-between w-full h-10 px-3 mt-1 bg-white border border-gray-300 rounded-md shadow-sm cursor-pointer items-centerpx-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm">
+            class="flex items-center justify-between w-full h-10 px-3 mt-1 bg-white border border-gray-300 rounded-md shadow-sm cursor-pointer items-centerpx-3 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm">
             <div class="flex items-center gap-1">
                 <span x-text="dateView"></span>
                 <template x-if="dateView">
                     <button @click.prevent="clear()" type="button"
-                        class="relative z-10 w-5 h-5 text-gray-300 hover:text-gray-700">
-                        <x-icon.close />
+                        class="relative z-10 flex items-center justify-center w-6 h-6 text-gray-300 hover:text-gray-700">
+                        <x:component::icon.close class="h-9 hover:text-teal-500" />
                     </button>
                 </template>
 
             </div>
-            <x-icon.calendar class="text-gray-400 w-7" />
+            <x:component::icon.calendar class="text-gray-400 w-7" />
         </div>
     </div>
 
 
     <div x-show.transition="showDatepicker" @click.away="showDatepicker = false"
-        class="absolute top-0 left-0 p-4 mt-12 bg-gray-200 rounded-lg shadow" style="width: 17rem">
+        class="absolute top-0 left-0 p-4 mt-12 bg-gray-200 rounded-lg shadow w-[22rem]">
         <div class="flex items-center justify-between mb-2">
             <div>
                 <span x-text="MONTH_NAMES[month]" class="text-lg font-bold text-gray-800"></span>
@@ -56,30 +55,26 @@
             </div>
         </div>
 
-        <div class="flex flex-wrap mb-3 -mx-1">
+        <div class="grid grid-cols-7 gap-1 my-5">
             <template x-for="(day, index) in DAYS" :key="index">
-                <div style="width: 14.26%" class="px-0.5">
-                    <div x-text="day" class="text-xs font-semibold text-center text-gray-800"></div>
-                </div>
+                <div x-text="day" class="text-xs font-semibold text-center text-gray-800"></div>
             </template>
         </div>
 
-        <div class="flex flex-wrap -mx-1">
+        <div class="grid grid-cols-7 gap-1">
             <template x-for="blankday in blankdays">
-                <div style="width: 14.28%" class="p-1 text-sm text-center border border-transparent"></div>
+                <div class="w-full h-[42px] p-1 text-sm text-center border border-transparent"></div>
             </template>
 
             <template x-for="(date, dateIndex) in no_of_days" :key="dateIndex">
-                <div style="width: 14.28%" class="px-1 mb-1">
-                    <div @click.prevent="getDateValue(date)" x-text="date"
-                        class="flex items-center justify-center text-sm leading-loose text-center rounded-full shadow-sm cursor-pointer default-transition"
-                        :class="{
-                            'bg-green-500 text-white': isToday(date) == true,
-                            'text-gray-600 bg-gray-100 hover:text-white hover:bg-primary-300': isToday(date) == false &&
-                                isSelectedDate(date) == false,
-                            'bg-primary-500 text-white hover:bg-opacity-75': isSelectedDate(date) == true
-                        }">
-                    </div>
+                <div @click.prevent="getDateValue(date)" x-text="date"
+                    class="w-full h-[42px] flex items-center justify-center text-md leading-loose text-center rounded shadow-sm cursor-pointer default-transition"
+                    :class="{
+                        'bg-teal-700 text-white': isToday(date) == true,
+                        'text-gray-600 bg-gray-100 hover:text-white hover:bg-teal-500': isToday(date) == false &&
+                            isSelectedDate(date) == false,
+                        'bg-teal-500 text-white hover:bg-opacity-75': isSelectedDate(date) == true
+                    }">
                 </div>
             </template>
         </div>

@@ -1,19 +1,20 @@
 <?php
 
-namespace App\View\Components\Element;
+namespace Reinholdjesse\Components\View\Components\Element;
 
 use Illuminate\View\Component;
 
-class Modal extends Component
+class Datepicker extends Component
 {
+    public $model;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(string $model = null)
     {
-        //
+        $this->model = $model;
     }
 
     /**
@@ -23,6 +24,6 @@ class Modal extends Component
      */
     public function render()
     {
-        return view('components.element.modal');
+        return view('component::components.element.datepicker');
     }
 }

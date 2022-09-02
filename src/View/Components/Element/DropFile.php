@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Element;
+namespace Reinholdjesse\Components\View\Components\Element;
 
 use Illuminate\View\Component;
 
@@ -35,6 +35,6 @@ class DropFile extends Component
      */
     public function render()
     {
-        return view('components.element.drop-file');
+        return view('component::components.element.drop-file');
     }
 }
