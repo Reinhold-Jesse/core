@@ -8,11 +8,23 @@ class ComponentesViewController extends Controller
 {
     public $listeOfElements = [];
 
-    public $path = '../resources/views/components';
+    public $resources_path = '../resources/views/components';
+    private $package_path = __DIR__ . './../../resources/views/components';
 
     public function index()
     {
-        $content = $this->listDir($this->path);
+        $content = $this->listDir($this->package_path);
+
+        // print '<pre>';
+        // print_r($content);
+        // print '</pre>';
+
+        return view('component::welcome', compact('content'));
+    }
+
+    public function resources()
+    {
+        $content = $this->listDir($this->resources_path);
 
         // print '<pre>';
         // print_r($content);

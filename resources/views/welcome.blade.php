@@ -21,6 +21,7 @@
                 @foreach ($content as $element)
                     <div class="bg-gray-100 border p-7">
                         @if (is_array($element))
+                            {{-- is array --}}
                             @if (isset($element['name']) && !empty($element['name']))
                                 <div class="flex items-center">
                                     <span class="mr-3 text-6xl text-teal-500">#</span>
@@ -33,11 +34,18 @@
 
                             @if (isset($element['date']) && !empty($element['date']))
                                 @if ($element['name'] == 'icon' || $element['name'] == 'icons')
+                                    {{-- icons --}}
                                     <div class="grid grid-cols-4 gap-5">
                                         @foreach ($element['date'] as $value)
                                             <div class="px-5 py-3 ">
                                                 <p class="py-3">{{ $value }}</p>
-                                                <x-dynamic-component :component="$element['name'] . '.' . $value" />
+
+                                                <?php try{ ?>
+                                                <x-dynamic-component :component="'component::' . $element['name'] . '.' . $value" />
+                                                <?php }catch(\Exception $e){ ?>
+                                                <p class="text-red-500">Vorschau laden nicht möglich</p>
+                                                <?php } ?>
+
                                             </div>
                                         @endforeach
                                     </div>
@@ -45,15 +53,29 @@
                                     @foreach ($element['date'] as $value)
                                         <div class="px-5 py-3 ">
                                             <p class="py-3">{{ $value }}</p>
-                                            <x-dynamic-component :component="$element['name'] . '.' . $value" />
+
+                                            <?php try{ ?>
+                                            <x-dynamic-component :component="'component::' . $element['name'] . '.' . $value" />
+                                            <?php }catch(\Exception $e){ ?>
+                                            <p class="text-red-500">Vorschau laden nicht möglich</p>
+                                            <?php } ?>
+
+                                            {{-- <x-dynamic-component :component="'component::' . $element['name'] . '.' . $value" /> --}}
                                         </div>
                                     @endforeach
                                 @endif
                             @endif
                         @else
+                            {{-- single file --}}
                             <div class="px-5 py-3 ">
                                 <p class="py-3">{{ $element }}</p>
+
+                                <?php try{ ?>
                                 <x-dynamic-component :component="'form.' . $element" />
+                                <?php }catch(\Exception $e){ ?>
+                                <p class="text-red-500">Vorschau laden nicht möglich</p>
+                                <?php } ?>
+
                             </div>
                         @endif
                     </div>
