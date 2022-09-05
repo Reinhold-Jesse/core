@@ -16,11 +16,11 @@
 </head>
 
 <body class="">
-    <x-jet-banner />
 
     <div class="">
         <!-- Page Content -->
         <main>
+            <h1>App Layout</h1>
             {{ $slot }}
         </main>
     </div>

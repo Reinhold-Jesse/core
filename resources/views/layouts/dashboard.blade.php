@@ -15,8 +15,6 @@
 </head>
 
 <body>
-    <x-jet-banner />
-
     <div class="min-h-screen bg-gray-200">
         @livewire('navigation-menu')
 
@@ -31,6 +29,7 @@
 
         <!-- Page Content -->
         <main>
+            <h1>App Dashboard</h1>
             {{ $slot }}
         </main>
     </div>

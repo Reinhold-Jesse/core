@@ -72,8 +72,7 @@ php artisan vendor:publish --tag=layouts
             </div>
         </div>
         <div class="flex justify-center mt-7">
-            <h3 class="text-lg font-bold text-center text-gray-700">
-                löschen?</h3>
+            <h3 class="text-lg font-bold text-center text-gray-700">löschen? </h3>
         </div>
     </x-slot:content>
 
@@ -85,4 +84,54 @@ php artisan vendor:publish --tag=layouts
             class="flex justify-center w-full px-4 py-2 font-medium text-center text-white bg-red-500 border border-transparent rounded-md shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">löschen</button>
     </x-slot:controller>
 </x:component::element.modal>
+```
+
+## Komponente übersicht / einbinden
+
+```php
+<x:component::datepicker model="date" />
+
+<x-component::drop-file wire:model='temp_files' name="temp_files" title="jpg, png, pdf, docx (MAX. 10Mb)" />
+
+```
+
+## Livewire Komponente übersicht / einbinden
+
+```php
+# Markdown Editor include livewire componente
+@livewire('markdown-x', ['content' => $content])
+
+# controller livewire
+protected $listeners = [
+    'markdown-x:update' => 'updateBody',
+];
+
+# add Methode
+public function updateBody($value)
+{
+    $this->content = $value;
+}
+
+------------------------------------
+
+# select 2 include
+@livewire('select2', [
+    'table' => 'users',
+    'event' => 'userId',
+    'order' => 'name',
+    'filter' => 'deleted_at,NULL',
+    'selected' => $user_id,
+    'add_function' => true,
+])
+
+# controller livewire
+ protected $listeners = [
+    'userId' => 'updateUserId',
+];
+# add methode
+public function updateUserId(int $id = null)
+{
+    $this->user_id = $id;
+}
+
 ```

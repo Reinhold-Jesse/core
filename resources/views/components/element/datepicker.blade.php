@@ -21,7 +21,7 @@
 
 
     <div x-show.transition="showDatepicker" @click.away="showDatepicker = false"
-        class="absolute top-0 left-0 p-4 mt-12 bg-gray-200 rounded-lg shadow w-[22rem]">
+        class="absolute z-50 top-0 left-0 p-4 mt-12 bg-gray-200 rounded-lg shadow w-[22rem]">
         <div class="flex items-center justify-between mb-2">
             <div>
                 <span x-text="MONTH_NAMES[month]" class="text-lg font-bold text-gray-800"></span>

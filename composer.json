@@ -19,5 +19,7 @@
         }
     },
     "minimum-stability": "dev",
-    "require": {}
+    "require": {
+        "livewire/livewire": "^2.6"
+    }
 }
