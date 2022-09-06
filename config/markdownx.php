@@ -23,7 +23,7 @@ return [
 
     'image' => [
         'allowed_file_types' => ['png', 'jpg', 'jpeg', 'gif'],
-        'max_file_size' => 5000
+        'max_file_size' => 5000,
     ],
 
     /*
@@ -50,17 +50,17 @@ return [
     */
 
     'dropdown_items' => [
-        "text",
-        "heading",
-        "heading_2",
-        "heading_3",
-        "image",
-        "code",
-        "link",
-        "divider",
-        "bulleted_list",
-        "numbered_list",
-        "quote",
+        'text',
+        'heading',
+        'heading_2',
+        'heading_3',
+        'image',
+        'code',
+        'link',
+        'divider',
+        'bulleted_list',
+        'numbered_list',
+        'quote',
         //"giphy",
         // "codepen",
         // "codesandbox",
@@ -70,8 +70,8 @@ return [
 
     'integrations' => [
         'giphy' => [
-            'api_key' => env('MARKDOWNX_GIPHY_API_KEY', '')
-        ]
-    ]
+            'api_key' => env('MARKDOWNX_GIPHY_API_KEY', ''),
+        ],
+    ],
 
 ];

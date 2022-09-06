@@ -14,27 +14,43 @@
     @vite(['resources/css/dashboard.css', 'resources/js/dashboard.js'])
 </head>
 
-<body>
-    <div class="min-h-screen bg-gray-200">
-        @livewire('navigation-menu')
+<body class="bg-gray-200">
+    <div x-data="{ isOpen: true }" class="flex overflow-hidden">
+        <div x-cloak @click.outside="isOpen = false" :class="isOpen ? '-left-72' : 'left-0'"
+            class="fixed top-0 bottom-0 px-5 overflow-y-auto transition-all duration-300 ease-linear bg-white w-72 py-7">
 
-        <!-- Page Heading -->
-        @if (isset($header))
-            <header class="bg-white shadow">
-                <div class="container px-4 py-6 mx-auto sm:px-6 lg:px-8">
-                    {{ $header }}
+            @livewire('navigation')
+
+        </div>
+        <div :class="isOpen ? 'left-0' : 'left-72'" class="relative w-full transition-all duration-300 ease-linear">
+            <div class="bg-gray-900 shadow-sm pb-7">
+                <div class="flex justify-between pl-5 pr-10 py-7">
+                    <button x-on:click="isOpen = ! isOpen" type="button" class="text-white hover:text-teal-500">
+                        <x:component::icon.hamburger />
+                    </button>
+
+                    @if (Auth::user())
+                        <div
+                            class="flex items-center gap-2 pr-3 text-sm transition border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300">
+                            <img class="object-cover w-8 h-8 rounded-full" src="{{ Auth::user()->profile_photo_url }}"
+                                alt="{{ Auth::user()->name }}">
+                            <span class="text-gray-300">{{ Auth::user()->name }}</span>
+                        </div>
+                    @endif
+
                 </div>
-            </header>
-        @endif
 
-        <!-- Page Content -->
-        <main>
-            <h1>App Dashboard</h1>
-            {{ $slot }}
-        </main>
+                @if (isset($header))
+                    <header class="container mx-auto text-3xl text-white py-7">
+                        {{ $header }}
+                    </header>
+                @endif
+            </div>
+            <main class="px-5 py-7">
+                {{ $slot }}
+            </main>
+        </div>
     </div>
-
-    @stack('modals')
 
     @livewireScripts
 </body>

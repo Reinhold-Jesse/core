@@ -10,12 +10,16 @@ use Livewire\Component;
 
 class MarkdownX extends Component
 {
-
     public $content;
+
     public $contentPreview;
+
     public $name;
+
     public $key;
+
     public $style;
+
     public $section = 'write';
 
     /**
@@ -34,9 +38,9 @@ class MarkdownX extends Component
      * and a generic Key. This key can be specified so that way you can include multiple MarkdownX
      * editors in a single page.
      *
-     * @param string $content
-     * @param string $name
-     * @param string $key
+     * @param  string  $content
+     * @param  string  $name
+     * @param  string  $key
      * @return void
      */
     public function mount($content = '', $name = '', $key = '')
@@ -51,7 +55,7 @@ class MarkdownX extends Component
      * Anytime the editor is blurred, this function will be triggered and it will updated the $content,
      * this will also emit an event to the parent component with the updated content.
      *
-     * @param array $data
+     * @param  array  $data
      */
     public function update($data)
     {
@@ -63,7 +67,6 @@ class MarkdownX extends Component
     /**
      * When the content changes this function will fire an event with the updatedPmark
      * content is being emitted to the parent component.
-     *
      */
     public function updatedContent()
     {
@@ -77,7 +80,6 @@ class MarkdownX extends Component
      * Note: This function can be overwritten with your customer Markdown parser. This is the
      * only function that will/can be changed when you upgrade to the latest version of the
      * MarkdownX editor.
-     *
      */
     public function updateContentPreview()
     {
@@ -94,43 +96,42 @@ class MarkdownX extends Component
      *      text: "![" + file.name + "](Uploading...)"
      * }
      *
-     * @param array $payload
+     * @param  array  $payload
      * @return void
      */
     public function upload($payload)
     {
-
         $payload = (object) $payload;
 
-        $path = 'images/' . strtolower(date('FY')) . '/';
+        $path = 'images/'.strtolower(date('FY')).'/';
         $fullPath = '';
 
         try {
-
             $original_filename = pathinfo($payload->name, PATHINFO_FILENAME);
             $filename = $original_filename;
             $extension = explode('/', mime_content_type($payload->image))[1];
             $filename_counter = 1;
 
             // Make sure the filename does not exist, if it does make sure to add a number to the end 1, 2, 3, etc...
-            while (Storage::disk(config('markdownx.storage.disk'))->exists($path . $filename . '.' . $extension)) {
-                $filename = Str::slug($original_filename) . (string) ($filename_counter++);
+            while (Storage::disk(config('markdownx.storage.disk'))->exists($path.$filename.'.'.$extension)) {
+                $filename = Str::slug($original_filename).(string) ($filename_counter++);
             }
 
-            $fullPath = $path . $filename . '.' . $extension;
+            $fullPath = $path.$filename.'.'.$extension;
 
             // Get the Base64 string to store
-            @list($type, $file_data) = explode(';', $payload->image);
-            @list(, $file_data) = explode(',', $file_data);
+            @[$type, $file_data] = explode(';', $payload->image);
+            @[, $file_data] = explode(',', $file_data);
             $type = explode('/', $type)[1];
 
-            if (!in_array($type, config('markdownx.image.allowed_file_types'))) {
+            if (! in_array($type, config('markdownx.image.allowed_file_types'))) {
                 $this->dispatchBrowserEvent('markdown-x-image-uploaded', [
                     'status' => 400,
-                    'message' => 'File type not supported. Must be of type ' . implode(', ', config('markdownx.image.allowed_file_types')),
+                    'message' => 'File type not supported. Must be of type '.implode(', ', config('markdownx.image.allowed_file_types')),
                     'key' => $payload->key,
                     'text' => $payload->text,
                 ]);
+
                 return;
             }
 
@@ -144,7 +145,6 @@ class MarkdownX extends Component
                 'text' => $payload->text,
                 'name' => $payload->name,
             ]);
-
         } catch (Exception $e) {
             $this->dispatchBrowserEvent('markdown-x-image-uploaded', [
                 'status' => 400,
@@ -153,7 +153,6 @@ class MarkdownX extends Component
                 'text' => $payload->text,
             ]);
         }
-
     }
 
     public function getGiphyImages($payload)
@@ -208,7 +207,7 @@ class MarkdownX extends Component
         foreach ($response->json()['data'] as $result) {
             array_push($parse_giphy_results, [
                 'image' => $result['images']['fixed_height_small']['url'],
-                'embed' => $result['embed_url']]
+                'embed' => $result['embed_url'], ]
             );
         }
 
@@ -222,7 +221,6 @@ class MarkdownX extends Component
 
     /**
      * Render the markdown-x view. Hazah!
-     *
      */
     public function render()
     {

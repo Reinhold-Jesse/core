@@ -8,10 +8,13 @@ class DropFile extends Component
 {
     /** @var int */
     public $id;
+
     /** @var string */
     public $name;
+
     /** @var bool */
     public $multiple;
+
     /** @var string|null */
     public $title;
 

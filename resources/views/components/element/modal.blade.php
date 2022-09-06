@@ -1,6 +1,6 @@
 <div x-data="{ modal: false }">
 
-    {{ $event }}
+    {{ $trigger }}
 
     <div x-show="modal" x-cloak x-transition:enter="transition ease-out duration-100 transform"
         x-transition:enter-start="opacity-0 scale-30" x-transition:enter-end="opacity-100 scale-100"

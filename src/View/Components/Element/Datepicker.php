@@ -7,6 +7,7 @@ use Illuminate\View\Component;
 class Datepicker extends Component
 {
     public $model;
+
     /**
      * Create a new component instance.
      *

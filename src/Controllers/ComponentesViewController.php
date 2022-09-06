@@ -9,7 +9,8 @@ class ComponentesViewController extends Controller
     public $listeOfElements = [];
 
     public $resources_path = '../resources/views/components';
-    private $package_path = __DIR__ . './../../resources/views/components';
+
+    private $package_path = __DIR__.'./../../resources/views/components';
 
     public function index()
     {
@@ -41,9 +42,9 @@ class ComponentesViewController extends Controller
             foreach (scandir($path) as $index => $element) {
                 if ($element != '..' && $element != '.') {
                     $temp = [];
-                    if (is_dir($path . '/' . $element)) {
+                    if (is_dir($path.'/'.$element)) {
                         $temp['name'] = $element;
-                        $temp['date'] = $this->listDir($path . '/' . $element);
+                        $temp['date'] = $this->listDir($path.'/'.$element);
                     } else {
                         $temp = str_replace('.blade.php', '', $element);
                     }
@@ -55,7 +56,5 @@ class ComponentesViewController extends Controller
         } else {
             return false;
         }
-
     }
-
 }

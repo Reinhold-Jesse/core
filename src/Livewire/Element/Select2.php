@@ -7,7 +7,25 @@ use Livewire\Component;
 
 class Select2 extends Component
 {
-    public $table, $event, $filter, $order, $list, $selected, $name, $search, $add_function, $key;
+    public $table;
+
+    public $event;
+
+    public $filter;
+
+    public $order;
+
+    public $list;
+
+    public $selected;
+
+    public $name;
+
+    public $search;
+
+    public $add_function;
+
+    public $key;
 
     public function mount(string $table, string $event, string $order, string $filter, int $selected = null, bool $add_function = false, $key = null)
     {
@@ -21,9 +39,8 @@ class Select2 extends Component
 
         $this->getDatabaseList();
 
-        if (isset($selected) && !empty($selected)) {
+        if (isset($selected) && ! empty($selected)) {
             foreach ($this->list as $value) {
-
                 if ($value->id == $selected) {
                     $this->name = $value->name;
                 }
@@ -34,6 +51,7 @@ class Select2 extends Component
     public function render()
     {
         $this->search();
+
         return view('component::livewire.element.select2');
     }
 
@@ -54,8 +72,7 @@ class Select2 extends Component
     public function add()
     {
         $this->search = trim($this->search);
-        if ($this->add_function === true && !DB::table($this->table)->where('name', $this->search)->exists() && !empty($this->search)) {
-
+        if ($this->add_function === true && ! DB::table($this->table)->where('name', $this->search)->exists() && ! empty($this->search)) {
             $this->selected = DB::table($this->table)->insertGetId([
                 'name' => $this->search,
             ]);
@@ -64,7 +81,6 @@ class Select2 extends Component
             $this->clearSearch();
             $this->emitEvent();
         } else {
-
             $this->selected = DB::table($this->table)->where('name', $this->search)->pluck('id')->first();
 
             if ($this->selected) {
@@ -89,7 +105,7 @@ class Select2 extends Component
         $filter = explode(',', $this->filter);
         $filter_row = $filter[0];
 
-        if ($filter[1] === "NULL") {
+        if ($filter[1] === 'NULL') {
             $filter_val = null;
         } else {
             $filter_val = $filter[1];
@@ -100,8 +116,8 @@ class Select2 extends Component
 
     private function search()
     {
-        if (!empty($this->search)) {
-            $this->list = DB::table($this->table)->where('name', 'LIKE', '%' . trim($this->search) . '%')->orderBy('name', 'asc')->get()->toArray();
+        if (! empty($this->search)) {
+            $this->list = DB::table($this->table)->where('name', 'LIKE', '%'.trim($this->search).'%')->orderBy('name', 'asc')->get()->toArray();
         } else {
             $this->getDatabaseList();
         }

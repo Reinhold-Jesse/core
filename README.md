@@ -27,10 +27,16 @@ Dann kann die Komponente ganz normal aufgerufen werden.
 ## Publish config file
 
 ```bash
-php artisan vendor:publish --tag=components
+php artisan vendor:publish --tag=components.publishes
 
 Layout
-php artisan vendor:publish --tag=layouts
+php artisan vendor:publish --tag=components.publishes.layouts
+
+Navigation
+php artisan vendor:publish --tag=components.publishes.navigation
+
+Configuration
+php artisan vendor:publish --tag=components.config
 ```
 
 ## Einbingung
@@ -134,4 +140,22 @@ public function updateUserId(int $id = null)
     $this->user_id = $id;
 }
 
+```
+
+## Layouts
+
+```php
+<x:component::layouts.guest>
+    Dashboard Guest
+</x:component::layouts.guest>
+
+
+<x:component::layouts.app>
+    Dashboard App
+</x:component::layouts.app>
+
+
+<x:component::layouts.dashboard>
+    Dashboard Layout
+</x:component::layouts.dashboard>
 ```
