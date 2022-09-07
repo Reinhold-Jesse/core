@@ -16,7 +16,7 @@
 
 <body class="bg-gray-200">
     <div x-data="{ isOpen: true }" class="flex overflow-hidden">
-        <div x-cloak @click.outside="isOpen = false" :class="isOpen ? '-left-72' : 'left-0'"
+        <div x-cloak :class="isOpen ? '-left-72' : 'left-0'"
             class="fixed top-0 bottom-0 px-5 overflow-y-auto transition-all duration-300 ease-linear bg-white w-72 py-7">
 
             @livewire('navigation')

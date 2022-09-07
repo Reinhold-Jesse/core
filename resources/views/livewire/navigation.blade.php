@@ -22,6 +22,7 @@
         </x:component::menu.dropdown>
 
         <x:component::menu.link href="#test">Example Link</x:component::menu.link>
+        <x:component::menu.link href="{{ route('component.settings') }}">Settings</x:component::menu.link>
     </div>
 
     <div class="px-2">

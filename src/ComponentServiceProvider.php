@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 use Reinholdjesse\Components\Livewire\Element\MarkdownX;
 use Reinholdjesse\Components\Livewire\Element\Select2;
+use Reinholdjesse\Components\Livewire\Setting\Index;
 use Reinholdjesse\Components\View\Components\AppLayout;
 use Reinholdjesse\Components\View\Components\DashboardLayout;
 use Reinholdjesse\Components\View\Components\Element\Datepicker;
@@ -26,13 +27,20 @@ class ComponentServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->loadMigrationsFrom(__DIR__ . '/../database/migrations');
+        //$this->loadSeedsFrom(__DIR__.'/../database/seeders');
+
         Route::group(['middleware' => ['web']], function () {
             $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
-            $this->loadRoutesFrom(__DIR__ . '/../routes/api.php');
-
         });
 
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'component');
+
+        $this->loadHelpers();
+
+        $this->app->singleton('component', function () {
+            return new Component();
+        });
     }
 
     /**
@@ -86,6 +94,19 @@ class ComponentServiceProvider extends ServiceProvider
 
         Livewire::component('markdown-x', MarkdownX::class);
         Livewire::component('select2', Select2::class);
+
+        Livewire::component('component::setting.index', Index::class);
+
+    }
+
+    /**
+     * Load helpers.
+     */
+    protected function loadHelpers()
+    {
+        foreach (glob(__DIR__ . '/Helpers/*.php') as $filename) {
+            require_once $filename;
+        }
     }
 
     private function registerBladeComponents()

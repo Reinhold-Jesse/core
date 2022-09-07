@@ -159,3 +159,11 @@ public function updateUserId(int $id = null)
     Dashboard Layout
 </x:component::layouts.dashboard>
 ```
+
+## Seed
+
+run seed with
+
+```bash
+ php artisan db:seed --class="Reinholdjesse\Components\Seeders\SettingsTableSeeder"
+```
