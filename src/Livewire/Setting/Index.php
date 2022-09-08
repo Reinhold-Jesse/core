@@ -34,7 +34,7 @@ class Index extends Component
         $this->content = Setting::orderBy('group', 'asc')
             ->orderBy('order', 'asc')->get();
 
-        return view('component::livewire.setting.index');
+        return view('component::livewire.setting.index')->layout('component::layouts.dashboard');
     }
 
     public function createNewSettingEntry()

@@ -19,7 +19,32 @@
         <div x-cloak :class="isOpen ? '-left-72' : 'left-0'"
             class="fixed top-0 bottom-0 px-5 overflow-y-auto transition-all duration-300 ease-linear bg-white w-72 py-7">
 
-            @livewire('navigation')
+            {{-- @livewire('navigation') --}}
+
+            <div class="pb-3 border-b border-gray-200">
+                <a href="#" class="block">
+                    <h1 class="mb-3 text-3xl font-bold text-center">Company</h1>
+                </a>
+            </div>
+
+            <div class="px-3">
+
+                <div class="mt-7">
+                    {{ menu('admin') }}
+                </div>
+
+                <div class="">
+                    <!-- Authentication -->
+                    <form method="POST" action="{{ route('logout') }}" x-data>
+                        @csrf
+                        <x:component::menu.link href="{{ route('logout') }}" @click.prevent="$root.submit();"
+                            class="flex gap-2 text-gray-600 transition-all duration-200 ease-linear hover:text-teal-500">
+                            Logout
+                            <x:component::icon.logout class="text-red-500" />
+                        </x:component::menu.link>
+                    </form>
+                </div>
+            </div>
 
         </div>
         <div :class="isOpen ? 'left-0' : 'left-72'" class="relative w-full transition-all duration-300 ease-linear">
@@ -41,7 +66,7 @@
                 </div>
 
                 @if (isset($header))
-                    <header class="container mx-auto text-3xl text-white py-7">
+                    <header class="container mx-auto text-3xl text-white p-7">
                         {{ $header }}
                     </header>
                 @endif
@@ -53,6 +78,65 @@
     </div>
 
     @livewireScripts
+
+    <script>
+        let root = document.querySelector('[drag-root]');
+
+        root.querySelectorAll('[drag-item]').forEach((element) => {
+            //console.log(element);
+
+            element.addEventListener('dragstart', e => {
+                e.target.setAttribute('dragging', true);
+                //console.log('start');
+            });
+
+            element.addEventListener('drop', e => {
+                e.target.parentElement.classList.remove('bg-teal-100');
+                //console.log('drop start');
+
+                let draggingEl = root.querySelector('[dragging]');
+
+                //console.log(draggingEl);
+
+                e.target.parentElement.before(draggingEl);
+
+                // Refresh the livewire component
+                let component = Livewire.first(
+                    e.target.closest('[wire\\:id]').getAttribute('wire:id')
+                );
+
+                console.log('drop');
+                let orderIds = Array.from(root.querySelectorAll('[drag-item]'))
+                    .map(itemEl => itemEl.getAttribute('drag-item'));
+
+                component.call('reorder', orderIds);
+
+            });
+
+            element.addEventListener('dragenter', e => {
+                //console.log(e);
+                e.target.parentElement.classList.add('bg-teal-100');
+                //e.preventDefault();
+            });
+
+            element.addEventListener('dragover', e => e.preventDefault());
+
+
+            element.addEventListener('dragleave', e => {
+                //console.log('leave');
+                e.target.parentElement.classList.remove('bg-teal-100');
+            });
+
+            element.addEventListener('dragend', e => {
+                e.target.removeAttribute('dragging', true);
+                //console.log('end');
+            });
+
+        });
+
+        //console.log('hallo welt');
+        //console.log(root);
+    </script>
 </body>
 
 </html>

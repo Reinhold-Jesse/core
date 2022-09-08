@@ -8,7 +8,11 @@ Route::get('componente/resources/view', [\Reinholdjesse\Components\Controllers\C
 Route::middleware(['auth'])->group(function () {
     Route::prefix('dashboard')->group(function () {
 
-        Route::get('settings', [\Reinholdjesse\Components\Controllers\SettingController::class, 'index'])->name('component.settings');
+        Route::get('settings', \Reinholdjesse\Components\Livewire\Setting\Index::class)->name('component.settings');
+
+        Route::get('menu', \Reinholdjesse\Components\Livewire\Menu\Index::class)->name('component.menus');
+
+        Route::get('menu/items/{id}', \Reinholdjesse\Components\Livewire\MenuItem\Index::class)->name('component.menu.items');
 
     });
 });

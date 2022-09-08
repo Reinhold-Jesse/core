@@ -3,10 +3,10 @@
 namespace Reinholdjesse\Components\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Menu;
 use Illuminate\Http\Request;
-use Reinholdjesse\Components\Controllers\Setting;
 
-class SettingController extends Controller
+class MenuController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class SettingController extends Controller
      */
     public function index()
     {
-        return view('component::backend.settings.index');
+        //
     }
 
     /**
@@ -42,10 +42,10 @@ class SettingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Setting  $setting
+     * @param  \App\Models\Menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function show(Setting $setting)
+    public function show(Menu $menu)
     {
         //
     }
@@ -53,10 +53,10 @@ class SettingController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Setting  $setting
+     * @param  \App\Models\Menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function edit(Setting $setting)
+    public function edit(Menu $menu)
     {
         //
     }
@@ -65,10 +65,10 @@ class SettingController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Setting  $setting
+     * @param  \App\Models\Menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Setting $setting)
+    public function update(Request $request, Menu $menu)
     {
         //
     }
@@ -76,10 +76,10 @@ class SettingController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Setting  $setting
+     * @param  \App\Models\Menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Setting $setting)
+    public function destroy(Menu $menu)
     {
         //
     }

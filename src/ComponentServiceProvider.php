@@ -6,9 +6,6 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
-use Reinholdjesse\Components\Livewire\Element\MarkdownX;
-use Reinholdjesse\Components\Livewire\Element\Select2;
-use Reinholdjesse\Components\Livewire\Setting\Index;
 use Reinholdjesse\Components\View\Components\AppLayout;
 use Reinholdjesse\Components\View\Components\DashboardLayout;
 use Reinholdjesse\Components\View\Components\Element\Datepicker;
@@ -92,10 +89,18 @@ class ComponentServiceProvider extends ServiceProvider
         // werden alle eingebunden
         // Blade::componentNamespace('Reinholdjesse\\Components\\View\\Components\\Element', 'component');
 
-        Livewire::component('markdown-x', MarkdownX::class);
-        Livewire::component('select2', Select2::class);
+        // Componente
+        Livewire::component('markdown-x', \Reinholdjesse\Components\Livewire\Element\MarkdownX::class);
+        Livewire::component('select2', \Reinholdjesse\Components\Livewire\Element\Select2::class);
 
-        Livewire::component('component::setting.index', Index::class);
+        // Controller
+        Livewire::component('component::setting.index', \Reinholdjesse\Components\Livewire\Setting\Index::class);
+
+        Livewire::component('component::menu.index', \Reinholdjesse\Components\Livewire\Menu\Index::class);
+        Livewire::component('component::menu.edit', \Reinholdjesse\Components\Livewire\Menu\Edit::class);
+
+        Livewire::component('component::menu-item.index', \Reinholdjesse\Components\Livewire\MenuItem\Index::class);
+        Livewire::component('component::menu-item.edit', \Reinholdjesse\Components\Livewire\MenuItem\Edit::class);
 
     }
 

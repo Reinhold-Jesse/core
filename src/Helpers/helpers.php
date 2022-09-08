@@ -8,9 +8,9 @@ if (!function_exists('setting')) {
 }
 
 if (!function_exists('menu')) {
-    function menu($menuName, $type = null, array $options = [])
+    function menu($menuName)
     {
-        return Reinholdjesse\Components\Facades\Component::model('Menu')->display($menuName, $type, $options);
+        return Reinholdjesse\Components\Facades\Component::model('Menu')->display($menuName);
     }
 }
 
