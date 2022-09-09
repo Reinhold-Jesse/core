@@ -19,7 +19,7 @@
                                 <div class="flex items-center gap-5 ">
                                     <h3 class="font-bold">{{ $value->display_name }}</h3>
                                     <code
-                                        class="px-3 py-1 text-sm text-white bg-teal-500 rounded-full">setting('{{ $value->key }}')</code>
+                                        class="px-3 py-1 text-sm text-white bg-teal-500 rounded-full cursor-pointer hover:bg-teal-600">setting('{{ $value->key }}')</code>
                                 </div>
                                 <div class="flex justify-end gap-5">
                                     <x:component::element.modal>

@@ -1,27 +1,16 @@
-<div>
+<ul>
     @foreach ($items as $item)
-        @if (count($item->children) > 0)
-            <x:component::menu.dropdown>
-                <x-slot:trigger>{{ $item->title }}</x-slot:trigger>
+        <li>
+            @if (count($item->children) > 0)
+                {{ trim($item->title) }}
 
-                <x-slot:content>
-                    @include('component::template.menu.default', [
-                        'items' => $item->children,
-                        'type' => 'children',
-                    ])
-                </x-slot:content>
-            </x:component::menu.dropdown>
-        @else
-            @if (isset($type) && $type == 'children')
-                <x:component::menu.dropdown-link
-                    href="{{ isset($item->route) ? route($item->route) : url($item->url) }}">
-                    {{ $item->title }}
-                </x:component::menu.dropdown-link>
+                @include('component::template.menu.default', [
+                    'items' => $item->children,
+                    'type' => 'children',
+                ])
             @else
-                <x:component::menu.link href="{{ isset($item->route) ? route($item->route) : url($item->url) }}">
-                    {{ $item->title }}
-                </x:component::menu.link>
+                <a href="{{ isset($item->route) ? route($item->route) : url($item->url) }}">{{ $item->title }}</a>
             @endif
-        @endif
+        </li>
     @endforeach
-</div>
+</ul>

@@ -9,41 +9,10 @@
     @livewireStyles
     <!-- Fonts -->
     <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-    {{-- @vite(['resources/css/app.css', 'resources/js/app.js']) --}}
+    @vite(['resources/css/dashboard.css', 'resources/js/dashboard.js'])
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://unpkg.com/alpinejs@3.10.3/dist/cdn.min.js"></script>
 
-    <style>
-        [x-cloak] {
-            display: none !important;
-        }
-
-        #toast.show {
-            visibility: visible;
-            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-            animation: fadein 0.5s, fadeout 0.5s 2.5s;
-        }
-
-        #toast {
-            visibility: hidden;
-            min-width: 400px;
-            margin-left: -200px;
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            border-radius: 2px;
-            padding: 16px;
-            position: fixed;
-            z-index: 1;
-            left: 50%;
-            bottom: 30px;
-            font-size: 17px;
-        }
-
-        @keyframes fadein {
-            opacity: 'show';
-        }
-    </style>
 </head>
 
 <body class="py-12 antialiased bg-gray-200">
@@ -142,48 +111,8 @@
         </div>
     </div>
 
-    <div id="toast">Snippet in die Zwischenablage kopiert.</div>
-
-
     @livewireScripts
 
-
-    <script>
-        'use strict';
-
-        (() => {
-
-            // === DOM & VARS ===
-            const DOM = {};
-            DOM.code = document.querySelectorAll('code')
-            // === INIT =========
-
-            const init = () => {
-                copyByClick()
-            }
-
-            // === EVENTS / XHR =======
-
-            // === FUNCTIONS ====
-            let copyByClick = () => {
-
-                Array.from(DOM.code).forEach((element) => {
-                    element.addEventListener('click', (event) => {
-                        event.preventDefault();
-                        navigator.clipboard.writeText(event.target.innerText).then(() => {
-                            const x = document.getElementById("toast");
-                            x.className = "show";
-                            setTimeout(() => {
-                                x.className = x.className.replace("show", "");
-                            }, 3000);
-                        });
-                    });
-                })
-            }
-            init();
-
-        })();
-    </script>
 </body>
 
 </html>

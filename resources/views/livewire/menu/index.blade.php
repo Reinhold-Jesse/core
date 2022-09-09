@@ -38,7 +38,7 @@
                                 </x:component::table.cell>
 
                                 <x:component::table.cell><code
-                                        class="px-3 py-1 text-sm text-white bg-teal-500 rounded-full">menu('{{ $value->name }}')</code>
+                                        class="px-3 py-1 text-sm text-white bg-teal-500 rounded-full cursor-pointer hover:bg-teal-600">menu('{{ $value->name }}')</code>
                                 </x:component::table.cell>
 
                                 <x:component::table.cell class="flex justify-end gap-2">

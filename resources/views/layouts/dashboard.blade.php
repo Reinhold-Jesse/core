@@ -30,7 +30,7 @@
             <div class="px-3">
 
                 <div class="mt-7">
-                    {{ menu('admin') }}
+                    {{ menu('admin', 'admin') }}
                 </div>
 
                 <div class="">
