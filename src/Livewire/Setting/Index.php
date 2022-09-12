@@ -1,9 +1,9 @@
 <?php
 
-namespace Reinholdjesse\Components\Livewire\Setting;
+namespace Reinholdjesse\Core\Livewire\Setting;
 
 use Livewire\Component;
-use Reinholdjesse\Components\Models\Setting;
+use Reinholdjesse\Core\Models\Setting;
 
 class Index extends Component
 {

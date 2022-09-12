@@ -14,7 +14,7 @@
 
             <div class="flex justify-end gap-5 pb-12">
                 <button wire:click="create" type="button"
-                    class="flex items-center justify-center w-56 px-5 py-3 text-white bg-teal-500 border-0 rounded-md shadow-sm hover:text-white hover:bg-teal-600 default-transition">
+                    class="flex items-center justify-center w-56 px-5 py-3 text-white border-0 rounded-md shadow-sm bg-primary-500 hover:text-white hover:bg-primary-600 default-transition">
                     Menu Item erstellen
                 </button>
             </div>
@@ -43,7 +43,7 @@
                             <x:component::table.row class="hover:bg-gray-50" draggable="true"
                                 wire:sortable.item="{{ $value->id }}" drag-item="{{ $value->id }}">
                                 <x:component::table.cell
-                                    class="flex items-center justify-center text-gray-300 cursor-pointer hover:text-teal-500"
+                                    class="flex items-center justify-center text-gray-300 cursor-pointer hover:text-primary-500"
                                     wire:sortable.handle>
                                     <x:component::icon.drag-indicator />
                                 </x:component::table.cell>
@@ -52,13 +52,13 @@
                                 <x:component::table.cell class="text-gray-500">
                                     @if (!empty($value->url))
                                         <a href="{{ $value->url }}" target="_blank"
-                                            class="hover:text-teal-500">{{ $value->url }}</a>
+                                            class="hover:text-primary-500">{{ $value->url }}</a>
                                     @endif
                                 </x:component::table.cell>
                                 <x:component::table.cell class="text-gray-500">
                                     @if (!empty($value->route))
                                         <a href="{{ route($value->route) }}" target="_blank"
-                                            class="hover:text-teal-500">{{ $value->route }}</a>
+                                            class="hover:text-primary-500">{{ $value->route }}</a>
                                     @endif
                                 </x:component::table.cell>
                                 <x:component::table.cell class="text-gray-500">{{ $value->parent_id }}

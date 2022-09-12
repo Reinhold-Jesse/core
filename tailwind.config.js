@@ -6,6 +6,7 @@ module.exports = {
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
+        './vendor/reinholdjesse/**/*.blade.php',
     ],
 
     theme: {
@@ -17,15 +18,15 @@ module.exports = {
                 transparent: 'transparent',
                 current: 'currentColor',
                 primary: {
-                    100: "#ccdfeb",
-                    200: "#99bed8",
-                    300: "#669ec4",
-                    400: "#337db1",
-                    500: "#005d9d",
-                    600: "#004a7e",
-                    700: "#00385e",
-                    800: "#00253f",
-                    900: "#00131f"
+                    100: "#ccfbf1",
+                    200: "#99f6e4",
+                    300: "#5eead4",
+                    400: "#2dd4bf",
+                    500: "#14b8a6",
+                    600: "#0d9488",
+                    700: "#0f766e",
+                    800: "#115e59",
+                    900: "#134e4a"
                 },
             },
         },

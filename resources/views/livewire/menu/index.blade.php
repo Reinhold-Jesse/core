@@ -13,7 +13,7 @@
 
             <div class="flex justify-end gap-5 pb-12">
                 <button wire:click="create" type="button"
-                    class="flex items-center justify-center w-56 px-5 py-3 text-white bg-teal-500 border-0 rounded-md shadow-sm hover:text-white hover:bg-teal-600 default-transition">
+                    class="flex items-center justify-center w-56 px-5 py-3 text-white border-0 rounded-md shadow-sm bg-primary-500 hover:text-white hover:bg-primary-600 default-transition">
                     Menu erstellen
                 </button>
             </div>
@@ -38,14 +38,14 @@
                                 </x:component::table.cell>
 
                                 <x:component::table.cell><code
-                                        class="px-3 py-1 text-sm text-white bg-teal-500 rounded-full cursor-pointer hover:bg-teal-600">menu('{{ $value->name }}')</code>
+                                        class="px-3 py-1 text-sm text-white rounded-full cursor-pointer bg-primary-500 hover:bg-primary-600">menu('{{ $value->name }}')</code>
                                 </x:component::table.cell>
 
                                 <x:component::table.cell class="flex justify-end gap-2">
 
 
-                                    <a href="{{ route('component.menu.items', $value->id) }}"
-                                        class="flex items-center justify-center text-teal-500 border-2 border-teal-500 rounded-md shadow-sm hover:text-white w-9 h-9 hover:bg-teal-500 default-transition">
+                                    <a href="{{ route('package.core.menu.items', $value->id) }}"
+                                        class="flex items-center justify-center border-2 rounded-md shadow-sm text-primary-500 border-primary-500 hover:text-white w-9 h-9 hover:bg-primary-500 default-transition">
                                         <x:component::icon.list />
                                     </a>
 

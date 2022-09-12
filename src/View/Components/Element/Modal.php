@@ -1,6 +1,6 @@
 <?php
 
-namespace Reinholdjesse\Components\View\Components\Element;
+namespace Reinholdjesse\Core\View\Components\Element;
 
 use Illuminate\View\Component;
 

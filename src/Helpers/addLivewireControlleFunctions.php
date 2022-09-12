@@ -1,5 +1,5 @@
 <?php
-namespace Reinholdjesse\Components\Helpers;
+namespace Reinholdjesse\Core\Helpers;
 
 trait addLivewireControlleFunctions
 {

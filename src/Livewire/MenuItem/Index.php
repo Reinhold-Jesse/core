@@ -1,11 +1,11 @@
 <?php
 
-namespace Reinholdjesse\Components\Livewire\MenuItem;
+namespace Reinholdjesse\Core\Livewire\MenuItem;
 
 use Livewire\Component;
-use Reinholdjesse\Components\Helpers\addLivewireControlleFunctions;
-use Reinholdjesse\Components\Models\Menu;
-use Reinholdjesse\Components\Models\MenuItem;
+use Reinholdjesse\Core\Helpers\addLivewireControlleFunctions;
+use Reinholdjesse\Core\Models\Menu;
+use Reinholdjesse\Core\Models\MenuItem;
 
 class Index extends Component
 {

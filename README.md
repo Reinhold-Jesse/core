@@ -32,9 +32,6 @@ php artisan vendor:publish --tag=components.publishes
 Layout
 php artisan vendor:publish --tag=components.publishes.layouts
 
-Navigation
-php artisan vendor:publish --tag=components.publishes.navigation
-
 Configuration
 php artisan vendor:publish --tag=components.config
 ```
@@ -165,5 +162,5 @@ public function updateUserId(int $id = null)
 run seed with
 
 ```bash
- php artisan db:seed --class="Reinholdjesse\Components\Seeders\SettingsTableSeeder"
+ php artisan db:seed --class="Reinholdjesse\Core\Seeders\SettingsTableSeeder"
 ```

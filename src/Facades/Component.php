@@ -1,6 +1,6 @@
 <?php
 
-namespace Reinholdjesse\Components\Facades;
+namespace Reinholdjesse\Core\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

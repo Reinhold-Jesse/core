@@ -29,7 +29,7 @@
                             {{-- is array --}}
                             @if (isset($element['name']) && !empty($element['name']))
                                 <div class="flex items-center">
-                                    <span class="mr-3 text-6xl text-teal-500">#</span>
+                                    <span class="mr-3 text-6xl text-primary-500">#</span>
                                     <h3
                                         class="max-w-lg mb-3 text-4xl font-extrabold leading-none text-gray-900 md:text-5xl xl:text-6xl dark:text-white">
                                         {{ $element['name'] }}
@@ -46,7 +46,7 @@
                                                 <div class="flex items-center gap-5 mb-3">
                                                     <p class="py-3">{{ $value }}</p>
                                                     <code
-                                                        class="px-3 py-1 text-sm text-white bg-teal-500 rounded-full shadow-sm cursor-pointer hover:bg-teal-600">
+                                                        class="px-3 py-1 text-sm text-white rounded-full shadow-sm cursor-pointer bg-primary-500 hover:bg-primary-600">
                                                         &lt;x:component::{{ $element['name'] }}.{{ $value }}
                                                         /&gt;
                                                     </code>
@@ -68,7 +68,7 @@
                                             <div class="flex items-center gap-5 mb-3">
                                                 <p class="py-3">{{ $value }}</p>
                                                 <code
-                                                    class="px-3 py-1 text-sm text-white bg-teal-500 rounded-full shadow-sm cursor-pointer hover:bg-teal-600">
+                                                    class="px-3 py-1 text-sm text-white rounded-full shadow-sm cursor-pointer bg-primary-500 hover:bg-primary-600">
                                                     &lt;x:component::{{ $element['name'] }}.{{ $value }} /&gt;
                                                 </code>
                                             </div>

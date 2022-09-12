@@ -1,10 +1,10 @@
 <?php
 
-namespace Reinholdjesse\Components\Livewire\Menu;
+namespace Reinholdjesse\Core\Livewire\Menu;
 
 use Livewire\Component;
-use Reinholdjesse\Components\Helpers\addLivewireControlleFunctions;
-use Reinholdjesse\Components\Models\Menu;
+use Reinholdjesse\Core\Helpers\addLivewireControlleFunctions;
+use Reinholdjesse\Core\Models\Menu;
 
 class Index extends Component
 {
@@ -66,8 +66,9 @@ class Index extends Component
 
     public function deleteEntry(Menu $menu)
     {
-        if ($menu->delete()) {
+        if ($menu->name != 'admin' && $menu->delete()) {
             // TODO: flash message
+            // TODO: flesh message admin menu kann nicht gelöscht werden
         } else {
             // TODO: flash message
         }

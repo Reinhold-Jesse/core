@@ -1,12 +1,12 @@
 <?php
 
-namespace Reinholdjesse\Components\Models;
+namespace Reinholdjesse\Core\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\HtmlString;
-use Reinholdjesse\Components\Models\MenuItem;
+use Reinholdjesse\Core\Models\MenuItem;
 
 class Menu extends Model
 {
