@@ -47,7 +47,7 @@ class CoreServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../resources/views/components' => resource_path('/views/components'),
             __DIR__ . '/View/Components/Element' => app_path('View/Components/Element'),
-        ], 'components.publishes');
+        ], 'core.publishes');
 
         // $this->publishes([
         //     __DIR__ . '/../resources/views/layouts' => resource_path('/views/layouts'),
@@ -60,12 +60,16 @@ class CoreServiceProvider extends ServiceProvider
             __DIR__ . '/../resources/css/app.css' => resource_path('css/app.css'),
             __DIR__ . '/../resources/css/dashboard.css' => resource_path('css/dashboard.css'),
             __DIR__ . '/../resources/js/app.js' => resource_path('js/app.js'),
+            __DIR__ . '/../resources/js/copy.js' => resource_path('js/copy.js'),
             __DIR__ . '/../resources/js/dashboard.js' => resource_path('js/dashboard.js'),
             __DIR__ . '/../tailwind.config.js' => base_path('tailwind.config.js'),
+            __DIR__ . '/../vite.config.js' => base_path('vite.config.js'),
+            # view
+            __DIR__ . '/../resources/views/backend/dashboard.blade.php' => resource_path('views/dashboard.blade.php'),
             # configs
             __DIR__ . '/../config/markdownx.php' => config_path('markdownx.php'),
             __DIR__ . '/../config/tallui.php' => config_path('tallui.php'),
-        ], 'components.config');
+        ], 'core.install');
 
         // blade componente
         $this->bootBladeComponents();

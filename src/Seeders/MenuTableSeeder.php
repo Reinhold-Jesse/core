@@ -1,6 +1,6 @@
 <?php
 
-namespace Database\Seeders;
+namespace Reinholdjesse\Core\Seeders;
 
 use Illuminate\Database\Seeder;
 use Reinholdjesse\Core\Models\Menu;

@@ -1,47 +1,81 @@
-## # Start Route
+## Install
 
-#### Zeigt alle Komponente aus dem package Ordner an.
+### Install Packages
 
-http:your-url/**componente/package/view**
+```bash
 
-#### Zeigt alle Komponente aus dem App/resources Ordner an.
+composer require reinholdjesse/core
+```
+
+### Delete default Files
+
+```bash
+# Tailwind config file
+del ./tailwind.config.js
+
+# Vite config file
+del ./vite.config.js
+
+# Default Dashboard view
+del ./resources/views/dashboard.blade.php
+```
+
+### Publish config file
+
+```bash
+#Configuration Install
+php artisan vendor:publish --tag=core.install
+
+# Blade Componentes Publishe (optional)
+php artisan vendor:publish --tag=core.publishes
+
+#Layout (optional)
+php artisan vendor:publish --tag=core.publishes.layouts
+```
+
+### Core Seeder
+
+run seed with
+
+```bash
+# Settings
+ php artisan db:seed --class="Reinholdjesse\Core\Seeders\SettingsTableSeeder"
+
+# Menu
+ php artisan db:seed --class="Reinholdjesse\Core\Seeders\MenuTableSeeder"
+
+# Menu Item
+php artisan db:seed --class="Reinholdjesse\Core\Seeders\MenuItemTableSeeder"
+
+```
+
+### Run NPM runner
+
+```bash
+npm run build
+```
+
+---
+
+## Componentes
+
+### Componenten list
+
+```url
+http://127.0.0.1:8000/dashboard/componentes
+```
+
+### get all components from App/resources folder as list.
 
 http:your-url/**componente/resources/view**
 
-## # Include
-
-### Möglicher aufruf von Komponente aus dem Package heraus
+### Componenten include
 
 ```php
-<x:component::form.label value="Package" />
-```
-
-### Koppiere alle Komponente von Package zur Anwendung (app/resources/views/components)
-
-Dann kann die Komponente ganz normal aufgerufen werden.
-
-```php
-<x-form.label value="Package" />
-```
-
-## Publish config file
-
-```bash
-php artisan vendor:publish --tag=components.publishes
-
-Layout
-php artisan vendor:publish --tag=components.publishes.layouts
-
-Configuration
-php artisan vendor:publish --tag=components.config
-```
-
-## Einbingung
-
-```php
+# Input Label
  <x:component::form.label value="Package" />
 
-
+# Controlle elements
 <div class="flex gap-5">
     <x:component::button.show />
 
@@ -51,21 +85,19 @@ php artisan vendor:publish --tag=components.config
 
 </div>
 
-
+# Search Componente
 <x:component::icon.search class="h-16" />
 ```
 
-## Modal
+### Modal
 
 ```php
 <x:component::element.modal>
-    <x-slot:event>
-        <button @click.prevent="modal=true" type="button"
-            class="flex items-center justify-center text-red-500 border-2 border-red-500 rounded-md shadow-sm hover:text-white w-9 h-9 hover:bg-red-600 default-transition">
-            <x:component::icon.delete class="h-6" />
+    <x-slot:trigger>
 
-        </button>
-    </x-slot:event>
+        <x:component::button.delete @click.prevent="modal=true" />
+
+    </x-slot:trigger>
 
     <x-slot:content>
         <div class="flex justify-center ">
@@ -75,7 +107,7 @@ php artisan vendor:publish --tag=components.config
             </div>
         </div>
         <div class="flex justify-center mt-7">
-            <h3 class="text-lg font-bold text-center text-gray-700">löschen? </h3>
+            <h3 class="text-lg font-bold text-center text-gray-700">unwiderruflich löschen?</h3>
         </div>
     </x-slot:content>
 
@@ -89,7 +121,7 @@ php artisan vendor:publish --tag=components.config
 </x:component::element.modal>
 ```
 
-## Komponente übersicht / einbinden
+### Components Datepicker / Drop-File
 
 ```php
 <x:component::datepicker model="date" />
@@ -97,6 +129,8 @@ php artisan vendor:publish --tag=components.config
 <x-component::drop-file wire:model='temp_files' name="temp_files" title="jpg, png, pdf, docx (MAX. 10Mb)" />
 
 ```
+
+---
 
 ## Livewire Komponente übersicht / einbinden
 
@@ -157,10 +191,10 @@ public function updateUserId(int $id = null)
 </x:component::layouts.dashboard>
 ```
 
-## Seed
+## Copy all packages components in your App (app/resources/views/components) (optional)
 
-run seed with
+Dann kann die Komponente ganz normal aufgerufen werden.
 
-```bash
- php artisan db:seed --class="Reinholdjesse\Core\Seeders\SettingsTableSeeder"
+```php
+<x-form.label value="Package" />
 ```
