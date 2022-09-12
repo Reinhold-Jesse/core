@@ -1,5 +1,11 @@
 ## Install
 
+### Require Packages
+
+```bash
+composer require laravel/jetstream
+```
+
 ### Install Packages
 
 ```bash
