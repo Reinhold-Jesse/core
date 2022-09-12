@@ -2,7 +2,7 @@
     <div
         class="fixed top-0 bottom-0 left-0 right-0 z-50 items-center justify-center p-3 overflow-y-auto bg-gray-900 lg:flex bg-opacity-70 backdrop-blur-sm">
         <div class="w-full overflow-hidden bg-white rounded-md shadow-sm lg:w-6/12">
-            <div class="px-5 pb-5">
+            <div class="px-5 py-5">
                 <div class="py-3">
                     <x:component::form.label value="Titel" />
                     <x:component::form.input wire:model="title" type="text" name="title" />
@@ -24,8 +24,15 @@
                     <x:component::form.input-error :for="$target" />
                 </div>
                 <div class="py-3">
-                    <x:component::form.label value="Parent Id" />
-                    <x:component::form.input wire:model="parent_id" type="text" name="parent_id" />
+                    <x:component::form.label value="Children from" />
+
+                    <x:component::form.select wire:model="parent_id" name="parent_id">
+                        <x:component::form.select-option name="" value="" />
+                        @foreach (\Reinholdjesse\Core\Models\MenuItem::where('menu_id', $menu->id)->get() as $value)
+                            <x:component::form.select-option name="{{ $value->id }}" value="{{ $value->title }}" />
+                        @endforeach
+                    </x:component::form.select>
+
                     <x:component::form.input-error :for="$parent_id" />
                 </div>
                 <div class="py-3">

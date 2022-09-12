@@ -24,6 +24,12 @@ del ./vite.config.js
 
 # Default Dashboard view
 del ./resources/views/dashboard.blade.php
+
+# Delete default app.css
+del ./resources/css/app.css
+
+#Delete default app.js
+del ./resources/js/app.js
 ```
 
 ### Publish config file

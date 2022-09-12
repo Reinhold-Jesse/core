@@ -25,7 +25,9 @@ class Menu extends Model
         }])->first();
 
         $items = $menu->parent_items->sortBy('order');
-        //dd($type);
+
+        //dd($items);
+
         if (isset($type) && !empty($type)) {
             return new HtmlString(View::make('component::template.menu.' . $type, ['items' => $items])->render());
         } else {

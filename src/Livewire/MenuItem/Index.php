@@ -31,7 +31,7 @@ class Index extends Component
 
     protected $rules = [
         'title' => 'required|min:3',
-        'url' => 'nullable|url|max:255',
+        'url' => 'nullable|string|max:255',
         'target' => 'nullable|string|max:10',
         'parent_id' => 'nullable|numeric',
         'order' => 'required|numeric',
