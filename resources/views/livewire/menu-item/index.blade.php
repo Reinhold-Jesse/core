@@ -57,8 +57,13 @@
                                 </x:component::table.cell>
                                 <x:component::table.cell class="text-gray-500">
                                     @if (!empty($value->route))
-                                        <a href="{{ route($value->route) }}" target="_blank"
-                                            class="hover:text-primary-500">{{ $value->route }}</a>
+                                        @if (Route::has($value->route))
+                                            <a href="{{ route($value->route) }}" target="_blank"
+                                                class="hover:text-primary-500">{{ $value->route }}</a>
+                                        @else
+                                            <span class="text-sm font-bold text-red-500">Route wurde nicht
+                                                gefunden</span>
+                                        @endif
                                     @endif
                                 </x:component::table.cell>
                                 <x:component::table.cell class="text-gray-500">{{ $value->parent_id }}
