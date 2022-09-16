@@ -34,15 +34,33 @@
             </li>
         @else
             @if (isset($type) && $type == 'children')
-                <li>
-                    <a href="{{ isset($item->route) ? route($item->route) : url($item->url) }}"
-                        class="block px-4 py-2 text-gray-600 hover:text-primary-500">{{ $item->title }}</a>
-                </li>
+                @if (isset($item->route))
+                    @if (Route::has($item->route))
+                        <li>
+                            <a href="{{ route($item->route) }}"
+                                class="block px-4 py-2 text-gray-600 hover:text-primary-500">{{ $item->title }}</a>
+                        </li>
+                    @endif
+                @else
+                    <li>
+                        <a href="{{ url($item->url) }}"
+                            class="block px-4 py-2 text-gray-600 hover:text-primary-500">{{ $item->title }}</a>
+                    </li>
+                @endif
             @else
-                <li>
-                    <a href="{{ isset($item->route) ? route($item->route) : url($item->url) }}"
-                        class="block px-4 py-2 text-gray-600 hover:text-primary-500">{{ $item->title }}</a>
-                </li>
+                @if (isset($item->route))
+                    @if (Route::has($item->route))
+                        <li>
+                            <a href="{{ route($item->route) }}"
+                                class="block px-4 py-2 text-gray-600 hover:text-primary-500">{{ $item->title }}</a>
+                        </li>
+                    @endif
+                @else
+                    <li>
+                        <a href="{{ url($item->url) }}"
+                            class="block px-4 py-2 text-gray-600 hover:text-primary-500">{{ $item->title }}</a>
+                    </li>
+                @endif
             @endif
         @endif
     @endforeach

@@ -13,14 +13,29 @@
             </x:component::menu.dropdown>
         @else
             @if (isset($type) && $type == 'children')
-                <x:component::menu.dropdown-link
-                    href="{{ isset($item->route) ? route($item->route) : url($item->url) }}">
-                    {{ $item->title }}
-                </x:component::menu.dropdown-link>
+                @if (isset($item->route))
+                    @if (Route::has($item->route))
+                        <x:component::menu.dropdown-link href="{{ route($item->route) }}">
+                            {{ $item->title }}
+                        </x:component::menu.dropdown-link>
+                    @endif
+                @else
+                    <x:component::menu.dropdown-link href="{{ url($item->url) }}">
+                        {{ $item->title }}
+                    </x:component::menu.dropdown-link>
+                @endif
             @else
-                <x:component::menu.link href="{{ isset($item->route) ? route($item->route) : url($item->url) }}">
-                    {{ $item->title }}
-                </x:component::menu.link>
+                @if (isset($item->route))
+                    @if (Route::has($item->route))
+                        <x:component::menu.link href="{{ route($item->route) }}">
+                            {{ $item->title }}
+                        </x:component::menu.link>
+                    @endif
+                @else
+                    <x:component::menu.link href="{{ url($item->url) }}">
+                        {{ $item->title }}
+                    </x:component::menu.link>
+                @endif
             @endif
         @endif
     @endforeach
