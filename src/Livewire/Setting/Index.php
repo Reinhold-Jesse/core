@@ -31,8 +31,14 @@ class Index extends Component
 
     public function render()
     {
-        $this->content = Setting::orderBy('group', 'asc')
-            ->orderBy('order', 'asc')->get();
+        // $this->content = Setting::orderBy('group', 'asc')
+        //     ->orderBy('order', 'asc')->get();
+
+        $collection = collect(Setting::orderBy('group', 'asc')
+                ->orderBy('order', 'asc')->get()
+        );
+
+        $this->content = $collection->groupBy('group');
 
         return view('component::livewire.setting.index')->layout('component::layouts.dashboard');
     }
@@ -64,7 +70,7 @@ class Index extends Component
             'value' => $value,
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
-        $this->emit('saved');
+        $this->emit('saved' . $id);
     }
 
     public function deleteEntry(Setting $setting)

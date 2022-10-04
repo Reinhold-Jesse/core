@@ -12,8 +12,117 @@
         <div class="container px-3 mx-auto">
 
             @if (!empty($content))
-                <div class="grid grid-cols-1 mb-12 gap-7">
+
+                <div class="" x-data="{ tab: '{{ array_key_first($content->toArray()) }}' }">
+                    <div class="flex overflow-x-auto flex-nowrap">
+                        <ul class="flex gap-2">
+                            @foreach ($content as $key => $value)
+                                <li @click.prevent="tab = '{{ $key }}'"
+                                    class="block py-3 font-semibold text-center  cursor-pointer w-52 rounded-t-md hover:bg-gray-50"
+                                    :class="{
+
+
+                                        'bg-gray-100 text-teal-500': tab === '{{ $key }}',
+                                        'text-gray-500 bg-gray-300': tab != '{{ $key }}'
+
+                                    }">
+                                    {{ $key }}
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+
+                    <div class="px-7 mb-12 bg-gray-100 rounded-tr-md rounded-br-md rounded-bl-md py-7">
+
+                        @foreach ($content as $key => $setting)
+                            <div x-show="tab === '{{ $key }}'">
+                                <div class="grid grid-cols-1 gap-7">
+                                    @if (!empty($setting))
+                                        @foreach ($setting as $value)
+                                            <div class="bg-white rounded-md shadow-sm p-7">
+                                                <div class="flex items-center justify-between gap-5 px-2 mb-5">
+                                                    <div class="flex items-center gap-5 ">
+                                                        <h3 class="font-bold">{{ $value->display_name }}</h3>
+                                                        <code
+                                                            class="px-3 py-1 text-sm text-white bg-teal-500 rounded-full cursor-pointer hover:bg-teal-600">setting('{{ $value->key }}')</code>
+                                                    </div>
+                                                    <div class="flex justify-end gap-5">
+                                                        <x:component::element.modal>
+                                                            <x-slot:trigger>
+
+                                                                <button @click.prevent="modal=true" type="button">
+                                                                    <x:component::icon.delete
+                                                                        class="text-gray-300 hover:text-gray-700" />
+                                                                </button>
+
+                                                            </x-slot:trigger>
+
+                                                            <x-slot:content>
+                                                                <div class="flex justify-center ">
+                                                                    <div
+                                                                        class="flex items-center justify-center text-red-500 bg-red-200 rounded-full shadow-sm w-28 h-28">
+                                                                        <x:component::icon.delete class="h-16" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="flex justify-center mt-7">
+                                                                    <h3
+                                                                        class="text-lg font-bold text-center text-gray-700">
+                                                                        {{ $value->display_name }} <br />unwiderruflich
+                                                                        löschen?
+                                                                    </h3>
+                                                                </div>
+                                                            </x-slot:content>
+
+                                                            <x-slot:controller>
+                                                                <button @click.prevent="modal=false" type="button"
+                                                                    class="flex justify-center w-full px-4 py-2 mr-2 font-medium text-center text-white bg-gray-300 border border-transparent rounded-md shadow-sm hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">Abbrechen</button>
+
+                                                                <button wire:click='deleteEntry({{ $value->id }})'
+                                                                    @click.prevent="modal=false" type="button"
+                                                                    class="flex justify-center w-full px-4 py-2 font-medium text-center text-white bg-red-500 border border-transparent rounded-md shadow-sm hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">löschen</button>
+                                                            </x-slot:controller>
+                                                        </x:component::element.modal>
+                                                    </div>
+                                                </div>
+                                                <div class="">
+                                                    @if ($value->type == 'text')
+                                                        <x:component::form.input
+                                                            wire:keydown.debounce.500ms="input($event.target.value, {{ $value->id }})"
+                                                            type="text" value="{{ $value->value }}" />
+
+                                                        <x:component::action-message class="mr-3"
+                                                            on="saved{{ $value->id }}">
+                                                            {{ __('Saved.') }}
+                                                        </x:component::action-message>
+                                                    @endif
+
+                                                    @if ($value->type == 'text_area')
+                                                        <x:component::form.textarea
+                                                            wire:keydown.debounce.500ms="input($event.target.value, {{ $value->id }})"
+                                                            value="{{ $value->value }}" />
+
+                                                        <x:component::action-message class="mr-3"
+                                                            on="saved{{ $value->id }}">
+                                                            {{ __('Saved.') }}
+                                                        </x:component::action-message>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    @else
+                                        <p>Noch kein Eintrag vorhanden.</p>
+                                    @endif
+
+                                </div>
+                            </div>
+                        @endforeach
+
+                    </div>
+                </div>
+                {{-- <div class="grid grid-cols-1 mb-12 gap-7">
                     @foreach ($content as $value)
+
+
                         <div class="bg-white rounded-md shadow-sm p-7">
                             <div class="flex items-center justify-between gap-5 px-2 mb-5">
                                 <div class="flex items-center gap-5 ">
@@ -58,27 +167,27 @@
                             <div class="">
                                 @if ($value->type == 'text')
                                     <x:component::form.input
-                                        wire:change.debounce.150ms="input($event.target.value, {{ $value->id }})"
+                                        wire:keydown.debounce.500ms="input($event.target.value, {{ $value->id }})"
                                         type="text" value="{{ $value->value }}" />
 
-                                    <x:component::action-message class="mr-3" on="saved">
+                                    <x:component::action-message class="mr-3" on="saved{{ $value->id }}">
                                         {{ __('Saved.') }}
                                     </x:component::action-message>
                                 @endif
 
                                 @if ($value->type == 'text_area')
                                     <x:component::form.textarea
-                                        wire:change.debounce.150ms="input($event.target.value, {{ $value->id }})"
+                                        wire:keydown.debounce.500ms="input($event.target.value, {{ $value->id }})"
                                         value="{{ $value->value }}" />
 
-                                    <x:component::action-message class="mr-3" on="saved">
+                                    <x:component::action-message class="mr-3" on="saved{{ $value->id }}">
                                         {{ __('Saved.') }}
                                     </x:component::action-message>
                                 @endif
                             </div>
                         </div>
                     @endforeach
-                </div>
+                </div> --}}
             @endif
 
 
