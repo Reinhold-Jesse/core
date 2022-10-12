@@ -10,8 +10,7 @@
                 </div>
             </div>
             <div class="grid grid-cols-2 gap-4 px-4 text-right bg-gray-100 py-7 sm:px-6">
-                <button wire:click="cloasEditWindow" type="button"
-                    class="flex justify-center w-full px-4 py-2 mr-2 font-medium text-center text-gray-400 border border-transparent rounded-md hover:bg-gray-200 hover:text-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">Abbrechen</button>
+                <x:component::button.cancel wire:click="cloasEditWindow" />
 
                 <button wire:click="update" type="button"
                     class="flex justify-center w-full px-4 py-2 font-medium text-center text-white bg-green-500 border border-transparent rounded-md shadow-sm hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">Speichern</button>
