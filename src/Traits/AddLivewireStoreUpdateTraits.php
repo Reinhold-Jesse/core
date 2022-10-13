@@ -7,27 +7,30 @@ trait AddLivewireStoreUpdateTraits
 
     public function storeAndIndex()
     {
-        dd('store and redirect to index');
+        $this->store();
+        return redirect()->route($this->routeIndex);
     }
 
     public function storeAndNew()
     {
-        dd('store and new');
         $this->store();
-
-        return redirect()->back();
+        return redirect()->route($this->isRoute);
     }
 
     public function updateAndIndex()
     {
-        dd('update and redirect to index');
+        $this->update();
+        return redirect()->route($this->routeIndex);
     }
 
     public function updateAndNew()
     {
-        dd('update and new');
         $this->update();
+        return redirect()->route($this->isRoute);
+    }
 
-        return redirect()->back();
+    public function cancel()
+    {
+        return redirect()->route($this->routeIndex);
     }
 }
