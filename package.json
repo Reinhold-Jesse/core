@@ -17,6 +17,7 @@
         "vite": "^3.0.0"
     },
     "dependencies": {
-        "livewire-sortable": "^0.2.2"
+        "livewire-sortable": "^0.2.2",
+        "tinymce": "^6.2.0"
     }
 }
