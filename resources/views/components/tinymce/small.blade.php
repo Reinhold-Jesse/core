@@ -1,4 +1,4 @@
-<textarea id="tinymceEditor"></textarea>
+<textarea class="tinymceEditorSmall"></textarea>
 
 
 @once

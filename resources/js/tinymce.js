@@ -45,7 +45,7 @@ import contentCss from 'tinymce/skins/content/default/content.css';
 // };
 
 tinymce.init({
-    selector: 'textarea#tinymceEditor',
+    selector: 'textarea.tinymceEditorSmall',
     height: 300,
     menubar: false,
     plugins: 'advlist code link lists table',

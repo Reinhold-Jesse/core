@@ -61,6 +61,7 @@ class CoreServiceProvider extends ServiceProvider
             __DIR__ . '/../resources/css/dashboard.css' => resource_path('css/dashboard.css'),
             __DIR__ . '/../resources/js/app.js' => resource_path('js/app.js'),
             __DIR__ . '/../resources/js/copy.js' => resource_path('js/copy.js'),
+            __DIR__ . '/../resources/js/tinymce.js' => resource_path('js/tinymce.js'),
             __DIR__ . '/../resources/js/dashboard.js' => resource_path('js/dashboard.js'),
             __DIR__ . '/../tailwind.config.js' => base_path('tailwind.config.js'),
             __DIR__ . '/../vite.config.js' => base_path('vite.config.js'),
