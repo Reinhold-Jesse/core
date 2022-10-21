@@ -77,64 +77,6 @@
 
     @livewireScripts
 
-    {{-- <script>
-        let root = document.querySelector('[drag-root]');
-
-        root.querySelectorAll('[drag-item]').forEach((element) => {
-            //console.log(element);
-
-            element.addEventListener('dragstart', e => {
-                e.target.setAttribute('dragging', true);
-                //console.log('start');
-            });
-
-            element.addEventListener('drop', e => {
-                e.target.parentElement.classList.remove('bg-primary-100');
-                //console.log('drop start');
-
-                let draggingEl = root.querySelector('[dragging]');
-
-                //console.log(draggingEl);
-
-                e.target.parentElement.before(draggingEl);
-
-                // Refresh the livewire component
-                let component = Livewire.first(
-                    e.target.closest('[wire\\:id]').getAttribute('wire:id')
-                );
-
-                console.log('drop');
-                let orderIds = Array.from(root.querySelectorAll('[drag-item]'))
-                    .map(itemEl => itemEl.getAttribute('drag-item'));
-
-                component.call('reorder', orderIds);
-
-            });
-
-            element.addEventListener('dragenter', e => {
-                //console.log(e);
-                e.target.parentElement.classList.add('bg-primary-100');
-                //e.preventDefault();
-            });
-
-            element.addEventListener('dragover', e => e.preventDefault());
-
-
-            element.addEventListener('dragleave', e => {
-                //console.log('leave');
-                e.target.parentElement.classList.remove('bg-primary-100');
-            });
-
-            element.addEventListener('dragend', e => {
-                e.target.removeAttribute('dragging', true);
-                //console.log('end');
-            });
-
-        });
-
-        //console.log('hallo welt');
-        //console.log(root);
-    </script> --}}
 </body>
 
 </html>

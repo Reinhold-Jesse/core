@@ -27,12 +27,12 @@
             @else
                 @if (isset($item->route))
                     @if (Route::has($item->route))
-                        <x:component::menu.link href="{{ route($item->route) }}">
+                        <x:component::menu.link href="{{ route($item->route) }}" target="{{ $item->target }}">
                             {{ $item->title }}
                         </x:component::menu.link>
                     @endif
                 @else
-                    <x:component::menu.link href="{{ url($item->url) }}">
+                    <x:component::menu.link href="{{ url($item->url) }}" target="{{ $item->target }}">
                         {{ $item->title }}
                     </x:component::menu.link>
                 @endif
