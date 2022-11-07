@@ -38,6 +38,7 @@ class Index extends Component
 
     public function update()
     {
+        //dd($this->editId);
         $this->validate([
             'name' => 'required|string|min:3',
         ]);
@@ -53,15 +54,15 @@ class Index extends Component
         $query->name = $this->name;
 
         $this->cloasEditWindow();
-        $this->clearValue();
 
-        if ($query->save()) {
-            // TODO: flash message
-            $this->bannerMessage('success', 'Menu wurde erfolgreich erstellt.');
-        } else {
-            // TODO: flash message
+        $query->save();
+
+        if ($this->editId) {
             $this->bannerMessage('success', 'Menu wurde erfolgreich aktualisiert.');
+        } else {
+            $this->bannerMessage('success', 'Menu wurde erfolgreich erstellt.');
         }
+        $this->clearValue();
     }
 
     public function deleteEntry(Menu $menu)
@@ -69,8 +70,11 @@ class Index extends Component
         if ($menu->name != 'admin' && $menu->delete()) {
             // TODO: flash message
             // TODO: flesh message admin menu kann nicht gelöscht werden
+            $this->bannerMessage('success', $menu->name . ' Menu wurde erfolgreich gelöscht.');
+
         } else {
             // TODO: flash message
+            $this->bannerMessage('danger', $menu->name . ' Menu kann nicht gelöscht werden.');
         }
     }
 
