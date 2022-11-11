@@ -14,3 +14,5 @@ Route::middleware(['auth'])->prefix('dashboard')->name('package.core.')->group(f
     Route::get('menu/items/{id}', \Reinholdjesse\Core\Livewire\MenuItem\Index::class)->name('menu.items');
 
 });
+
+Route::view('/404', 'component::error.404')->name('404');

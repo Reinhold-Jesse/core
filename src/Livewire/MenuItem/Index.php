@@ -140,7 +140,12 @@ class Index extends Component
                 'order' => $element['order'],
             ]);
         }
-        //dd($orderedIds);
+
+    }
+
+    public function reorderParents($orderedIds)
+    {
+        dd($orderedIds);
     }
 
 }

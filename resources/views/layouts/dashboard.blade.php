@@ -71,7 +71,7 @@
                     </header>
                 @endif
             </div>
-            <main class="px-5 py-7">
+            <main class="px-5 pb-12 pt-7 mb-7">
                 {{ $slot }}
             </main>
         </div>
