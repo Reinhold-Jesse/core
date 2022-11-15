@@ -3,7 +3,7 @@
 namespace Reinholdjesse\Core\Livewire\MenuItem;
 
 use Livewire\Component;
-use Reinholdjesse\Core\Helpers\addLivewireControlleFunctions;
+use Reinholdjesse\Core\Traits\addLivewireControlleFunctions;
 use Reinholdjesse\Core\Models\Menu;
 use Reinholdjesse\Core\Models\MenuItem;
 

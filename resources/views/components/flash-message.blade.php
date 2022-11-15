@@ -2,10 +2,8 @@
 
 <div x-data="{{ json_encode(['timeout' => null, 'show' => false, 'style' => $style, 'message' => $message]) }}"
     :class="{
-        'bg-green-500': style == 'success',
+        'bg-primary-500': style == 'success',
         'bg-red-700': style == 'danger',
-        'bg-gray-500': style != 'success' && style !=
-            'danger'
     }"
     style="display: none;" x-show="show && message" x-init="() => {
         clearTimeout(timeout);

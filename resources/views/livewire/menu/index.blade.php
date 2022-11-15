@@ -92,9 +92,8 @@
 
         </div>
 
-        @if ($openEdit)
-            @include('component::livewire.menu.edit')
-        @endif
+        @include('component::livewire.menu.edit')
+
 
     </div>
 </div>

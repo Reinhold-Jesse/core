@@ -1,5 +1,5 @@
 <?php
-namespace Reinholdjesse\Core\Helpers;
+namespace Reinholdjesse\Core\Traits;
 
 trait addLivewireControlleFunctions
 {
@@ -41,6 +41,36 @@ trait addLivewireControlleFunctions
             'style' => $type,
             'message' => $message,
         ]);
+    }
+    public function storeAndIndex()
+    {
+        $this->store();
+        $this->bannerMessage('success', 'Eintrag wurde erfolgreich erstellt');
+        return redirect()->route($this->routeIndex);
+    }
+
+    public function storeAndNew()
+    {
+        $this->store();
+        $this->bannerMessage('success', 'Eintrag wurde erfolgreich erstellt');
+        return redirect()->route($this->isRoute);
+    }
+
+    public function updateAndIndex()
+    {
+        $this->update();
+        return redirect()->route($this->routeIndex);
+    }
+
+    public function updateAndNew()
+    {
+        $this->update();
+        return redirect()->route($this->isRoute);
+    }
+
+    public function cancel()
+    {
+        return redirect()->route($this->routeIndex);
     }
 
 }

@@ -55,11 +55,16 @@
                     </button>
 
                     @if (Auth::user())
-                        <div
-                            class="flex items-center gap-2 pr-3 text-sm transition border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300">
-                            <img class="object-cover w-8 h-8 rounded-full" src="{{ Auth::user()->profile_photo_url }}"
-                                alt="{{ Auth::user()->name }}">
-                            <span class="text-gray-300">{{ Auth::user()->name }}</span>
+                        <div class="flex items-center gap-5">
+
+                            @livewire('notifications::notification.component.message-counter')
+
+                            <div
+                                class="flex items-center gap-2 pr-3 text-sm transition border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300">
+                                <img class="object-cover w-8 h-8 rounded-full"
+                                    src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}">
+                                <span class="text-gray-300">{{ Auth::user()->name }}</span>
+                            </div>
                         </div>
                     @endif
 

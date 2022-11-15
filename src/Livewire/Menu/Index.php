@@ -3,7 +3,7 @@
 namespace Reinholdjesse\Core\Livewire\Menu;
 
 use Livewire\Component;
-use Reinholdjesse\Core\Helpers\addLivewireControlleFunctions;
+use Reinholdjesse\Core\Traits\addLivewireControlleFunctions;
 use Reinholdjesse\Core\Models\Menu;
 
 class Index extends Component
