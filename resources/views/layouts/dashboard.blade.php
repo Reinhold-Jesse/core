@@ -16,7 +16,7 @@
 
 <body class="bg-gray-200">
     <x:component::flash-message on="saved" />
-    {{-- @livewire('flash-message') --}}
+
     <div x-data="{ isOpen: true }" class="flex overflow-hidden">
         <div x-cloak :class="isOpen ? '-left-72' : 'left-0'"
             class="fixed top-0 bottom-0 px-5 overflow-y-auto transition-all duration-300 ease-linear bg-white w-72 py-7">
@@ -27,7 +27,7 @@
                 </a>
             </div>
 
-            <div class="px-3">
+            <div class="pl-1 pr-3">
 
                 <div class="mt-7">
                     {{ menu('admin', 'admin') }}
@@ -67,7 +67,6 @@
                             </div>
                         </div>
                     @endif
-
                 </div>
 
                 @if (isset($header))

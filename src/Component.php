@@ -22,7 +22,7 @@ class Component
 
     public function setting(string $key)
     {
-        return Setting::where('key', $key)->pluck('value')->first();
+        return Setting::where('key', $key)->pluck('value');
     }
 
 }

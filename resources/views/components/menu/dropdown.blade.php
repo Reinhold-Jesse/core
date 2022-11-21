@@ -1,4 +1,4 @@
-<div x-data="{ open: false }">
+<div x-data="{ open: false }" class="mx-4">
     <button x-on:click="open = ! open"
         class="flex items-center justify-between w-full py-3 text-gray-600 transition-all duration-200 ease-linear hover:text-primary-500">
 
