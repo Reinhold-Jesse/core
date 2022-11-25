@@ -4,13 +4,19 @@ namespace Reinholdjesse\Core\Livewire\Setting;
 
 use Livewire\Component;
 use Reinholdjesse\Core\Models\Setting;
+use Reinholdjesse\Core\Traits\addLivewireControlleFunctions;
 
 class Index extends Component
 {
+    use addLivewireControlleFunctions;
 
+    /** @var string|null */
     public $display_name;
+    /** @var string|null */
     public $key;
+    /** @var string|null */
     public $type;
+    /** @var string|null */
     public $group;
 
     public $content;
@@ -31,9 +37,6 @@ class Index extends Component
 
     public function render()
     {
-        // $this->content = Setting::orderBy('group', 'asc')
-        //     ->orderBy('order', 'asc')->get();
-
         $collection = collect(Setting::orderBy('group', 'asc')
                 ->orderBy('order', 'asc')->get()
         );
@@ -58,8 +61,7 @@ class Index extends Component
         $setting->created_at = date('Y-m-d H:i:s');
 
         if ($setting->save()) {
-            //TODO: flash message ausgeben
-
+            $this->bannerMessage('success', 'Eintrag wurde erfolgreich gespeichert');
             $this->clearValue();
         }
     }
@@ -76,7 +78,7 @@ class Index extends Component
     public function deleteEntry(Setting $setting)
     {
         if ($setting->delete()) {
-            //TODO: flash message ausgeben
+            $this->bannerMessage('success', 'Eintrag wurde erfolgreich gelöscht');
         }
     }
 

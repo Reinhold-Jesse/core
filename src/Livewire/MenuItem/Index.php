@@ -3,9 +3,9 @@
 namespace Reinholdjesse\Core\Livewire\MenuItem;
 
 use Livewire\Component;
-use Reinholdjesse\Core\Traits\addLivewireControlleFunctions;
 use Reinholdjesse\Core\Models\Menu;
 use Reinholdjesse\Core\Models\MenuItem;
+use Reinholdjesse\Core\Traits\addLivewireControlleFunctions;
 
 class Index extends Component
 {
@@ -38,7 +38,7 @@ class Index extends Component
         'route' => 'nullable|string|max:255',
     ];
 
-    public function mount(Menu $id)
+    public function mount(Menu $id): void
     {
         $this->menu = $id;
     }
@@ -50,7 +50,7 @@ class Index extends Component
         return view('component::livewire.menu-item.index')->layout('component::layouts.dashboard');
     }
 
-    public function create()
+    public function create(): void
     {
         $this->clearValue();
         $this->openEditWindow();
@@ -58,7 +58,7 @@ class Index extends Component
         $this->order = MenuItem::where('menu_id', $this->menu->id)->count() + 1;
     }
 
-    public function edit(MenuItem $menuItem)
+    public function edit(MenuItem $menuItem): void
     {
         $this->clearValue();
 
@@ -74,7 +74,7 @@ class Index extends Component
         $this->openEditWindow();
     }
 
-    public function update()
+    public function update(): void
     {
         $this->validate();
 
@@ -111,7 +111,7 @@ class Index extends Component
         }
     }
 
-    public function deleteEntry(MenuItem $menuItem)
+    public function deleteEntry(MenuItem $menuItem): void
     {
         if ($menuItem->delete()) {
             // TODO: flash message
@@ -120,7 +120,7 @@ class Index extends Component
         }
     }
 
-    private function clearValue()
+    private function clearValue(): void
     {
         $this->editId = null;
 
@@ -132,18 +132,16 @@ class Index extends Component
         $this->route = null;
     }
 
-    public function reorder($orderedIds)
+    public function reorder($orderedIds): void
     {
-
         foreach ($orderedIds as $element) {
             MenuItem::where('id', $element['value'])->update([
                 'order' => $element['order'],
             ]);
         }
-
     }
 
-    public function reorderParents($orderedIds)
+    public function reorderParents($orderedIds): void
     {
         dd($orderedIds);
     }

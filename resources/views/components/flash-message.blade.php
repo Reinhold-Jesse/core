@@ -19,7 +19,7 @@
         <div class="flex flex-wrap items-center justify-between">
             <div class="flex items-center flex-1 w-0 min-w-0">
                 <span class="flex p-2 rounded-lg"
-                    :class="{ 'bg-green-600': style == 'success', 'bg-red-600': style == 'danger' }">
+                    :class="{ 'bg-primary-600': style == 'success', 'bg-red-600': style == 'danger' }">
                     <svg x-show="style == 'success'" class="w-5 h-5 text-white" xmlns="http://www.w3.org/2000/svg"
                         fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -43,7 +43,7 @@
             <div class="shrink-0 sm:ml-3">
                 <button type="button" class="flex p-2 -mr-1 transition rounded-md focus:outline-none sm:-mr-2"
                     :class="{
-                        'hover:bg-green-600 focus:bg-green-600': style ==
+                        'hover:bg-primary-600 focus:bg-primary-600': style ==
                             'success',
                         'hover:bg-red-600 focus:bg-red-600': style == 'danger'
                     }"
