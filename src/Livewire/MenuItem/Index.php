@@ -2,6 +2,7 @@
 
 namespace Reinholdjesse\Core\Livewire\MenuItem;
 
+use Illuminate\View\View;
 use Livewire\Component;
 use Reinholdjesse\Core\Models\Menu;
 use Reinholdjesse\Core\Models\MenuItem;
@@ -9,25 +10,29 @@ use Reinholdjesse\Core\Traits\addLivewireControlleFunctions;
 
 class Index extends Component
 {
-
     use addLivewireControlleFunctions;
 
-    public $listOrder = [];
+    public array $listOrder = [];
 
     public $menu;
 
     public $content;
 
-    public $openEdit = false;
+    public bool $openEdit = false;
 
-    public $editId = null;
+    public ?int $editId = null;
 
-    public $title;
-    public $url;
-    public $target;
-    public $parent_id;
-    public $order;
-    public $route;
+    public ?string $title;
+
+    public ?string $url;
+
+    public ?string $target;
+
+    public ?int $parent_id;
+
+    public ?int $order;
+
+    public ?string $route;
 
     protected $rules = [
         'title' => 'required|min:3',
@@ -43,7 +48,7 @@ class Index extends Component
         $this->menu = $id;
     }
 
-    public function render()
+    public function render(): View
     {
         $this->content = MenuItem::where('menu_id', $this->menu->id)->orderBy('order')->get();
 
@@ -62,14 +67,14 @@ class Index extends Component
     {
         $this->clearValue();
 
-        $this->editId = $menuItem->id;
+        $this->editId = $menuItem['id'];
 
-        $this->title = $menuItem->title;
-        $this->url = $menuItem->url;
-        $this->target = $menuItem->target;
-        $this->parent_id = $menuItem->parent_id;
-        $this->order = $menuItem->order;
-        $this->route = $menuItem->route;
+        $this->title = $menuItem['title'];
+        $this->url = $menuItem['url'];
+        $this->target = $menuItem['target'];
+        $this->parent_id = $menuItem['parent_id'];
+        $this->order = $menuItem['order'];
+        $this->route = $menuItem['route'];
 
         $this->openEditWindow();
     }
@@ -78,28 +83,27 @@ class Index extends Component
     {
         $this->validate();
 
-        if (!empty($this->editId)) {
+        if (! empty($this->editId)) {
             //update
             $query = MenuItem::find($this->editId);
         } else {
             // create
             $query = new MenuItem;
-            $query->menu_id = $this->menu->id;
+            $query['menu_id'] = $this->menu->id;
         }
 
-        $query->title = $this->title;
-        $query->url = $this->url;
+        $query['title'] = $this->title;
+        $query['url'] = $this->url;
 
-        if (!empty($this->target)) {
-            $query->target = $this->target;
+        if (! empty($this->target)) {
+            $query['target'] = $this->target;
         }
 
-        $query->parent_id = $this->parent_id;
-        $query->order = $this->order;
-        $query->route = $this->route;
+        $query['parent_id'] = $this->parent_id;
+        $query['order'] = $this->order;
+        $query['route'] = $this->route;
 
         if ($query->save()) {
-
             $this->cloasEditWindow();
             $this->clearValue();
 
@@ -145,5 +149,4 @@ class Index extends Component
     {
         dd($orderedIds);
     }
-
 }

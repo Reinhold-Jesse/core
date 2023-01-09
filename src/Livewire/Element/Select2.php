@@ -39,7 +39,7 @@ class Select2 extends Component
 
         $this->getDatabaseList();
 
-        if (isset($selected) && !empty($selected)) {
+        if (isset($selected) && ! empty($selected)) {
             foreach ($this->list as $value) {
                 if ($value->id == $selected) {
                     $this->name = $value->name;
@@ -72,7 +72,7 @@ class Select2 extends Component
     public function add()
     {
         $this->search = trim($this->search);
-        if ($this->add_function === true && !DB::table($this->table)->where('name', $this->search)->exists() && !empty($this->search)) {
+        if ($this->add_function === true && ! DB::table($this->table)->where('name', $this->search)->exists() && ! empty($this->search)) {
             $this->selected = DB::table($this->table)->insertGetId([
                 'name' => $this->search,
             ]);
@@ -81,7 +81,7 @@ class Select2 extends Component
             $this->clearSearch();
             $this->emitEvent();
         } else {
-            $this->selected = DB::table($this->table)->where('name', $this->search)->pluck('id')->first();
+            $this->selected = DB::table($this->table)->where('name', $this->search)->value('id');
 
             if ($this->selected) {
                 $this->name = $this->search;
@@ -116,8 +116,8 @@ class Select2 extends Component
 
     private function search()
     {
-        if (!empty($this->search)) {
-            $this->list = DB::table($this->table)->where('name', 'LIKE', '%' . trim($this->search) . '%')->orderBy('name', 'asc')->get()->toArray();
+        if (! empty($this->search)) {
+            $this->list = DB::table($this->table)->where('name', 'LIKE', '%'.trim($this->search).'%')->orderBy('name', 'asc')->get()->toArray();
         } else {
             $this->getDatabaseList();
         }

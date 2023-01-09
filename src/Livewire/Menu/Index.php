@@ -2,48 +2,47 @@
 
 namespace Reinholdjesse\Core\Livewire\Menu;
 
+use Illuminate\View\View;
 use Livewire\Component;
-use Reinholdjesse\Core\Traits\addLivewireControlleFunctions;
 use Reinholdjesse\Core\Models\Menu;
+use Reinholdjesse\Core\Traits\addLivewireControlleFunctions;
 
 class Index extends Component
 {
-
     use addLivewireControlleFunctions;
 
-    public $name = null;
+    public ?string $name;
 
     public $content;
 
-    public $openEdit = false;
+    public bool $openEdit = false;
 
-    public $editId = null;
+    public ?int $editId;
 
-    public function render()
+    public function render(): View
     {
         $this->content = Menu::all();
 
         return view('component::livewire.menu.index')->layout('component::layouts.dashboard');
     }
 
-    public function edit(Menu $menu)
+    public function edit(Menu $menu): void
     {
         $this->clearValue();
 
-        $this->editId = $menu->id;
-        $this->name = $menu->name;
+        $this->editId = $menu['id'];
+        $this->name = $menu['name'];
 
         $this->openEditWindow();
     }
 
-    public function update()
+    public function update(): void
     {
-        //dd($this->editId);
         $this->validate([
             'name' => 'required|string|min:3',
         ]);
 
-        if (!empty($this->editId)) {
+        if (! empty($this->editId)) {
             //update
             $query = Menu::find($this->editId);
         } else {
@@ -51,7 +50,7 @@ class Index extends Component
             $query = new Menu;
         }
 
-        $query->name = $this->name;
+        $query['name'] = $this->name;
 
         $this->cloasEditWindow();
 
@@ -65,23 +64,21 @@ class Index extends Component
         $this->clearValue();
     }
 
-    public function deleteEntry(Menu $menu)
+    public function deleteEntry(Menu $menu): void
     {
-        if ($menu->name != 'admin' && $menu->delete()) {
+        if ($menu['name'] != 'admin' && $menu->delete()) {
             // TODO: flash message
             // TODO: flesh message admin menu kann nicht gelöscht werden
-            $this->bannerMessage('success', $menu->name . ' Menu wurde erfolgreich gelöscht.');
-
+            $this->bannerMessage('success', $menu['name'].' Menu wurde erfolgreich gelöscht.');
         } else {
             // TODO: flash message
-            $this->bannerMessage('danger', $menu->name . ' Menu kann nicht gelöscht werden.');
+            $this->bannerMessage('danger', $menu['name'].' Menu kann nicht gelöscht werden.');
         }
     }
 
-    private function clearValue()
+    private function clearValue(): void
     {
         $this->editId = null;
         $this->name = null;
     }
-
 }
