@@ -18,6 +18,7 @@
             ]
         }
     },
+    "minimum-stability": "dev",
     "require": {
         "laravel/jetstream": "^2.12",
         "livewire/livewire": "^2.6"
