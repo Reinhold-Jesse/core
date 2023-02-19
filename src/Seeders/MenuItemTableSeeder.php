@@ -15,7 +15,7 @@ class MenuItemTableSeeder extends Seeder
     public function run()
     {
         $value = $this->findRoute('dashboard');
-        if (!$value->exists) {
+        if (! $value->exists) {
             $value->fill([
                 'menu_id' => '1',
                 'title' => 'Dashboard',
@@ -26,7 +26,7 @@ class MenuItemTableSeeder extends Seeder
         }
 
         $value = $this->findRoute('package.core.menus');
-        if (!$value->exists) {
+        if (! $value->exists) {
             $value->fill([
                 'menu_id' => '1',
                 'title' => 'Menu',
@@ -37,7 +37,7 @@ class MenuItemTableSeeder extends Seeder
         }
 
         $value = $this->findRoute('package.core.settings');
-        if (!$value->exists) {
+        if (! $value->exists) {
             $value->fill([
                 'menu_id' => '1',
                 'title' => 'Settings',
@@ -48,7 +48,7 @@ class MenuItemTableSeeder extends Seeder
         }
 
         $value = $this->findRoute('package.core.componentes');
-        if (!$value->exists) {
+        if (! $value->exists) {
             $value->fill([
                 'menu_id' => '1',
                 'title' => 'Components overflow',

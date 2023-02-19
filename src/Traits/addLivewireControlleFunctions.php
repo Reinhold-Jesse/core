@@ -1,9 +1,9 @@
 <?php
+
 namespace Reinholdjesse\Core\Traits;
 
 trait addLivewireControlleFunctions
 {
-
     public function updatingSearch()
     {
         $this->resetPage();
@@ -42,10 +42,12 @@ trait addLivewireControlleFunctions
             'message' => $message,
         ]);
     }
+
     public function storeAndIndex()
     {
         $this->store();
         $this->bannerMessage('success', 'Eintrag wurde erfolgreich erstellt');
+
         return redirect()->route($this->routeIndex);
     }
 
@@ -53,18 +55,21 @@ trait addLivewireControlleFunctions
     {
         $this->store();
         $this->bannerMessage('success', 'Eintrag wurde erfolgreich erstellt');
+
         return redirect()->route($this->isRoute);
     }
 
     public function updateAndIndex()
     {
         $this->update();
+
         return redirect()->route($this->routeIndex);
     }
 
     public function updateAndNew()
     {
         $this->update();
+
         return redirect()->route($this->isRoute);
     }
 
@@ -72,5 +77,4 @@ trait addLivewireControlleFunctions
     {
         return redirect()->route($this->routeIndex);
     }
-
 }

@@ -12,10 +12,13 @@ class Index extends Component
 
     /** @var string|null */
     public $display_name;
+
     /** @var string|null */
     public $key;
+
     /** @var string|null */
     public $type;
+
     /** @var string|null */
     public $group;
 
@@ -37,7 +40,8 @@ class Index extends Component
 
     public function render()
     {
-        $collection = collect(Setting::orderBy('group', 'asc')
+        $collection = collect(
+            Setting::orderBy('group', 'asc')
                 ->orderBy('order', 'asc')->get()
         );
 
@@ -50,7 +54,7 @@ class Index extends Component
     {
         $this->validate();
 
-        $setting = new Setting;
+        $setting = new Setting();
 
         $setting->key = $this->key;
         $setting->display_name = $this->display_name;
@@ -72,7 +76,7 @@ class Index extends Component
             'value' => $value,
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
-        $this->emit('saved' . $id);
+        $this->emit('saved'.$id);
     }
 
     public function deleteEntry(Setting $setting)

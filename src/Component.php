@@ -9,7 +9,6 @@ use Reinholdjesse\Core\Models\Setting;
 
 class Component
 {
-
     protected $models = [
         'Menu' => Menu::class,
         'MenuItem' => MenuItem::class,
@@ -24,5 +23,4 @@ class Component
     {
         return Setting::where('key', $key)->pluck('value');
     }
-
 }

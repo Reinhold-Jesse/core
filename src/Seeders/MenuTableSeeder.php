@@ -15,7 +15,7 @@ class MenuTableSeeder extends Seeder
     public function run()
     {
         $value = $this->findName('admin');
-        if (!$value->exists) {
+        if (! $value->exists) {
             $value->fill([
                 'id' => 1,
                 'name' => 'admin',
@@ -24,7 +24,7 @@ class MenuTableSeeder extends Seeder
         }
 
         $value = $this->findName('site');
-        if (!$value->exists) {
+        if (! $value->exists) {
             $value->fill([
                 'id' => 2,
                 'name' => 'site',

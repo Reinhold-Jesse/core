@@ -10,7 +10,7 @@ class ComponentesViewController extends Controller
 
     public $resources_path = '../resources/views/components';
 
-    private $package_path = __DIR__ . './../../resources/views/components';
+    private $package_path = __DIR__.'./../../resources/views/components';
 
     public function index()
     {
@@ -40,11 +40,11 @@ class ComponentesViewController extends Controller
 
         if (file_exists($path)) {
             foreach (scandir($path) as $index => $element) {
-                if ($element != '..' && $element != '.') {
+                if ($element !== '..' && $element !== '.') {
                     $temp = [];
-                    if (is_dir($path . '/' . $element)) {
+                    if (is_dir($path.'/'.$element)) {
                         $temp['name'] = $element;
-                        $temp['date'] = $this->listDir($path . '/' . $element);
+                        $temp['date'] = $this->listDir($path.'/'.$element);
                     } else {
                         $temp = str_replace('.blade.php', '', $element);
                     }
@@ -53,8 +53,8 @@ class ComponentesViewController extends Controller
             }
 
             return $liste;
-        } else {
-            return false;
         }
+
+        return false;
     }
 }

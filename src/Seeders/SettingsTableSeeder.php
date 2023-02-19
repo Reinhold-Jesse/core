@@ -15,7 +15,7 @@ class SettingsTableSeeder extends Seeder
     public function run()
     {
         $setting = $this->findSetting('site.title');
-        if (!$setting->exists) {
+        if (! $setting->exists) {
             $setting->fill([
                 'display_name' => 'Site Title',
                 'key' => 'site.title',
@@ -27,7 +27,7 @@ class SettingsTableSeeder extends Seeder
         }
 
         $setting = $this->findSetting('site.description');
-        if (!$setting->exists) {
+        if (! $setting->exists) {
             $setting->fill([
                 'display_name' => 'Site Description',
                 'key' => 'site.description',
@@ -43,7 +43,6 @@ class SettingsTableSeeder extends Seeder
      * [setting description].
      *
      * @param [type] $key [description]
-     *
      * @return [type] [description]
      */
     protected function findSetting($key)

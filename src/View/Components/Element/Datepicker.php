@@ -13,7 +13,7 @@ class Datepicker extends Component
      *
      * @return void
      */
-    public function __construct(string $model = null)
+    public function __construct(?string $model = null)
     {
         $this->model = $model;
     }

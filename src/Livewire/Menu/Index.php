@@ -47,7 +47,7 @@ class Index extends Component
             $query = Menu::find($this->editId);
         } else {
             // create
-            $query = new Menu;
+            $query = new Menu();
         }
 
         $query['name'] = $this->name;
@@ -66,7 +66,7 @@ class Index extends Component
 
     public function deleteEntry(Menu $menu): void
     {
-        if ($menu['name'] != 'admin' && $menu->delete()) {
+        if ($menu['name'] !== 'admin' && $menu->delete()) {
             // TODO: flash message
             // TODO: flesh message admin menu kann nicht gelöscht werden
             $this->bannerMessage('success', $menu['name'].' Menu wurde erfolgreich gelöscht.');

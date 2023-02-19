@@ -88,7 +88,7 @@ class Index extends Component
             $query = MenuItem::find($this->editId);
         } else {
             // create
-            $query = new MenuItem;
+            $query = new MenuItem();
             $query['menu_id'] = $this->menu->id;
         }
 
@@ -119,21 +119,8 @@ class Index extends Component
     {
         if ($menuItem->delete()) {
             // TODO: flash message
-        } else {
-            // TODO: flash message
         }
-    }
-
-    private function clearValue(): void
-    {
-        $this->editId = null;
-
-        $this->title = null;
-        $this->url = null;
-        $this->target = null;
-        $this->parent_id = null;
-        $this->order = null;
-        $this->route = null;
+        // TODO: flash message
     }
 
     public function reorder($orderedIds): void
@@ -148,5 +135,17 @@ class Index extends Component
     public function reorderParents($orderedIds): void
     {
         dd($orderedIds);
+    }
+
+    private function clearValue(): void
+    {
+        $this->editId = null;
+
+        $this->title = null;
+        $this->url = null;
+        $this->target = null;
+        $this->parent_id = null;
+        $this->order = null;
+        $this->route = null;
     }
 }
