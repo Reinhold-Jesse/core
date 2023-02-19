@@ -11,13 +11,13 @@ class Index extends Component
 {
     use addLivewireControlleFunctions;
 
-    public ?string $name;
+    public ?string $name = null;
 
     public $content;
 
     public bool $openEdit = false;
 
-    public ?int $editId;
+    public ?int $editId = null;
 
     public function render(): View
     {

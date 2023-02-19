@@ -2,6 +2,7 @@
 
 namespace Reinholdjesse\Core\Livewire\Setting;
 
+use Illuminate\View\View;
 use Livewire\Component;
 use Reinholdjesse\Core\Models\Setting;
 use Reinholdjesse\Core\Traits\addLivewireControlleFunctions;
@@ -11,16 +12,16 @@ class Index extends Component
     use addLivewireControlleFunctions;
 
     /** @var string|null */
-    public $display_name;
+    public $display_name = null;
 
     /** @var string|null */
-    public $key;
+    public $key = null;
 
     /** @var string|null */
-    public $type;
+    public $type = null;
 
     /** @var string|null */
-    public $group;
+    public $group = null;
 
     public $content;
 
@@ -38,7 +39,7 @@ class Index extends Component
         'group' => 'Gruppe',
     ];
 
-    public function render()
+    public function render(): View
     {
         $collection = collect(
             Setting::orderBy('group', 'asc')
@@ -50,19 +51,19 @@ class Index extends Component
         return view('component::livewire.setting.index')->layout('component::layouts.dashboard');
     }
 
-    public function createNewSettingEntry()
+    public function createNewSettingEntry(): void
     {
         $this->validate();
 
         $setting = new Setting();
 
-        $setting->key = $this->key;
-        $setting->display_name = $this->display_name;
-        $setting->value = null;
-        $setting->type = $this->type;
-        $setting->order = Setting::count() + 1;
-        $setting->group = $this->group;
-        $setting->created_at = date('Y-m-d H:i:s');
+        $setting['key'] = $this->key;
+        $setting['display_name'] = $this->display_name;
+        $setting['value'] = null;
+        $setting['type'] = $this->type;
+        $setting['order'] = Setting::count() + 1;
+        $setting['group'] = $this->group;
+        $setting['created_at'] = date('Y-m-d H:i:s');
 
         if ($setting->save()) {
             $this->bannerMessage('success', 'Eintrag wurde erfolgreich gespeichert');
@@ -70,7 +71,7 @@ class Index extends Component
         }
     }
 
-    public function input(string $value, int $id)
+    public function input(string $value, int $id): void
     {
         Setting::where('id', $id)->update([
             'value' => $value,
@@ -79,14 +80,14 @@ class Index extends Component
         $this->emit('saved'.$id);
     }
 
-    public function deleteEntry(Setting $setting)
+    public function deleteEntry(Setting $setting): void
     {
         if ($setting->delete()) {
             $this->bannerMessage('success', 'Eintrag wurde erfolgreich gelöscht');
         }
     }
 
-    private function clearValue()
+    private function clearValue(): void
     {
         $this->display_name = null;
         $this->key = null;

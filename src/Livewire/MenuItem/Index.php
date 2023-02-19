@@ -24,15 +24,15 @@ class Index extends Component
 
     public ?string $title;
 
-    public ?string $url;
+    public ?string $url = null;
 
-    public ?string $target;
+    public ?string $target = null;
 
-    public ?int $parent_id;
+    public ?int $parent_id = null;
 
-    public ?int $order;
+    public ?int $order = null;
 
-    public ?string $route;
+    public ?string $route = null;
 
     protected $rules = [
         'title' => 'required|min:3',
