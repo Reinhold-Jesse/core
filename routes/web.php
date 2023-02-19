@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::middleware(['auth'])->prefix('dashboard')->name('package.core.')->group(function () {
+Route::middleware(['auth','verified'])->prefix('dashboard')->name('package.core.')->group(function () {
     Route::get('componentes', [\Reinholdjesse\Core\Controllers\ComponentesViewController::class, 'index'])->name('componentes');
     Route::get('componente/resources/view', [\Reinholdjesse\Core\Controllers\ComponentesViewController::class, 'resources']);
 
