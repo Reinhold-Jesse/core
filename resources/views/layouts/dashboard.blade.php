@@ -57,7 +57,7 @@
                     @if (Auth::user())
                         <div class="flex items-center gap-5">
 
-                            @livewire('notifications::notification.component.message-counter')
+                            @livewire('notification.component.message-counter')
 
                             <div
                                 class="flex items-center gap-2 pr-3 text-sm transition border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300">
