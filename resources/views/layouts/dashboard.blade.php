@@ -48,7 +48,7 @@
 
         </div>
         <div :class="isOpen ? 'left-0' : 'left-72'" class="relative w-full transition-all duration-300 ease-linear">
-            <div class="bg-gray-900 shadow-sm pb-7">
+            <div class="shadow-sm bg-primary-900 pb-7">
                 <div class="flex justify-between pl-5 pr-10 py-7">
                     <button x-on:click="isOpen = ! isOpen" type="button" class="text-white hover:text-primary-500">
                         <x:component::icon.hamburger />
