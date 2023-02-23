@@ -42,6 +42,7 @@ return [
     'livewire' => [
         'markdown-x' => \Reinholdjesse\Core\Livewire\Element\MarkdownX::class,
         'select2' => \Reinholdjesse\Core\Livewire\Element\Select2::class,
+        'element.hex-colors' => \Reinholdjesse\Core\Livewire\Element\HexColors::class,
 
         'component::setting.index', \Reinholdjesse\Core\Livewire\Setting\Index::class,
         'component::menu.index', \Reinholdjesse\Core\Livewire\Menu\Index::class,

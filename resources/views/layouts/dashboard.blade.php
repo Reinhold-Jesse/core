@@ -48,32 +48,34 @@
 
         </div>
         <div :class="isOpen ? 'left-0' : 'left-72'" class="relative w-full transition-all duration-300 ease-linear">
-            <div class="shadow-sm bg-primary-900 pb-7">
-                <div class="flex justify-between pl-5 pr-10 py-7">
-                    <button x-on:click="isOpen = ! isOpen" type="button" class="text-white hover:text-primary-500">
-                        <x:component::icon.hamburger />
-                    </button>
+            <div class="shadow-sm bg-primary-900 backend-background-image">
+                <div class="bg-gray-900 bg-opacity-50">
+                    <div class="flex justify-between pl-5 pr-10 py-7">
+                        <button x-on:click="isOpen = ! isOpen" type="button" class="text-white hover:text-primary-500">
+                            <x:component::icon.hamburger />
+                        </button>
 
-                    @if (Auth::user())
-                        <div class="flex items-center gap-5">
+                        @if (Auth::user())
+                            <div class="flex items-center gap-5">
 
-                            @livewire('notification.component.message-counter')
+                                @livewire('notification.component.message-counter')
 
-                            <div
-                                class="flex items-center gap-2 pr-3 text-sm transition border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300">
-                                <img class="object-cover w-8 h-8 rounded-full"
-                                    src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}">
-                                <span class="text-gray-300">{{ Auth::user()->name }}</span>
+                                <div
+                                    class="flex items-center gap-2 pr-3 text-sm transition border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300">
+                                    <img class="object-cover w-8 h-8 rounded-full"
+                                        src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}">
+                                    <span class="text-gray-300">{{ Auth::user()->name }}</span>
+                                </div>
                             </div>
-                        </div>
+                        @endif
+                    </div>
+
+                    @if (isset($header))
+                        <header class="container mx-auto text-3xl text-white px-7 pt-7 pb-14">
+                            {{ $header }}
+                        </header>
                     @endif
                 </div>
-
-                @if (isset($header))
-                    <header class="container mx-auto text-3xl text-white p-7">
-                        {{ $header }}
-                    </header>
-                @endif
             </div>
             <main class="px-5 pb-12 pt-7 mb-7">
                 {{ $slot }}

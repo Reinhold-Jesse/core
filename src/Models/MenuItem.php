@@ -18,4 +18,9 @@ class MenuItem extends Model
         return $this->hasMany(MenuItem::class, 'parent_id')
             ->with('children');
     }
+
+    public function parent_title()
+    {
+        return $this->hasOne(MenuItem::class, 'id', 'parent_id')->value('title');
+    }
 }

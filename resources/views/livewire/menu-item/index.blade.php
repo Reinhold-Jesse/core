@@ -24,13 +24,13 @@
                     <x-slot:head>
                         <x:component::table.row>
                             <x:component::table.cell class="w-[30px] p-2" />
-                            <x:component::table.cell class="w-2/12 font-semibold text-left text-gray-700">Titel
+                            <x:component::table.cell class="font-semibold text-left text-gray-700">Titel
                             </x:component::table.cell>
-                            <x:component::table.cell class="w-2/12 font-semibold text-left text-gray-700">URL
+                            <x:component::table.cell class="font-semibold text-left text-gray-700">URL
                             </x:component::table.cell>
-                            <x:component::table.cell class="w-2/12 font-semibold text-left text-gray-700">Route
+                            <x:component::table.cell class="font-semibold text-left text-gray-700">Route
                             </x:component::table.cell>
-                            <x:component::table.cell class="w-1/12 font-semibold text-left text-gray-700">Parent Id
+                            <x:component::table.cell class="font-semibold text-center text-gray-700">Parent Id
                             </x:component::table.cell>
                             {{-- <x:component::table.cell class="w-1/12 font-semibold text-left text-gray-700">Order
                             </x:component::table.cell> --}}
@@ -66,7 +66,11 @@
                                         @endif
                                     @endif
                                 </x:component::table.cell>
-                                <x:component::table.cell class="text-gray-500">{{ $value->parent_id }}
+                                <x:component::table.cell class="text-center text-gray-500">
+                                    @if ($value->parent_id != null)
+                                        <x:component::element.pills class="text-white bg-primary-500"
+                                            value="{{ $value->parent_title() }}" />
+                                    @endif
                                 </x:component::table.cell>
                                 {{-- <x:component::table.cell class="text-gray-500">{{ $value->order }}
                                 </x:component::table.cell> --}}
