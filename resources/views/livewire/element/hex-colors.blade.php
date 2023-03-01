@@ -1,7 +1,7 @@
 <div>
     <div x-data="{ open: false }" class="relative">
         <button type="button" @click.prevent="open = ! open"
-            class="flex items-center justify-center text-teal-500 border-2 border-teal-500 rounded-md shadow-sm hover:text-white w-9 h-9 hover:bg-teal-500 default-transition">
+            class="flex items-center justify-center text-teal-500 border-2 border-teal-500 rounded-md shadow-sm hover:text-white w-9 h-9 hover:bg-primary-500 default-transition">
             <x:component::icon.colorize />
         </button>
 

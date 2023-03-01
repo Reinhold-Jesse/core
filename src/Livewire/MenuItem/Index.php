@@ -50,7 +50,10 @@ class Index extends Component
 
     public function render(): View
     {
-        $this->content = MenuItem::where('menu_id', $this->menu->id)->orderBy('order')->get();
+        $this->content = MenuItem::with('children')
+        ->where('menu_id', $this->menu->id)
+        ->whereNull('parent_id')
+        ->orderBy('order')->get();
 
         return view('component::livewire.menu-item.index')->layout('component::layouts.dashboard');
     }
@@ -132,9 +135,19 @@ class Index extends Component
         }
     }
 
-    public function reorderParents($orderedIds): void
+    public function reorderChildes($orderedIds)
     {
-        dd($orderedIds);
+        foreach ($orderedIds as $element) {
+            if (count($element['items']) > 0) {
+                foreach ($element['items'] as $item) {
+                    MenuItem::where('id', $item['value'])
+                    ->where('parent_id', $element['value'])
+                    ->update([
+                        'order' => $item['order'],
+                    ]);
+                }
+            }
+        }
     }
 
     private function clearValue(): void

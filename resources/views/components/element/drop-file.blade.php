@@ -11,7 +11,7 @@
     }"
         x-on:livewire-upload-start="isUploading = true"{{-- x-on:livewire-upload-finish="isUploading = false" x-on:livewire-upload-error="isUploading = false" --}} x-on:livewire-upload-progress="">
 
-        <label for="{{ $id }}" x-bind:class="dropingFile ? 'bg-teal-50 ' : ' bg-gray-100'"
+        <label for="{{ $id }}" x-bind:class="dropingFile ? 'bg-primary-50 ' : ' bg-gray-100'"
             x-on:drop="dropingFile=false"
             x-on:drop.prevent="
             if (event.dataTransfer.files.length > 0) {
@@ -44,7 +44,7 @@
             }
         "
             x-on:dragover.prevent="dropingFile=true, console.log('dragover')" x-on:dragleave.prevent="dropingFile=false"
-            class="flex flex-col items-center justify-center w-full py-12 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer group hover:bg-teal-50 ">
+            class="flex flex-col items-center justify-center w-full py-12 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer group hover:bg-primary-50 ">
             <div class="flex flex-col items-center justify-center pt-5 pb-6 text-center">
                 <svg class="w-10 h-10 mb-3 text-gray-400 group-hover:text-primary-500" fill="none"
                     stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

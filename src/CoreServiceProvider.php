@@ -56,6 +56,7 @@ class CoreServiceProvider extends ServiceProvider
             // CSS & Javascript
             __DIR__.'/../resources/css/app.css' => resource_path('css/app.css'),
             __DIR__.'/../resources/css/dashboard.css' => resource_path('css/dashboard.css'),
+            __DIR__.'/../resources/css/componentes/animations.css' => resource_path('css/componentes/animations.css'),
             __DIR__.'/../resources/js/app.js' => resource_path('js/app.js'),
             __DIR__.'/../resources/js/copy.js' => resource_path('js/copy.js'),
             __DIR__.'/../resources/js/tinymce.js' => resource_path('js/tinymce.js'),

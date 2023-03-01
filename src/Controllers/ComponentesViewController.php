@@ -16,22 +16,14 @@ class ComponentesViewController extends Controller
     {
         $content = $this->listDir($this->package_path);
 
-        // print '<pre>';
-        // print_r($content);
-        // print '</pre>';
-
-        return view('component::welcome', compact('content'));
+        return view('component::components-liste', compact('content'));
     }
 
     public function resources()
     {
         $content = $this->listDir($this->resources_path);
 
-        // print '<pre>';
-        // print_r($content);
-        // print '</pre>';
-
-        return view('component::welcome', compact('content'));
+        return view('component::components-liste', compact('content'));
     }
 
     private function listDir($path)
@@ -39,7 +31,7 @@ class ComponentesViewController extends Controller
         $liste = [];
 
         if (file_exists($path)) {
-            foreach (scandir($path) as $index => $element) {
+            foreach (scandir($path) as $element) {
                 if ($element !== '..' && $element !== '.') {
                     $temp = [];
                     if (is_dir($path.'/'.$element)) {
