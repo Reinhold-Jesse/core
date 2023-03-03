@@ -14,7 +14,7 @@
                 <template x-if="dateView">
                     <button @click.prevent="clear()" type="button"
                         class="relative z-10 flex items-center justify-center w-6 h-6 text-gray-300 hover:text-gray-700">
-                        <x:component::icon.close class="h-9 hover:text-primary-500" />
+                        <x:component::icon.close class="h-9 hover:text-dashboard-500" />
                     </button>
                 </template>
 
@@ -78,10 +78,11 @@
                     <div @click.prevent="getDateValue(date)" x-text="date"
                         class="w-full h-[42px] flex items-center justify-center text-md leading-loose text-center rounded shadow-sm cursor-pointer default-transition"
                         :class="{
-                            'bg-primary-700 text-white': isToday(date) == true,
-                            'text-gray-600 bg-gray-100 hover:text-white hover:bg-primary-500': isToday(date) == false &&
+                            'bg-dashboard-700 text-white': isToday(date) == true,
+                            'text-gray-600 bg-gray-100 hover:text-white hover:bg-dashboard-500': isToday(date) ==
+                                false &&
                                 isSelectedDate(date) == false,
-                            'bg-primary-500 text-white hover:bg-opacity-75': isSelectedDate(date) == true
+                            'bg-dashboard-500 text-white hover:bg-opacity-75': isSelectedDate(date) == true
                         }">
                     </div>
                 </template>

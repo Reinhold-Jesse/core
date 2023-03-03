@@ -44,7 +44,7 @@
                                                     <div class="flex items-center gap-5 ">
                                                         <h3 class="font-bold">{{ $value->display_name }}</h3>
                                                         <code
-                                                            class="px-3 py-1 text-sm text-white bg-primary-500 rounded-full cursor-pointer hover:bg-primary-600">setting('{{ $value->key }}')</code>
+                                                            class="px-3 py-1 text-sm text-white bg-dashboard-500 rounded-full cursor-pointer hover:bg-dashboard-600">setting('{{ $value->key }}')</code>
                                                     </div>
                                                     <div class="flex justify-end gap-5">
                                                         <x:component::element.modal>
@@ -128,7 +128,7 @@
                                 <div class="flex items-center gap-5 ">
                                     <h3 class="font-bold">{{ $value->display_name }}</h3>
                                     <code
-                                        class="px-3 py-1 text-sm text-white bg-primary-500 rounded-full cursor-pointer hover:bg-primary-600">setting('{{ $value->key }}')</code>
+                                        class="px-3 py-1 text-sm text-white bg-dashboard-500 rounded-full cursor-pointer hover:bg-dashboard-600">setting('{{ $value->key }}')</code>
                                 </div>
                                 <div class="flex justify-end gap-5">
                                     <x:component::element.modal>
@@ -230,7 +230,7 @@
                 </div>
                 <div class="flex justify-end gap-4 mt-7">
                     <button wire:click="createNewSettingEntry" type="button"
-                        class="w-56 px-5 py-2 text-center text-white bg-primary-500 rounded-md hover:bg-primary-600">Erstellen</button>
+                        class="w-56 px-5 py-2 text-center text-white bg-dashboard-500 rounded-md hover:bg-dashboard-600">Erstellen</button>
                 </div>
             </div>
 

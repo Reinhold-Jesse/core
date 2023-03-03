@@ -6,7 +6,7 @@
     @if (count($item->children) > 0)
         <li x-data="{ open: false }" class="relative">
             <button @click.prevent="open = ! open"
-                class="flex items-center gap-3 px-4 py-2 text-gray-600 hover:text-primary-500">{{ $item->title }}
+                class="flex items-center gap-3 px-4 py-2 text-gray-600 hover:text-dashboard-500">{{ $item->title }}
                 <x:component::icon.arrow-down />
             </button>
             <ul x-cloak x-show="open" click.outside="open = false"
@@ -29,13 +29,13 @@
                 @if (Route::has($item->route))
                     <li>
                         <a href="{{ route($item->route) }}"
-                            class="block px-4 py-2 text-gray-600 hover:text-primary-500">{{ $item->title }}</a>
+                            class="block px-4 py-2 text-gray-600 hover:text-dashboard-500">{{ $item->title }}</a>
                     </li>
                 @endif
             @else
                 <li>
                     <a href="{{ url($item->url) }}"
-                        class="block px-4 py-2 text-gray-600 hover:text-primary-500">{{ $item->title }}</a>
+                        class="block px-4 py-2 text-gray-600 hover:text-dashboard-500">{{ $item->title }}</a>
                 </li>
             @endif
         @else
@@ -43,13 +43,13 @@
                 @if (Route::has($item->route))
                     <li>
                         <a href="{{ route($item->route) }}"
-                            class="block px-4 py-2 text-gray-600 hover:text-primary-500">{{ $item->title }}</a>
+                            class="block px-4 py-2 text-gray-600 hover:text-dashboard-500">{{ $item->title }}</a>
                     </li>
                 @endif
             @else
                 <li>
                     <a href="{{ url($item->url) }}"
-                        class="block px-4 py-2 text-gray-600 hover:text-primary-500">{{ $item->title }}</a>
+                        class="block px-4 py-2 text-gray-600 hover:text-dashboard-500">{{ $item->title }}</a>
                 </li>
             @endif
         @endif

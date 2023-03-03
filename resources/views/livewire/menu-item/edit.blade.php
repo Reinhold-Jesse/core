@@ -52,7 +52,7 @@
                     <x:component::button.cancel wire:click="cloasEditWindow" />
 
                     <button wire:click="update" type="button"
-                        class="flex justify-center w-full px-4 py-2 font-medium text-center text-white border border-transparent rounded-md shadow-sm bg-primary-500 hover:bg-primary-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">Speichern</button>
+                        class="flex justify-center w-full px-4 py-2 font-medium text-center text-white border border-transparent rounded-md shadow-sm bg-dashboard-500 hover:bg-dashboard-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">Speichern</button>
                 </div>
             </div>
         </div>

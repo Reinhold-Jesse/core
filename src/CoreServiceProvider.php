@@ -16,7 +16,7 @@ class CoreServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/core.php', 'core');
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'coreConfig');
 
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         //$this->loadSeedsFrom(__DIR__.'/../database/seeders');
@@ -54,43 +54,32 @@ class CoreServiceProvider extends ServiceProvider
 
         $this->publishes([
             // CSS & Javascript
-            __DIR__.'/../resources/css/app.css' => resource_path('css/app.css'),
-            __DIR__.'/../resources/css/dashboard.css' => resource_path('css/dashboard.css'),
-            __DIR__.'/../resources/css/componentes/animations.css' => resource_path('css/componentes/animations.css'),
-            __DIR__.'/../resources/js/app.js' => resource_path('js/app.js'),
-            __DIR__.'/../resources/js/copy.js' => resource_path('js/copy.js'),
-            __DIR__.'/../resources/js/tinymce.js' => resource_path('js/tinymce.js'),
-            __DIR__.'/../resources/js/dashboard.js' => resource_path('js/dashboard.js'),
+            __DIR__.'/../resources/css/' => resource_path('css/'),
+            __DIR__.'/../resources/js/' => resource_path('js/'),
             __DIR__.'/../tailwind.config.js' => base_path('tailwind.config.js'),
             __DIR__.'/../vite.config.js' => base_path('vite.config.js'),
             // view
             __DIR__.'/../resources/views/backend/dashboard.blade.php' => resource_path('views/dashboard.blade.php'),
             // configs
             __DIR__.'/../config/markdownx.php' => config_path('markdownx.php'),
-            __DIR__.'/../config/tallui.php' => config_path('tallui.php'),
+            __DIR__.'/../config/core.php' => config_path('core.php'),
         ], 'core.install');
+
+        $this->publishes([
+            // core components
+            __DIR__.'/../resources/views/components' => resource_path('views/components'),
+        ], 'core.components');
+
+        $this->publishes([
+            // errors pages
+            __DIR__.'/../resources/views/errors' => resource_path('views/errors'),
+        ], 'core.pages.errors');
 
         // blade componente
         $this->bootBladeComponents();
 
         // livewire componente
         $this->bootLivewireComponents();
-
-        // werden alle eingebunden
-        // Blade::componentNamespace('Reinholdjesse\\Components\\View\\Components\\Element', 'component');
-
-        // Componente
-        // Livewire::component('markdown-x', \Reinholdjesse\Core\Livewire\Element\MarkdownX::class);
-        // Livewire::component('select2', \Reinholdjesse\Core\Livewire\Element\Select2::class);
-
-        // Controller
-        // Livewire::component('component::setting.index', \Reinholdjesse\Core\Livewire\Setting\Index::class);
-
-        // Livewire::component('component::menu.index', \Reinholdjesse\Core\Livewire\Menu\Index::class);
-        // Livewire::component('component::menu.edit', \Reinholdjesse\Core\Livewire\Menu\Edit::class);
-
-        Livewire::component('component::menu-item.index', \Reinholdjesse\Core\Livewire\MenuItem\Index::class);
-        // Livewire::component('component::menu-item.edit', \Reinholdjesse\Core\Livewire\MenuItem\Edit::class);
     }
 
     /**
@@ -105,15 +94,15 @@ class CoreServiceProvider extends ServiceProvider
 
     private function bootBladeComponents()
     {
-        foreach (config('core.components', []) as $alias => $component) {
-            Blade::component(config('core.prefix').$alias, $component);
+        foreach (config('coreConfig.components', []) as $alias => $component) {
+            Blade::component(config('coreConfig.prefix').$alias, $component);
         }
     }
 
     private function bootLivewireComponents()
     {
-        foreach (config('core.livewire', []) as $alias => $component) {
-            Livewire::component(config('core.prefix').$alias, $component);
+        foreach (config('coreConfig.livewire', []) as $alias => $component) {
+            Livewire::component(config('coreConfig.prefix').$alias, $component);
         }
     }
 }

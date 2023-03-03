@@ -7,8 +7,10 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/css/dashboard.css',
+                'resources/css/guest.css',
                 'resources/js/app.js',
                 'resources/js/dashboard.js',
+                'resources/js/guest.js',
                 'resources/js/tinymce.js',
             ],
             refresh: [

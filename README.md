@@ -43,6 +43,12 @@ php artisan vendor:publish --tag=core.publishes
 
 #Layout (optional)
 php artisan vendor:publish --tag=core.publishes.layouts
+
+#Core Components (optional)
+php artisan vendor:publish --tag=core.components
+
+#Core ERRORS pages (optional)
+php artisan vendor:publish --tag=core.pages.errors
 ```
 
 ### Core Seeder
