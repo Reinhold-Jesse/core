@@ -166,7 +166,7 @@ class MarkdownX extends Component
         ]);
 
         if ($response->ok()) {
-            $this->sendResultsToView($response);
+            $this->sendResultsToView($response, $api_key);
         }
     }
 

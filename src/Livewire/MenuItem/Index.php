@@ -91,7 +91,7 @@ class Index extends Component
             $query = MenuItem::find($this->editId);
         } else {
             // create
-            $query = new MenuItem();
+            $query = new MenuItem;
             $query['menu_id'] = $this->menu->id;
         }
 

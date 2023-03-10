@@ -2,21 +2,18 @@
 
 namespace Reinholdjesse\Core\View\Components\Element;
 
+use Closure;
 use Illuminate\View\Component;
 
 class DropFile extends Component
 {
-    /** @var int */
-    public $id;
+    public string $id;
 
-    /** @var string */
-    public $name;
+    public string $name;
 
-    /** @var bool */
-    public $multiple;
+    public bool $multiple;
 
-    /** @var string|null */
-    public $title;
+    public ?string $title;
 
     /**
      * Create a new component instance.
@@ -34,7 +31,7 @@ class DropFile extends Component
     /**
      * Get the view / contents that represent the component.
      *
-     * @return \Illuminate\Contracts\View\View|\Closure|string
+     * @return \Illuminate\Contracts\View\View|Closure|string
      */
     public function render()
     {

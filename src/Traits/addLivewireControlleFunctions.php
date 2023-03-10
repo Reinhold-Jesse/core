@@ -4,38 +4,38 @@ namespace Reinholdjesse\Core\Traits;
 
 trait addLivewireControlleFunctions
 {
-    public function updatingSearch()
+    public function updatingSearch(): void
     {
         $this->resetPage();
     }
 
-    public function openEditWindow()
+    public function openEditWindow(): void
     {
         $this->openEdit = true;
     }
 
-    public function cloasEditWindow()
+    public function cloasEditWindow(): void
     {
         $this->openEdit = false;
     }
 
-    public function create()
+    public function create(): void
     {
         $this->clearValue();
         $this->openEditWindow();
     }
 
-    public function filter(string $key, string $type)
+    public function filter(string $key, string $type): void
     {
         $this->filter[$key] = $type;
     }
 
-    public function removeFilterType(string $key)
+    public function removeFilterType(string $key): void
     {
         unset($this->filter[$key]);
     }
 
-    public function bannerMessage(string $type, string $message)
+    public function bannerMessage(string $type, string $message): void
     {
         $this->dispatchBrowserEvent('banner-message', [
             'style' => $type,

@@ -55,7 +55,7 @@ class Index extends Component
     {
         $this->validate();
 
-        $setting = new Setting();
+        $setting = new Setting;
 
         $setting['key'] = $this->key;
         $setting['display_name'] = $this->display_name;
@@ -77,7 +77,7 @@ class Index extends Component
             'value' => $value,
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
-        $this->emit('saved'.$id);
+        $this->emit('saved' . $id);
     }
 
     public function deleteEntry(Setting $setting): void

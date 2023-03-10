@@ -30,7 +30,7 @@ class Menu extends Model
         //dd($items);
 
         if (isset($type) && ! empty($type)) {
-            return new HtmlString(View::make('component::template.menu.'.$type, ['items' => $items])->render());
+            return new HtmlString(View::make('component::template.menu.' . $type, ['items' => $items])->render());
         }
 
         return new HtmlString(View::make('component::template.menu.default', ['items' => $items])->render());

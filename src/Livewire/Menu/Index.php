@@ -47,7 +47,7 @@ class Index extends Component
             $query = Menu::find($this->editId);
         } else {
             // create
-            $query = new Menu();
+            $query = new Menu;
         }
 
         $query['name'] = $this->name;
@@ -69,10 +69,10 @@ class Index extends Component
         if ($menu['name'] !== 'admin' && $menu->delete()) {
             // TODO: flash message
             // TODO: flesh message admin menu kann nicht gelöscht werden
-            $this->bannerMessage('success', $menu['name'].' Menu wurde erfolgreich gelöscht.');
+            $this->bannerMessage('success', $menu['name'] . ' Menu wurde erfolgreich gelöscht.');
         } else {
             // TODO: flash message
-            $this->bannerMessage('danger', $menu['name'].' Menu kann nicht gelöscht werden.');
+            $this->bannerMessage('danger', $menu['name'] . ' Menu kann nicht gelöscht werden.');
         }
     }
 

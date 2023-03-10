@@ -131,7 +131,7 @@ class Select2 extends Component
     private function search(): void
     {
         if (! empty($this->search)) {
-            $this->list = json_decode(json_encode(DB::table($this->table)->where($this->column, 'LIKE', '%'.trim($this->search).'%')->orderBy($this->column, 'asc')->get()->toArray()), true);
+            $this->list = json_decode(json_encode(DB::table($this->table)->where($this->column, 'LIKE', '%' . trim($this->search) . '%')->orderBy($this->column, 'asc')->get()->toArray()), true);
         } else {
             $this->getDatabaseList();
         }

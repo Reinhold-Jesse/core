@@ -20,11 +20,11 @@
                                 <li @click.prevent="tab = '{{ $key }}'"
                                     class="block py-3 font-semibold text-center  cursor-pointer w-52 rounded-t-md hover:bg-gray-50"
                                     :class="{
-                                    
-                                    
+
+
                                         'bg-gray-100 text-teal-500': tab === '{{ $key }}',
                                         'text-gray-500 bg-gray-300': tab != '{{ $key }}'
-                                    
+
                                     }">
                                     {{ $key }}
                                 </li>

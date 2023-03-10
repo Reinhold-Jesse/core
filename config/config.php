@@ -40,15 +40,15 @@ return [
      */
 
     'livewire' => [
-        'markdown-x' => \Reinholdjesse\Core\Livewire\Element\MarkdownX::class,
-        'select2' => \Reinholdjesse\Core\Livewire\Element\Select2::class,
-        'element.hex-colors' => \Reinholdjesse\Core\Livewire\Element\HexColors::class,
+        'markdown-x' => Reinholdjesse\Core\Livewire\Element\MarkdownX::class,
+        'select2' => Reinholdjesse\Core\Livewire\Element\Select2::class,
+        'element.hex-colors' => Reinholdjesse\Core\Livewire\Element\HexColors::class,
 
-        'component::setting.index', \Reinholdjesse\Core\Livewire\Setting\Index::class,
-        'component::menu.index', \Reinholdjesse\Core\Livewire\Menu\Index::class,
-        'component::menu.edit', \Reinholdjesse\Core\Livewire\Menu\Edit::class,
-        'component::menu-item.index', \Reinholdjesse\Core\Livewire\MenuItem\Index::class,
-        'component::menu-item.edit', \Reinholdjesse\Core\Livewire\MenuItem\Edit::class,
+        'component::setting.index', Reinholdjesse\Core\Livewire\Setting\Index::class,
+        'component::menu.index', Reinholdjesse\Core\Livewire\Menu\Index::class,
+        'component::menu.edit', Reinholdjesse\Core\Livewire\Menu\Edit::class,
+        'component::menu-item.index', Reinholdjesse\Core\Livewire\MenuItem\Index::class,
+        'component::menu-item.edit', Reinholdjesse\Core\Livewire\MenuItem\Edit::class,
     ],
 
     /*

@@ -1,16 +1,18 @@
 <?php
 
+use  Reinholdjesse\Core\Facades\Component;
+
 if (! function_exists('setting')) {
     function setting($key)
     {
-        return Reinholdjesse\Core\Facades\Component::setting($key);
+        return Component::setting($key);
     }
 }
 
 if (! function_exists('menu')) {
     function menu(string $menuName, ?string $type = null)
     {
-        return Reinholdjesse\Core\Facades\Component::model('Menu')->display($menuName, $type);
+        return Component::model('Menu')->display($menuName, $type);
     }
 }
 
