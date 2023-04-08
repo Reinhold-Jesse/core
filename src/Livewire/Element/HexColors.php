@@ -6,13 +6,26 @@ use Livewire\Component;
 
 class HexColors extends Component
 {
+    public string $event = 'hexColor';
+
     public array $colorListe = [];
 
     public ?string $selectedColor = null;
 
-    public function mount(string $selectedColor = null): void
+    public ?int $rowId = null;
+
+    public function mount(string $selectedColor = null, int $rowId = null, string $event = null): void
     {
         $this->selectedColor = $selectedColor;
+
+        if (isset($rowId)) {
+            $this->rowId = $rowId;
+        }
+
+        if (isset($event)) {
+            $this->event = $event;
+        }
+
         $this->colorListe = $this->colorsList();
     }
 
@@ -24,7 +37,7 @@ class HexColors extends Component
     public function setColor(string $color): void
     {
         $this->selectedColor = $color;
-        $this->emit('hexColor', $color);
+        $this->emit($this->event, $color, $this->rowId);
     }
 
     private function colorsList(): array
@@ -49,6 +62,7 @@ class HexColors extends Component
             'fuchsia' => ['#f5d0fe', '#f0abfc', '#e879f9', '#d946ef', '#c026d3', '#a21caf'],
             'pink' => ['#fbcfe8', '#f9a8d4', '#f472b6', '#ec4899', '#db2777', '#be185d'],
             'rose' => ['#fecdd3', '#fda4af', '#fb7185', '#f43f5e', '#e11d48', '#be123c'],
+            'gray' => ['#ffffff', '#eeeeee', '#8a9597', '#7f7f7f', '#333333', '#000000'],
         ];
     }
 }
