@@ -103,7 +103,7 @@ class MarkdownX extends Component
     {
         $payload = (object) $payload;
 
-        $path = 'images/'.strtolower(date('FY')).'/';
+        $path = 'images/' . strtolower(date('FY')) . '/';
         $fullPath = '';
 
         try {
@@ -113,11 +113,11 @@ class MarkdownX extends Component
             $filename_counter = 1;
 
             // Make sure the filename does not exist, if it does make sure to add a number to the end 1, 2, 3, etc...
-            while (Storage::disk(config('markdownx.storage.disk'))->exists($path.$filename.'.'.$extension)) {
-                $filename = Str::slug($original_filename).(string) ($filename_counter++);
+            while (Storage::disk(config('markdownx.storage.disk'))->exists($path . $filename . '.' . $extension)) {
+                $filename = Str::slug($original_filename) . (string) ($filename_counter++);
             }
 
-            $fullPath = $path.$filename.'.'.$extension;
+            $fullPath = $path . $filename . '.' . $extension;
 
             // Get the Base64 string to store
             @[$type, $file_data] = explode(';', $payload->image);
@@ -127,7 +127,7 @@ class MarkdownX extends Component
             if (! in_array($type, config('markdownx.image.allowed_file_types'))) {
                 $this->dispatchBrowserEvent('markdown-x-image-uploaded', [
                     'status' => 400,
-                    'message' => 'File type not supported. Must be of type '.implode(', ', config('markdownx.image.allowed_file_types')),
+                    'message' => 'File type not supported. Must be of type ' . implode(', ', config('markdownx.image.allowed_file_types')),
                     'key' => $payload->key,
                     'text' => $payload->text,
                 ]);
