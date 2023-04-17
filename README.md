@@ -30,6 +30,9 @@ del ./resources/css/app.css
 
 #Delete default app.js
 del ./resources/js/app.js
+
+#Delete default package.json
+del ./package.json
 ```
 
 ### Publish config file
