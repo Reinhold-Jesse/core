@@ -31,6 +31,15 @@ class MenuTableSeeder extends Seeder
                 'created_at' => date('Y-m-d H:i:s'),
             ])->save();
         }
+
+        $value = $this->findName('account-manager');
+        if (! $value->exists) {
+            $value->fill([
+                'id' => 3,
+                'name' => 'account-manager',
+                'created_at' => date('Y-m-d H:i:s'),
+            ])->save();
+        }
     }
 
     protected function findName($key)

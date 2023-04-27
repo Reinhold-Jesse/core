@@ -14,26 +14,27 @@ class Menu extends Model
 
     /**
      * Generate menu.
-     *
-     *
-     * @return string
      */
-    public function display(string $menuName, ?string $type = null)
+    public function display(string $menuName, ?string $type = null): mixed
     {
         $menu = Menu::where('name', $menuName)->with(['parent_items.children' => function ($query) {
             $query->orderBy('order');
         },
         ])->first();
 
-        $items = $menu->parent_items->sortBy('order');
+        if ($menu != null) {
+            $items = $menu->parent_items->sortBy('order');
 
-        //dd($items);
+            //dd($items);
 
-        if (isset($type) && ! empty($type)) {
-            return new HtmlString(View::make('component::template.menu.' . $type, ['items' => $items])->render());
+            if (isset($type) && ! empty($type)) {
+                return new HtmlString(View::make('component::template.menu.'.$type, ['items' => $items])->render());
+            }
+
+            return new HtmlString(View::make('component::template.menu.default', ['items' => $items])->render());
         }
 
-        return new HtmlString(View::make('component::template.menu.default', ['items' => $items])->render());
+        return null;
     }
 
     /**

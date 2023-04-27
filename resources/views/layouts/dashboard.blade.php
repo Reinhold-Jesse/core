@@ -35,7 +35,7 @@
 <body class="bg-gray-200">
     <x:component::flash-message on="saved" />
 
-    <div x-data="{ isOpen: true }" class="flex overflow-hidden">
+    <div x-data="{ isOpen: true }" class="flex h-screen overflow-hidden">
         <div x-cloak :class="isOpen ? '-left-72' : 'left-0'"
             class="fixed top-0 bottom-0 px-5 overflow-y-auto transition-all duration-300 ease-linear bg-white w-72 py-7">
 
@@ -51,7 +51,7 @@
                     {{ menu('admin', 'admin') }}
                 </div>
 
-                <div class="">
+                {{-- <div class="">
                     <!-- Authentication -->
                     <form method="POST" action="{{ route('logout') }}" x-data>
                         @csrf
@@ -61,7 +61,7 @@
                             <x:component::icon.logout class="text-red-500" />
                         </x:component::menu.link>
                     </form>
-                </div>
+                </div> --}}
             </div>
 
         </div>
@@ -79,11 +79,67 @@
 
                                 @livewire('notification.component.message-counter')
 
-                                <div
-                                    class="flex items-center gap-2 pr-3 text-sm transition border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300">
-                                    <img class="object-cover w-8 h-8 rounded-full"
-                                        src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}">
-                                    <span class="text-gray-300">{{ Auth::user()->name }}</span>
+
+                                <div class="relative ml-3" x-data="{ open: false }" @click.away="open = false"
+                                    @close.stop="open = false">
+                                    <div @click.prevent="open = ! open">
+                                        @if (!empty(Auth::user()->profile_photo_url))
+                                            <button
+                                                class="flex items-center gap-2 pr-3 text-sm transition border-2 border-transparent rounded-full focus:outline-none ">
+                                                <img class="object-cover w-8 h-8 rounded-full"
+                                                    src="{{ asset(Auth::user()->profile_photo_url) }}"
+                                                    alt="{{ Auth::user()->firstname }} {{ Auth::user()->lastname }}" />
+                                                <span
+                                                    class="text-gray-400 hover:text-dashboard-500 default-transition">{{ Auth::user()->firstname }}
+                                                    {{ Auth::user()->lastname }}</span>
+                                            </button>
+                                        @else
+                                            <span class="inline-flex rounded-md">
+                                                <button type="button"
+                                                    class="inline-flex items-center px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition bg-white border border-transparent rounded-md hover:text-dashboard-500 focus:outline-none">
+                                                    {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
+
+                                                    <svg class="ml-2 -mr-0.5 h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                                        viewBox="0 0 20 20" fill="currentColor">
+                                                        <path fill-rule="evenodd"
+                                                            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                                            clip-rule="evenodd" />
+                                                    </svg>
+                                                </button>
+                                            </span>
+                                        @endif
+                                    </div>
+
+                                    <div x-cloak x-show="open" x-transition:enter="transition ease-out duration-200"
+                                        x-transition:enter-start="transform opacity-0 scale-95"
+                                        x-transition:enter-end="transform opacity-100 scale-100"
+                                        x-transition:leave="transition ease-in duration-75"
+                                        x-transition:leave-start="transform opacity-100 scale-100"
+                                        x-transition:leave-end="transform opacity-0 scale-95"
+                                        class="absolute right-0 z-50 mt-2 origin-top-right bg-white rounded-md shadow-lg w-44">
+
+                                        <div
+                                            class="text-sm text-left rounded-md shadow-sm ring-1 ring-black ring-opacity-5">
+                                            <div class="block px-4 py-2 text-xs text-gray-400">
+                                                {{ __('Manage Account') }}
+                                            </div>
+
+                                            {{ menu('account-manager', 'account') }}
+
+
+                                            <div class="border-t border-gray-100"></div>
+
+                                            <!-- Authentication -->
+                                            <form method="POST" action="{{ route('logout') }}" x-data>
+                                                @csrf
+                                                <x:component::menu.account-link href="{{ route('logout') }}"
+                                                    class="flex items-center gap-2" @click.prevent="$root.submit();">
+                                                    {{ __('Log Out') }}
+                                                    <x:component::icon.logout class="h-5 text-red-500" />
+                                                </x:component::menu.account-link>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         @endif
