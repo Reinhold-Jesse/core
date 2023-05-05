@@ -35,7 +35,7 @@
 <body class="bg-gray-200">
     <x:component::flash-message on="saved" />
 
-    <div x-data="{ isOpen: true }" class="flex h-screen overflow-hidden">
+    <div x-data="{ isOpen: true }" class="flex h-screen">
         <div x-cloak :class="isOpen ? '-left-72' : 'left-0'"
             class="fixed top-0 bottom-0 px-5 overflow-y-auto transition-all duration-300 ease-linear bg-white w-72 py-7">
 
@@ -48,7 +48,12 @@
             <div class="pl-1 pr-3">
 
                 <div class="mt-7">
+                    <span class="mb-5 ml-1 text-sm font-bold uppercase text-dashboard-500">Administrator</span>
                     {{ menu('admin', 'admin') }}
+                </div>
+
+                <div class="mt-7">
+                    {{ menu('auth', 'admin') }}
                 </div>
 
                 {{-- <div class="">
