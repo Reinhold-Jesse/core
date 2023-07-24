@@ -25,30 +25,30 @@
         </li>
     @else
         @if (isset($type) && $type == 'children')
-            @if (isset($item->route))
-                @if (Route::has($item->route))
+            @if ($item->type == 'route' or $item->type == 'page')
+                @if (Route::has($item->name))
                     <li>
-                        <a href="{{ route($item->route) }}"
+                        <a href="{{ route($item->name) }}" target="{{ $item->target }}"
                             class="block px-4 py-2 text-gray-600 hover:text-dashboard-500">{{ $item->title }}</a>
                     </li>
                 @endif
             @else
                 <li>
-                    <a href="{{ url($item->url) }}"
+                    <a href="{{ url($item->name) }}" target="{{ $item->target }}"
                         class="block px-4 py-2 text-gray-600 hover:text-dashboard-500">{{ $item->title }}</a>
                 </li>
             @endif
         @else
-            @if (isset($item->route))
-                @if (Route::has($item->route))
+            @if ($item->type == 'route' or $item->type == 'page')
+                @if (Route::has($item->name))
                     <li>
-                        <a href="{{ route($item->route) }}"
+                        <a href="{{ route($item->name) }}" target="{{ $item->target }}"
                             class="block px-4 py-2 text-gray-600 hover:text-dashboard-500">{{ $item->title }}</a>
                     </li>
                 @endif
             @else
                 <li>
-                    <a href="{{ url($item->url) }}"
+                    <a href="{{ url($item->url) }}" target="{{ $item->target }}"
                         class="block px-4 py-2 text-gray-600 hover:text-dashboard-500">{{ $item->title }}</a>
                 </li>
             @endif

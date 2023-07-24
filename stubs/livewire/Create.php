@@ -24,7 +24,7 @@ class Create extends Component
 
     public function render()
     {
-        return view('livewire.[name].create')->layout('component::layouts.dashboard');
+        return view('livewire.[name].create')->layout(config('core.template.dashboard'));
     }
 
     public function store()

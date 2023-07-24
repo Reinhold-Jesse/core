@@ -19,7 +19,7 @@ class Index extends Component
             $query->where('title', 'LIKE', '%'.trim($this->search).'%');
         })->orderBy('created_at', 'desc')->paginate(25);
 
-        return view('livewire.[name].index', compact('content'))->layout('component::layouts.dashboard');
+        return view('livewire.[name].index', compact('content'))->layout(config('core.template.dashboard'));
     }
 
     public function toggle(int $id): void

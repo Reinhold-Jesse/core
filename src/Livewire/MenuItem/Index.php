@@ -24,7 +24,7 @@ class Index extends Component
 
     public ?string $title;
 
-    public ?string $url = null;
+    public string $type = 'route';
 
     public ?string $target = null;
 
@@ -32,15 +32,15 @@ class Index extends Component
 
     public ?int $order = null;
 
-    public ?string $route = null;
+    public ?string $name = null;
 
     protected $rules = [
         'title' => 'required|min:3',
-        'url' => 'nullable|string|max:255',
+        'type' => 'required|string|max:255',
         'target' => 'nullable|string|max:10',
         'parent_id' => 'nullable|numeric',
         'order' => 'required|numeric',
-        'route' => 'nullable|string|max:255',
+        'name' => 'nullable|string|max:255',
     ];
 
     public function mount(Menu $id): void
@@ -51,11 +51,11 @@ class Index extends Component
     public function render(): View
     {
         $this->content = MenuItem::with('children')
-        ->where('menu_id', $this->menu->id)
-        ->whereNull('parent_id')
-        ->orderBy('order')->get();
+            ->where('menu_id', $this->menu->id)
+            ->whereNull('parent_id')
+            ->orderBy('order')->get();
 
-        return view('component::livewire.menu-item.index')->layout('component::layouts.dashboard');
+        return view('component::livewire.menu-item.index')->layout(config('core.template.dashboard'));
     }
 
     public function create(): void
@@ -73,11 +73,11 @@ class Index extends Component
         $this->editId = $menuItem['id'];
 
         $this->title = $menuItem['title'];
-        $this->url = $menuItem['url'];
+        $this->type = $menuItem['type'];
         $this->target = $menuItem['target'];
         $this->parent_id = $menuItem['parent_id'];
         $this->order = $menuItem['order'];
-        $this->route = $menuItem['route'];
+        $this->name = $menuItem['name'];
 
         $this->openEditWindow();
     }
@@ -96,7 +96,7 @@ class Index extends Component
         }
 
         $query['title'] = $this->title;
-        $query['url'] = $this->url;
+        $query['type'] = $this->type;
 
         if (! empty($this->target)) {
             $query['target'] = $this->target;
@@ -104,7 +104,8 @@ class Index extends Component
 
         $query['parent_id'] = $this->parent_id;
         $query['order'] = $this->order;
-        $query['route'] = $this->route;
+
+        $query['name'] = $this->name;
 
         if ($query->save()) {
             $this->cloasEditWindow();
@@ -141,10 +142,10 @@ class Index extends Component
             if (count($element['items']) > 0) {
                 foreach ($element['items'] as $item) {
                     MenuItem::where('id', $item['value'])
-                    ->where('parent_id', $element['value'])
-                    ->update([
-                        'order' => $item['order'],
-                    ]);
+                        ->where('parent_id', $element['value'])
+                        ->update([
+                            'order' => $item['order'],
+                        ]);
                 }
             }
         }
@@ -155,10 +156,10 @@ class Index extends Component
         $this->editId = null;
 
         $this->title = null;
-        $this->url = null;
+        $this->type = 'route';
         $this->target = null;
         $this->parent_id = null;
         $this->order = null;
-        $this->route = null;
+        $this->name = null;
     }
 }

@@ -23,4 +23,9 @@ class MenuItem extends Model
     {
         return $this->hasOne(MenuItem::class, 'id', 'parent_id')->value('title');
     }
+
+    public function page()
+    {
+        return $this->hasOne(Page::class, 'id', 'page_id');
+    }
 }

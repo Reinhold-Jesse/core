@@ -36,8 +36,8 @@
     <x:component::flash-message on="saved" />
 
     <div x-data="{ isOpen: true }" class="flex h-screen">
-        <div x-cloak :class="isOpen ? '-left-72' : 'left-0'"
-            class="fixed top-0 bottom-0 px-5 overflow-y-auto transition-all duration-300 ease-linear bg-white w-72 py-7">
+        <div x-cloak :class="isOpen ? '-left-96' : 'left-0'"
+            class="fixed top-0 bottom-0 px-5 overflow-y-auto transition-all duration-300 ease-linear bg-white w-96 py-7">
 
             <div class="pb-3 border-b border-gray-200">
                 <a href="#" class="block">
@@ -70,7 +70,7 @@
             </div>
 
         </div>
-        <div :class="isOpen ? 'left-0' : 'left-72'" class="relative w-full transition-all duration-300 ease-linear">
+        <div :class="isOpen ? 'left-0' : 'left-96'" class="relative w-full transition-all duration-300 ease-linear">
             <div class="shadow-sm bg-dashboard-900 backend-background-image">
                 <div class="bg-gray-900 bg-opacity-50">
                     <div class="flex justify-between pl-5 pr-10 py-7">

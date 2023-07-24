@@ -10,9 +10,14 @@
                         <x:component::form.input-error :for="$title" />
                     </div>
                     <div class="py-3">
-                        <x:component::form.label value="URL" />
-                        <x:component::form.input wire:model="url" type="text" name="url" />
-                        <x:component::form.input-error :for="$url" />
+                        <x:component::form.label value="Type" />
+                        <x:component::form.select wire:model="type">
+                            <x:component::form.select-option name="route" value="Route" />
+                            <x:component::form.select-option name="url" value="URL" />
+                            <x:component::form.select-option name="page" value="Page" />
+                            <x:component::form.select-option name="parent" value="Parent" />
+                        </x:component::form.select>
+                        <x:component::form.input-error :for="$type" />
                     </div>
                     <div class="py-3">
                         <x:component::form.label value="Target" />
@@ -43,13 +48,13 @@
                         <x:component::form.input-error :for="$order" />
                     </div>
                     <div class="py-3">
-                        <x:component::form.label value="Route" />
-                        <x:component::form.input wire:model="route" type="text" name="route" />
-                        <x:component::form.input-error :for="$route" />
+                        <x:component::form.label value="Name" />
+                        <x:component::form.input wire:model="name" type="text" name="name" />
+                        <x:component::form.input-error :for="$name" />
                     </div>
                 </div>
                 <div class="grid grid-cols-2 gap-4 px-4 text-right bg-gray-100 py-7 sm:px-6">
-                    <x:component::button.cancel wire:click="cloasEditWindow" />
+                    <x:component::button.cancel wire:click="cloasEditWindow" class="w-full" />
 
                     <button wire:click="update" type="button"
                         class="flex justify-center w-full px-4 py-2 font-medium text-center text-white border border-transparent rounded-md shadow-sm bg-dashboard-500 hover:bg-dashboard-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500">Speichern</button>

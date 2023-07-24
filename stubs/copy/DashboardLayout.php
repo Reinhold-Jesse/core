@@ -1,6 +1,6 @@
 <?php
 
-namespace Reinholdjesse\Core\View\Components;
+namespace App\View\Components;
 
 use Illuminate\View\Component;
 
@@ -13,6 +13,6 @@ class DashboardLayout extends Component
      */
     public function render()
     {
-        return view(config('core.template.dashboard'));
+        return view('layouts.dashboard');
     }
 }

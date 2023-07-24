@@ -6,8 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ setting('site.title') }}</title>
-    <meta name="description" content="{{ setting('site.description') }}">
+
+    @hasSection('keywords')
+        <meta name="keywords" content="@yield('keywords')">
+    @endif
+
+
+    @hasSection('description')
+        <meta name="description" content="@yield('description')">
+    @else
+        <meta name="description" content="{{ setting('site.description') }}">
+    @endif
+
+
+    @hasSection('title')
+        <title>@yield('title') - {{ config('app.name', 'Laravel') }}</title>
+    @else
+        <title>{{ setting('site.title') }}</title>
+    @endif
+
+
 
     <link rel="apple-touch-icon" sizes="57x57" href="{{ url('favicon/apple-icon-57x57.png') }}">
     <link rel="apple-touch-icon" sizes="60x60" href="{{ url('favicon/apple-icon-60x60.png') }}">
@@ -33,11 +51,13 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="">
+<body class="bg-slate-100">
+
+    {{ menu('site', 'horizontal') }}
 
     <!-- Page Content -->
     <main>
-        {{ $slot }}
+        @yield('content')
     </main>
 
     @stack('modals')

@@ -33,7 +33,7 @@ class Edit extends Component
 
     public function render()
     {
-        return view('livewire.[name].edit')->layout('component::layouts.dashboard');
+        return view('livewire.[name].edit')->layout(config('core.template.dashboard'));
     }
 
     public function update()

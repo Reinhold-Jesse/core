@@ -76,6 +76,12 @@ class CoreServiceProvider extends ServiceProvider
             __DIR__.'/../resources/views/errors' => resource_path('views/errors'),
         ], 'core.pages.errors');
 
+        $this->publishes([
+            // core dashboard publish in app
+            __DIR__.'/../stubs/copy/DashboardLayout.php' => app_path('View/Components/DashboardLayout.php'),
+            __DIR__.'/../resources/views/layouts/dashboard.blade.php' => resource_path('views/layouts/dashboard.blade.php'),
+        ], 'core.page.dashboard');
+
         // blade componente
         $this->bootBladeComponents();
 

@@ -12,11 +12,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedInteger('menu_id')->nullable();
             $table->string('title');
-            $table->string('url')->nullable();
+            $table->string('type')->default('route'); // page, url, route
             $table->string('target')->default('_self');
             $table->integer('parent_id')->nullable();
             $table->integer('order');
-            $table->string('route')->nullable()->default(null);
+            $table->string('name')->nullable();
+            $table->integer('page_id')->nullable();
             $table->timestamps();
         });
     }

@@ -20,13 +20,16 @@
             </div>
 
             <div class="overflow-x-auto bg-white shadow md:rounded-lg">
-                <div class="flex text-sm bg-gray-100">
+                <div class="flex gap-3 text-sm bg-gray-100">
                     <div class="w-[50px] p-2"></div>
-                    <div>
-                        <p class="w-[350px] font-semibold text-left text-gray-700 p-4">Title</p>
+                    <div class="w-[350px] p-4 font-semibold text-left text-gray-700">
+                        <p class="">Title</p>
                     </div>
-                    <div>
-                        <p class="font-semibold text-left text-gray-700 p-4">Route / URL</p>
+                    <div class="p-4 font-semibold text-center text-gray-700">
+                        <p>Type</p>
+                    </div>
+                    <div class="p-4 font-semibold text-left text-gray-700">
+                        <p>Name</p>
                     </div>
                 </div>
 
@@ -35,8 +38,8 @@
                     @foreach ($content as $value)
                         <li x-data="{ open: false }" class="{{-- count($value['children']) > 0 ? 'bg-dashboard-500 hover:bg-dashboard-600 text-white' : 'text-gray-500 hover:bg-gray-50' --}} text-gray-500 hover:bg-gray-50"
                             wire:key="group-{{ $value->id }}" wire:sortable.item="{{ $value->id }}">
-                            <div class="flex justify-between items-center ">
-                                <div class="flex items-center">
+                            <div class="flex items-center justify-between ">
+                                <div class="flex items-center gap-3">
                                     <div class="w-[50px] flex items-center justify-center text-gray-300 cursor-pointer hover:text-dashboard-500 p-4"
                                         wire:sortable.handle>
                                         <x:component::icon.drag-indicator />
@@ -59,20 +62,24 @@
                                         @endif
                                     </div>
 
-                                    <div class="">
-                                        @if (!empty($value->route))
-                                            @if (Route::has($value->route))
-                                                <a href="{{ route($value->route) }}" target="_blank"
-                                                    class="hover:text-dashboard-500">{{ $value->route }}</a>
+                                    <div class="text-center">
+                                        {{ $value->type }}
+                                    </div>
+
+                                    <div class="text-left">
+                                        @if ($value->type == 'route' or $value->type == 'page')
+                                            @if (Route::has($value->name))
+                                                <a href="{{ route($value->name) }}" target="_blank"
+                                                    class="hover:text-dashboard-500">{{ $value->name }}</a>
                                             @else
                                                 <span class="text-sm font-bold text-red-500">Route wurde nicht
                                                     gefunden</span>
                                             @endif
                                         @endif
 
-                                        @if (!empty($value->url))
-                                            <a href="{{ $value->url }}" target="_blank"
-                                                class="hover:text-dashboard-500">{{ $value->url }}</a>
+                                        @if ($value->type == 'url')
+                                            <a href="{{ $value->name }}" target="_blank"
+                                                class="hover:text-dashboard-500">{{ $value->name }}</a>
                                         @endif
                                     </div>
 
@@ -118,14 +125,14 @@
 
                             @if (count($value['children']) > 0)
                                 <div x-cloak x-show="open" class="border-t border-gray-200">
-                                    <ul class=" border-l-8 border-dashboard-500 divide-y divide-primary-300"
+                                    <ul class="border-l-8 divide-y border-dashboard-500 divide-primary-300"
                                         wire:sortable-group.item-group="{{ $value->id }}">
 
                                         @foreach ($value->children->sortBy('order') as $children)
                                             <li class="text-gray-500 bg-dashboard-100 hover:bg-dashboard-500 hover:text-white"
                                                 wire:key="children-{{ $children['id'] }}"
                                                 wire:sortable-group.item="{{ $children['id'] }}">
-                                                <div class="flex justify-between items-center ">
+                                                <div class="flex items-center justify-between ">
                                                     <div class="flex items-center">
                                                         <div class="w-[50px] flex items-center justify-center  cursor-pointer p-4 text-dashboard-200 hover:text-dashboard-900"
                                                             wire:sortable-group.handle>
@@ -134,13 +141,15 @@
                                                         <div class="w-[350px]  p-4">
                                                             {{ $children['title'] }}
                                                         </div>
-
+                                                        <div class="p-4">
+                                                            {{ $children['type'] }}
+                                                        </div>
                                                         <div class="">
-                                                            @if (!empty($children['route']))
-                                                                @if (Route::has($children['route']))
-                                                                    <a href="{{ route($children['route']) }}"
+                                                            @if ($children['type'] == 'route' or $children['type'] == 'page')
+                                                                @if (Route::has($children['name']))
+                                                                    <a href="{{ route($children['name']) }}"
                                                                         target="_blank"
-                                                                        class="hover:text-dashboard-900">{{ $children['route'] }}</a>
+                                                                        class="hover:text-dashboard-900">{{ $children['name'] }}</a>
                                                                 @else
                                                                     <span class="text-sm font-bold text-red-500">Route
                                                                         wurde
@@ -149,9 +158,9 @@
                                                                 @endif
                                                             @endif
 
-                                                            @if (!empty($children['url']))
-                                                                <a href="{{ $children['url'] }}" target="_blank"
-                                                                    class="hover:text-dashboard-900">{{ $children['url'] }}</a>
+                                                            @if ($children['url'] == 'url')
+                                                                <a href="{{ $children['name'] }}" target="_blank"
+                                                                    class="hover:text-dashboard-900">{{ $children['name'] }}</a>
                                                             @endif
                                                         </div>
 

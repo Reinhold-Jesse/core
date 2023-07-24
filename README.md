@@ -45,13 +45,16 @@ php artisan vendor:publish --tag=core.install
 php artisan vendor:publish --tag=core.publishes
 
 #Layout (optional)
-php artisan vendor:publish --tag=core.publishes.layouts
+# php artisan vendor:publish --tag=core.publishes.layouts // wurde auskommentiert
 
 #Core Components (optional)
 php artisan vendor:publish --tag=core.components
 
 #Core ERRORS pages (optional)
 php artisan vendor:publish --tag=core.pages.errors
+
+#Core Dashboard pages (optional)
+php artisan vendor:publish --tag=core.page.dashboard
 ```
 
 ### Core Seeder

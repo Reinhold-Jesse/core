@@ -23,7 +23,7 @@ class Index extends Component
     {
         $this->content = Menu::all();
 
-        return view('component::livewire.menu.index')->layout('component::layouts.dashboard');
+        return view('component::livewire.menu.index')->layout(config('core.template.dashboard'));
     }
 
     public function edit(Menu $menu): void
@@ -69,10 +69,10 @@ class Index extends Component
         if ($menu['name'] !== 'admin' && $menu->delete()) {
             // TODO: flash message
             // TODO: flesh message admin menu kann nicht gelöscht werden
-            $this->bannerMessage('success', $menu['name'] . ' Menu wurde erfolgreich gelöscht.');
+            $this->bannerMessage('success', $menu['name'].' Menu wurde erfolgreich gelöscht.');
         } else {
             // TODO: flash message
-            $this->bannerMessage('danger', $menu['name'] . ' Menu kann nicht gelöscht werden.');
+            $this->bannerMessage('danger', $menu['name'].' Menu kann nicht gelöscht werden.');
         }
     }
 

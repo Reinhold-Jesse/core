@@ -48,7 +48,7 @@ class Index extends Component
 
         $this->content = $collection->groupBy('group');
 
-        return view('component::livewire.setting.index')->layout('component::layouts.dashboard');
+        return view('component::livewire.setting.index')->layout(config('core.template.dashboard'));
     }
 
     public function createNewSettingEntry(): void
@@ -77,7 +77,7 @@ class Index extends Component
             'value' => $value,
             'updated_at' => date('Y-m-d H:i:s'),
         ]);
-        $this->emit('saved' . $id);
+        $this->emit('saved'.$id);
     }
 
     public function deleteEntry(Setting $setting): void
