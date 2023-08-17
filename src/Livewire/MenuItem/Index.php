@@ -2,6 +2,7 @@
 
 namespace Reinholdjesse\Core\Livewire\MenuItem;
 
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Livewire\Component;
 use Reinholdjesse\Core\Models\Menu;
@@ -22,13 +23,15 @@ class Index extends Component
 
     public ?int $editId = null;
 
-    public ?string $title;
+    public ?string $title = null;
 
     public string $type = 'route';
 
     public ?string $target = null;
 
     public ?int $parent_id = null;
+
+    public ?string $slug = null;
 
     public ?int $order = null;
 
@@ -41,6 +44,7 @@ class Index extends Component
         'parent_id' => 'nullable|numeric',
         'order' => 'required|numeric',
         'name' => 'nullable|string|max:255',
+        'slug' => 'nullable|string|max:255',
     ];
 
     public function mount(Menu $id): void
@@ -50,6 +54,11 @@ class Index extends Component
 
     public function render(): View
     {
+
+        if ($this->slug == null && $this->slug == '' && $this->title != null && $this->title != '') {
+            $this->slug = Str::slug($this->title);
+        }
+
         $this->content = MenuItem::with('children')
             ->where('menu_id', $this->menu->id)
             ->whereNull('parent_id')
@@ -78,6 +87,7 @@ class Index extends Component
         $this->parent_id = $menuItem['parent_id'];
         $this->order = $menuItem['order'];
         $this->name = $menuItem['name'];
+        $this->slug = $menuItem['slug'];
 
         $this->openEditWindow();
     }
@@ -93,6 +103,10 @@ class Index extends Component
             // create
             $query = new MenuItem;
             $query['menu_id'] = $this->menu->id;
+
+            if ($this->type == 'page') {
+                $this->slug = Str::slug($this->title);
+            }
         }
 
         $query['title'] = $this->title;
@@ -104,6 +118,7 @@ class Index extends Component
 
         $query['parent_id'] = $this->parent_id;
         $query['order'] = $this->order;
+        $query['slug'] = $this->slug;
 
         $query['name'] = $this->name;
 
@@ -161,5 +176,6 @@ class Index extends Component
         $this->parent_id = null;
         $this->order = null;
         $this->name = null;
+        $this->slug = null;
     }
 }

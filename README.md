@@ -150,7 +150,7 @@ http:your-url/**componente/resources/view**
 ```php
 <x:component::datepicker model="date" />
 
-<x-component::drop-file wire:model='temp_files' name="temp_files" title="jpg, png, pdf, docx (MAX. 10Mb)" />
+<x-component::drop-file wire:model.debounce.500ms='temp_files' name="temp_files" title="jpg, png, pdf, docx (MAX. 10Mb)" />
 
 ```
 

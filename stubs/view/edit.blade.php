@@ -29,13 +29,13 @@
             <div class="grid grid-cols-1 gap-5 p-5 my-12 bg-white rounded-md shadow-sm">
                 <div>
                     <x:component::form.label value="Title" />
-                    <x:component::form.input wire:model='title' type="text" />
+                    <x:component::form.input wire:model.debounce.500ms='title' type="text" />
                     <x:component::form.input-error :for="$title" />
                 </div>
 
                 <div wire:ignore>
                     <x:component::form.label value="Content" />
-                    <x:component::form.textarea wire:model='content' />
+                    <x:component::form.textarea wire:model.debounce.500ms='content' />
                     <x:component::form.input-error :for="$content" />
                 </div>
 
