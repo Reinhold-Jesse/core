@@ -36,7 +36,7 @@
 
                 <ul wire:sortable="reorder" wire:sortable-group="reorderChildes" class="divide-y divide-gray-200">
                     @foreach ($content as $value)
-                        <li x-data="{ open: false }" class="{{-- count($value['children']) > 0 ? 'bg-dashboard-500 hover:bg-dashboard-600 text-white' : 'text-gray-500 hover:bg-gray-50' --}} text-gray-500 hover:bg-gray-50"
+                        <li x-data="{ open: false }" class="text-gray-500 hover:bg-gray-50"
                             wire:key="group-{{ $value->id }}" wire:sortable.item="{{ $value->id }}">
                             <div class="flex items-center justify-between ">
                                 <div class="flex items-center gap-3">
@@ -78,7 +78,7 @@
                                         @endif
 
                                         @if ($value->type == 'url')
-                                            <a href="{{ $value->name }}" target="_blank"
+                                            <a href="{{ url($value->name) }}" target="_blank"
                                                 class="hover:text-dashboard-500">{{ $value->name }}</a>
                                         @endif
                                     </div>

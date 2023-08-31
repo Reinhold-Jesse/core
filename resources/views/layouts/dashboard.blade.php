@@ -56,17 +56,6 @@
                     {{ menu('auth', 'admin') }}
                 </div>
 
-                {{-- <div class="">
-                    <!-- Authentication -->
-                    <form method="POST" action="{{ route('logout') }}" x-data>
-                        @csrf
-                        <x:component::menu.link href="{{ route('logout') }}" @click.prevent="$root.submit();"
-                            class="flex gap-2 text-gray-600 transition-all duration-200 ease-linear hover:text-dashboard-500">
-                            Logout
-                            <x:component::icon.logout class="text-red-500" />
-                        </x:component::menu.link>
-                    </form>
-                </div> --}}
             </div>
 
         </div>
@@ -83,7 +72,6 @@
                             <div class="flex items-center gap-5">
 
                                 @livewire('notification.component.message-counter')
-
 
                                 <div class="relative ml-3" x-data="{ open: false }" @click.away="open = false"
                                     @close.stop="open = false">

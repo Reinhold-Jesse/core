@@ -33,10 +33,12 @@
                         </x:component::menu.link>
                     @endif
                 @else
-                    <x:component::menu.link href="{{ url($item->name) }}" target="{{ $item->target }}"
-                        active="{{ request()->url($item->name) }}">
-                        {{ $item->title }}
-                    </x:component::menu.link>
+                    @if (isset($item->name))
+                        <x:component::menu.link href="{{ url($item->name) }}" target="{{ $item->target }}"
+                            active="{{ request()->url() == url($item->name) ? true : false }}">
+                            {{ $item->title }}
+                        </x:component::menu.link>
+                    @endif
                 @endif
             @endif
         @endif

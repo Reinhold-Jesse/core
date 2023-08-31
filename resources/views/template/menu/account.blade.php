@@ -34,7 +34,7 @@
                     @endif
                 @else
                     <x:component::menu.account-link href="{{ url($item->name) }}" target="{{ $item->target }}"
-                        active="{{ request()->url($item->name) }}">
+                        active="{{ request()->url() == url($item->name) ? true : false }}">
                         {{ $item->title }}
                     </x:component::menu.account-link>
                 @endif
