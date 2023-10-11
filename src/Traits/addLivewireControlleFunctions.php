@@ -37,7 +37,7 @@ trait addLivewireControlleFunctions
 
     public function bannerMessage(string $type, string $message): void
     {
-        $this->dispatchBrowserEvent('banner-message', [
+        $this->dispatch('banner-message', [
             'style' => $type,
             'message' => $message,
         ]);
@@ -62,6 +62,7 @@ trait addLivewireControlleFunctions
     public function updateAndIndex()
     {
         $this->update();
+        $this->bannerMessage('success', 'Eintrag wurde erfolgreich aktualisiert');
 
         return redirect()->route($this->routeIndex);
     }
@@ -69,6 +70,7 @@ trait addLivewireControlleFunctions
     public function updateAndNew()
     {
         $this->update();
+        $this->bannerMessage('success', 'Eintrag wurde erfolgreich aktualisiert');
 
         return redirect()->route($this->isRoute);
     }

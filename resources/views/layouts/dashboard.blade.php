@@ -29,7 +29,7 @@
     <!-- Styles -->
     @livewireStyles
 
-    @vite(['resources/css/dashboard.css', 'resources/js/dashboard.js'])
+    @vite(['resources/css/dashboard.css', 'resources/js/dashboard.js', 'resources/js/highlight.js'])
 </head>
 
 <body class="bg-gray-200">
@@ -145,7 +145,7 @@
                     @endif
                 </div>
             </div>
-            <main class="px-5 pb-12 pt-7 mb-7">
+            <main class="">
                 {{ $slot }}
             </main>
         </div>
