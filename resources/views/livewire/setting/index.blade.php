@@ -9,7 +9,7 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="container px-3 mx-auto">
+        <div class="container px-3 mx-auto pb-14">
 
             @if (!empty($content))
 
@@ -196,21 +196,21 @@
                 <div class="grid grid-cols-4 gap-4 bg-white rounded-md p-7">
                     <div class="">
                         <x:component::form.label value="Name" />
-                        <x:component::form.input wire:model.debounce.500ms="display_name" type="text"
-                            name="display_name" placeholder="Einstellungs-Name z.B. Site Titel" required />
+                        <x:component::form.input wire:model.live="display_name" type="text" name="display_name"
+                            placeholder="Einstellungs-Name z.B. Site Titel" required />
                         <x:component::form.input-error :for="$display_name" />
                     </div>
 
                     <div class="">
                         <x:component::form.label value="Key" />
-                        <x:component::form.input wire:model.debounce.500ms="key" type="text" name="key"
+                        <x:component::form.input wire:model.live="key" type="text" name="key"
                             placeholder="Einstellungs-Schlüssel z.B. title" required />
                         <x:component::form.input-error :for="$key" />
                     </div>
 
                     <div class="">
                         <x:component::form.label value="Type" />
-                        <x:component::form.select wire:model.debounce.500ms="type" name="type" required>
+                        <x:component::form.select wire:model.live="type" name="type" required>
                             <x:component::form.select-option name="" value="Typ auswählen" />
                             <x:component::form.select-option name="text" value="Text Input" />
                             <x:component::form.select-option name="text_area" value="Text Area" />
@@ -220,7 +220,7 @@
 
                     <div class="">
                         <x:component::form.label value="Gruppe" />
-                        <x:component::form.select wire:model.debounce.500ms="group" name="group" required>
+                        <x:component::form.select wire:model.live="group" name="group" required>
                             <x:component::form.select-option name="" value="Bestehende Gruppe auswählen" />
                             <x:component::form.select-option name="site" value="Site" />
                             <x:component::form.select-option name="admin" value="Admin" />

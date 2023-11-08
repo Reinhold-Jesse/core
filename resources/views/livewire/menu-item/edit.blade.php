@@ -6,12 +6,12 @@
                 <div class="px-5 py-5">
                     <div class="py-3">
                         <x:component::form.label value="Titel" />
-                        <x:component::form.input wire:model.debounce.500ms="title" type="text" name="title" />
+                        <x:component::form.input wire:model.live="title" type="text" name="title" />
                         <x:component::form.input-error :for="$title" />
                     </div>
                     <div class="py-3">
                         <x:component::form.label value="Type" />
-                        <x:component::form.select wire:model.debounce.500ms="type">
+                        <x:component::form.select wire:model.live="type">
                             <x:component::form.select-option name="route" value="Route" />
                             <x:component::form.select-option name="url" value="URL" />
                             <x:component::form.select-option name="page" value="Page" />
@@ -22,7 +22,7 @@
                     <div class="py-3">
                         <x:component::form.label value="Target" />
 
-                        <x:component::form.select wire:model.debounce.500ms="target" name="target">
+                        <x:component::form.select wire:model.live="target" name="target">
                             <x:component::form.select-option name="_self" value="Self" />
                             <x:component::form.select-option name="_blank" value="Blank" />
                         </x:component::form.select>
@@ -32,7 +32,7 @@
                     <div class="py-3">
                         <x:component::form.label value="Children from" />
 
-                        <x:component::form.select wire:model.debounce.500ms="parent_id" name="parent_id">
+                        <x:component::form.select wire:model.live="parent_id" name="parent_id">
                             <x:component::form.select-option name="" value="" />
                             @foreach (Reinholdjesse\Core\Models\MenuItem::where('menu_id', $menu->id)->get() as $value)
                                 <x:component::form.select-option name="{{ $value->id }}"
@@ -44,18 +44,18 @@
                     </div>
                     <div class="py-3">
                         <x:component::form.label value="Order" />
-                        <x:component::form.input wire:model.debounce.500ms="order" type="text" name="order" />
+                        <x:component::form.input wire:model.live="order" type="text" name="order" />
                         <x:component::form.input-error :for="$order" />
                     </div>
                     <div class="py-3">
                         <x:component::form.label value="Name" />
-                        <x:component::form.input wire:model.debounce.500ms="name" type="text" name="name" />
+                        <x:component::form.input wire:model.live="name" type="text" name="name" />
                         <x:component::form.input-error :for="$name" />
                     </div>
 
                     <div class="py-3">
                         <x:component::form.label value="Slug" />
-                        <x:component::form.input wire:model.debounce.500ms="slug" type="text" name="slug" />
+                        <x:component::form.input wire:model.live="slug" type="text" name="slug" />
                         <x:component::form.input-error :for="$slug" />
                     </div>
                 </div>
