@@ -29,7 +29,7 @@
     <!-- Styles -->
     @livewireStyles
 
-    @vite(['resources/css/dashboard.css', 'resources/js/dashboard.js', 'resources/js/highlight.js'])
+    @vite(['resources/css/dashboard.css', 'resources/js/dashboard.js'])
 </head>
 
 <body class="bg-gray-200">

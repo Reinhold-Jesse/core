@@ -49,18 +49,18 @@ class Index extends Component
 
     public function mount(Menu $id): void
     {
-        $this->menu = $id;
+        $this->menu = collect($id)->toArray();
     }
 
     public function render(): View
     {
 
-        if ($this->slug == null && $this->slug == '' && $this->title != null && $this->title != '') {
+        if ($this->slug == null && $this->slug == '' && ! empty($this->title)) {
             $this->slug = Str::slug($this->title);
         }
 
         $this->content = MenuItem::with('children')
-            ->where('menu_id', $this->menu->id)
+            ->where('menu_id', $this->menu['id'])
             ->whereNull('parent_id')
             ->orderBy('order')->get();
 
@@ -72,7 +72,7 @@ class Index extends Component
         $this->clearValue();
         $this->openEditWindow();
 
-        $this->order = MenuItem::where('menu_id', $this->menu->id)->count() + 1;
+        $this->order = MenuItem::where('menu_id', $this->menu['id'])->count() + 1;
     }
 
     public function edit(MenuItem $menuItem): void
@@ -102,7 +102,7 @@ class Index extends Component
         } else {
             // create
             $query = new MenuItem;
-            $query['menu_id'] = $this->menu->id;
+            $query['menu_id'] = $this->menu['id'];
 
             if ($this->type == 'page') {
                 $this->slug = Str::slug($this->title);
