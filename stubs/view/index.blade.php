@@ -9,7 +9,7 @@
 
     <div class="container px-5 mx-auto">
         <div class="flex justify-end gap-5 my-12">
-            <x:component::element.search wire:model.debounce.live="search" placeholder="Suche" />
+            <x:component::element.search wire:model.live.debounce.live="search" placeholder="Suche" />
 
             <a href="{{ route('[name].create') }}"
                 class="flex items-center justify-center w-56 px-5 py-2 text-white border-0 rounded-md shadow-sm whitespace-nowrap bg-dashboard-500 hover:text-white hover:bg-dashboard-600 default-transition ">
