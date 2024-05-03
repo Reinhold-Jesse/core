@@ -9,7 +9,7 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="container px-3 mx-auto">
+        <div class="container px-3 mx-auto pb-14">
 
             @if (!empty($content))
 
@@ -20,11 +20,11 @@
                                 <li @click.prevent="tab = '{{ $key }}'"
                                     class="block py-3 font-semibold text-center  cursor-pointer w-52 rounded-t-md hover:bg-gray-50"
                                     :class="{
-
-
+                                    
+                                    
                                         'bg-gray-100 text-teal-500': tab === '{{ $key }}',
                                         'text-gray-500 bg-gray-300': tab != '{{ $key }}'
-
+                                    
                                     }">
                                     {{ $key }}
                                 </li>
@@ -196,21 +196,21 @@
                 <div class="grid grid-cols-4 gap-4 bg-white rounded-md p-7">
                     <div class="">
                         <x:component::form.label value="Name" />
-                        <x:component::form.input wire:model="display_name" type="text" name="display_name"
+                        <x:component::form.input wire:model.live="display_name" type="text" name="display_name"
                             placeholder="Einstellungs-Name z.B. Site Titel" required />
                         <x:component::form.input-error :for="$display_name" />
                     </div>
 
                     <div class="">
                         <x:component::form.label value="Key" />
-                        <x:component::form.input wire:model="key" type="text" name="key"
+                        <x:component::form.input wire:model.live="key" type="text" name="key"
                             placeholder="Einstellungs-Schlüssel z.B. title" required />
                         <x:component::form.input-error :for="$key" />
                     </div>
 
                     <div class="">
                         <x:component::form.label value="Type" />
-                        <x:component::form.select wire:model="type" name="type" required>
+                        <x:component::form.select wire:model.live="type" name="type" required>
                             <x:component::form.select-option name="" value="Typ auswählen" />
                             <x:component::form.select-option name="text" value="Text Input" />
                             <x:component::form.select-option name="text_area" value="Text Area" />
@@ -220,7 +220,7 @@
 
                     <div class="">
                         <x:component::form.label value="Gruppe" />
-                        <x:component::form.select wire:model="group" name="group" required>
+                        <x:component::form.select wire:model.live="group" name="group" required>
                             <x:component::form.select-option name="" value="Bestehende Gruppe auswählen" />
                             <x:component::form.select-option name="site" value="Site" />
                             <x:component::form.select-option name="admin" value="Admin" />

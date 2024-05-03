@@ -15,30 +15,28 @@
             @if (isset($type) && $type == 'children')
                 @if ($item->type == 'route' or $item->type == 'page')
                     @if (Route::has($item->name))
-                        <x:component::menu.dropdown-link href="{{ route($item->name) }}">
+                        <x:component::menu.account-link href="{{ route($item->name) }}">
                             {{ $item->title }}
-                        </x:component::menu.dropdown-link>
+                        </x:component::menu.account-link>
                     @endif
                 @else
-                    <x:component::menu.dropdown-link href="{{ url($item->name) }}">
+                    <x:component::menu.account-link href="{{ url($item->name) }}">
                         {{ $item->title }}
-                    </x:component::menu.dropdown-link>
+                    </x:component::menu.account-link>
                 @endif
             @else
                 @if ($item->type == 'route' or $item->type == 'page')
                     @if (Route::has($item->name))
-                        <x:component::menu.link href="{{ route($item->name) }}" target="{{ $item->target }}"
+                        <x:component::menu.account-link href="{{ route($item->name) }}" target="{{ $item->target }}"
                             active="{{ request()->routeIs($item->name) }}">
                             {{ $item->title }}
-                        </x:component::menu.link>
+                        </x:component::menu.account-link>
                     @endif
                 @else
-                    @if (isset($item->name))
-                        <x:component::menu.link href="{{ url($item->name) }}" target="{{ $item->target }}"
-                            active="{{ request()->url() == url($item->name) ? true : false }}">
-                            {{ $item->title }}
-                        </x:component::menu.link>
-                    @endif
+                    <x:component::menu.account-link href="{{ url($item->name) }}" target="{{ $item->target }}"
+                        active="{{ request()->url() == url($item->name) ? true : false }}">
+                        {{ $item->title }}
+                    </x:component::menu.account-link>
                 @endif
             @endif
         @endif

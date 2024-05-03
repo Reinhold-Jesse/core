@@ -125,7 +125,7 @@ class MarkdownX extends Component
             $type = explode('/', $type)[1];
 
             if (! in_array($type, config('markdownx.image.allowed_file_types'))) {
-                $this->dispatchBrowserEvent('markdown-x-image-uploaded', [
+                $this->dispatch('markdown-x-image-uploaded', [
                     'status' => 400,
                     'message' => 'File type not supported. Must be of type '.implode(', ', config('markdownx.image.allowed_file_types')),
                     'key' => $payload->key,
@@ -137,7 +137,7 @@ class MarkdownX extends Component
 
             Storage::disk(config('markdownx.storage.disk'))->put($fullPath, base64_decode($file_data), 'public');
 
-            $this->dispatchBrowserEvent('markdown-x-image-uploaded', [
+            $this->dispatch('markdown-x-image-uploaded', [
                 'status' => 200,
                 'message' => 'Successfully uploaded image.',
                 'path' => str_replace(' ', '%20', Storage::url($fullPath)),
@@ -146,7 +146,7 @@ class MarkdownX extends Component
                 'name' => $payload->name,
             ]);
         } catch (Exception $e) {
-            $this->dispatchBrowserEvent('markdown-x-image-uploaded', [
+            $this->dispatch('markdown-x-image-uploaded', [
                 'status' => 400,
                 'message' => 'Error when trying to upload.',
                 'key' => $payload->key,
@@ -214,7 +214,7 @@ class MarkdownX extends Component
             );
         }
 
-        $this->dispatchBrowserEvent('markdown-x-giphy-results', [
+        $this->dispatch('markdown-x-giphy-results', [
             'status' => 200,
             'message' => 'Successfully returned results.',
             'results' => $parse_giphy_results,

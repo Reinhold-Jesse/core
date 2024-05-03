@@ -9,12 +9,12 @@
                     'type' => 'children',
                 ])
             @else
-                @if (isset($item->route))
-                    @if (Route::has($item->route))
-                        <a href="{{ route($item->route) }}">{{ $item->title }}</a>
+                @if ($item->type == 'route' or $item->type == 'page')
+                    @if (Route::has($item->name))
+                        <a href="{{ route($item->name) }}" target="{{ $item->target }}">{{ $item->title }}</a>
                     @endif
                 @else
-                    <a href="{{ url($item->url) }}">{{ $item->title }}</a>
+                    <a href="{{ url($item->name) }}" target="{{ $item->target }}">{{ $item->title }}</a>
                 @endif
             @endif
         </li>

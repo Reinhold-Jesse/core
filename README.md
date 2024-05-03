@@ -30,6 +30,9 @@ del ./resources/css/app.css
 
 #Delete default app.js
 del ./resources/js/app.js
+
+#Delete default package.json
+del ./package.json
 ```
 
 ### Publish config file
@@ -42,13 +45,16 @@ php artisan vendor:publish --tag=core.install
 php artisan vendor:publish --tag=core.publishes
 
 #Layout (optional)
-php artisan vendor:publish --tag=core.publishes.layouts
+# php artisan vendor:publish --tag=core.publishes.layouts // wurde auskommentiert
 
 #Core Components (optional)
 php artisan vendor:publish --tag=core.components
 
 #Core ERRORS pages (optional)
 php artisan vendor:publish --tag=core.pages.errors
+
+#Core Dashboard pages (optional)
+php artisan vendor:publish --tag=core.page.dashboard
 ```
 
 ### Core Seeder
@@ -144,7 +150,7 @@ http:your-url/**componente/resources/view**
 ```php
 <x:component::datepicker model="date" />
 
-<x-component::drop-file wire:model='temp_files' name="temp_files" title="jpg, png, pdf, docx (MAX. 10Mb)" />
+<x-component::drop-file wire:model.live='temp_files' name="temp_files" title="jpg, png, pdf, docx (MAX. 10Mb)" />
 
 ```
 

@@ -6,7 +6,7 @@
                 <div class="px-5 pb-5">
                     <div class="py-3">
                         <x:component::form.label value="Name" />
-                        <x:component::form.input wire:model="name" type="text" name="name" />
+                        <x:component::form.input wire:model.live="name" type="text" name="name" />
                         <x:component::form.input-error :for="$name" />
                     </div>
                 </div>

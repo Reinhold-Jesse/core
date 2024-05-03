@@ -19,8 +19,9 @@ class MenuItemTableSeeder extends Seeder
             $value->fill([
                 'menu_id' => '1',
                 'title' => 'Dashboard',
+                'type' => 'route',
                 'order' => '1',
-                'route' => 'dashboard',
+                'name' => 'dashboard',
                 'created_at' => date('Y-m-d H:i:s'),
             ])->save();
         }
@@ -30,8 +31,9 @@ class MenuItemTableSeeder extends Seeder
             $value->fill([
                 'menu_id' => '1',
                 'title' => 'Menu',
+                'type' => 'route',
                 'order' => '2',
-                'route' => 'package.core.menus',
+                'name' => 'package.core.menus',
                 'created_at' => date('Y-m-d H:i:s'),
             ])->save();
         }
@@ -41,8 +43,9 @@ class MenuItemTableSeeder extends Seeder
             $value->fill([
                 'menu_id' => '1',
                 'title' => 'Settings',
+                'type' => 'route',
                 'order' => '3',
-                'route' => 'package.core.settings',
+                'name' => 'package.core.settings',
                 'created_at' => date('Y-m-d H:i:s'),
             ])->save();
         }
@@ -52,8 +55,9 @@ class MenuItemTableSeeder extends Seeder
             $value->fill([
                 'menu_id' => '1',
                 'title' => 'Components overflow',
+                'type' => 'route',
                 'order' => '4',
-                'route' => 'package.core.componentes',
+                'name' => 'package.core.componentes',
                 'created_at' => date('Y-m-d H:i:s'),
             ])->save();
         }
@@ -61,6 +65,6 @@ class MenuItemTableSeeder extends Seeder
 
     protected function findRoute($key)
     {
-        return MenuItem::firstOrNew(['route' => $key]);
+        return MenuItem::firstOrNew(['name' => $key]);
     }
 }

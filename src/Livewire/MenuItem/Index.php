@@ -2,6 +2,7 @@
 
 namespace Reinholdjesse\Core\Livewire\MenuItem;
 
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 use Livewire\Component;
 use Reinholdjesse\Core\Models\Menu;
@@ -22,40 +23,48 @@ class Index extends Component
 
     public ?int $editId = null;
 
-    public ?string $title;
+    public ?string $title = null;
 
-    public ?string $url = null;
+    public string $type = 'route';
 
     public ?string $target = null;
 
     public ?int $parent_id = null;
 
+    public ?string $slug = null;
+
     public ?int $order = null;
 
-    public ?string $route = null;
+    public ?string $name = null;
 
     protected $rules = [
         'title' => 'required|min:3',
-        'url' => 'nullable|string|max:255',
+        'type' => 'required|string|max:255',
         'target' => 'nullable|string|max:10',
         'parent_id' => 'nullable|numeric',
         'order' => 'required|numeric',
-        'route' => 'nullable|string|max:255',
+        'name' => 'nullable|string|max:255',
+        'slug' => 'nullable|string|max:255',
     ];
 
     public function mount(Menu $id): void
     {
-        $this->menu = $id;
+        $this->menu = collect($id)->toArray();
     }
 
     public function render(): View
     {
-        $this->content = MenuItem::with('children')
-        ->where('menu_id', $this->menu->id)
-        ->whereNull('parent_id')
-        ->orderBy('order')->get();
 
-        return view('component::livewire.menu-item.index')->layout('component::layouts.dashboard');
+        if ($this->slug == null && $this->slug == '' && ! empty($this->title)) {
+            $this->slug = Str::slug($this->title);
+        }
+
+        $this->content = MenuItem::with('children')
+            ->where('menu_id', $this->menu['id'])
+            ->whereNull('parent_id')
+            ->orderBy('order')->get();
+
+        return view('component::livewire.menu-item.index')->layout(config('core.template.dashboard'));
     }
 
     public function create(): void
@@ -63,7 +72,7 @@ class Index extends Component
         $this->clearValue();
         $this->openEditWindow();
 
-        $this->order = MenuItem::where('menu_id', $this->menu->id)->count() + 1;
+        $this->order = MenuItem::where('menu_id', $this->menu['id'])->count() + 1;
     }
 
     public function edit(MenuItem $menuItem): void
@@ -73,11 +82,12 @@ class Index extends Component
         $this->editId = $menuItem['id'];
 
         $this->title = $menuItem['title'];
-        $this->url = $menuItem['url'];
+        $this->type = $menuItem['type'];
         $this->target = $menuItem['target'];
         $this->parent_id = $menuItem['parent_id'];
         $this->order = $menuItem['order'];
-        $this->route = $menuItem['route'];
+        $this->name = $menuItem['name'];
+        $this->slug = $menuItem['slug'];
 
         $this->openEditWindow();
     }
@@ -92,11 +102,15 @@ class Index extends Component
         } else {
             // create
             $query = new MenuItem;
-            $query['menu_id'] = $this->menu->id;
+            $query['menu_id'] = $this->menu['id'];
+
+            if ($this->type == 'page') {
+                $this->slug = Str::slug($this->title);
+            }
         }
 
         $query['title'] = $this->title;
-        $query['url'] = $this->url;
+        $query['type'] = $this->type;
 
         if (! empty($this->target)) {
             $query['target'] = $this->target;
@@ -104,7 +118,9 @@ class Index extends Component
 
         $query['parent_id'] = $this->parent_id;
         $query['order'] = $this->order;
-        $query['route'] = $this->route;
+        $query['slug'] = $this->slug;
+
+        $query['name'] = $this->name;
 
         if ($query->save()) {
             $this->cloasEditWindow();
@@ -141,10 +157,10 @@ class Index extends Component
             if (count($element['items']) > 0) {
                 foreach ($element['items'] as $item) {
                     MenuItem::where('id', $item['value'])
-                    ->where('parent_id', $element['value'])
-                    ->update([
-                        'order' => $item['order'],
-                    ]);
+                        ->where('parent_id', $element['value'])
+                        ->update([
+                            'order' => $item['order'],
+                        ]);
                 }
             }
         }
@@ -155,10 +171,11 @@ class Index extends Component
         $this->editId = null;
 
         $this->title = null;
-        $this->url = null;
+        $this->type = 'route';
         $this->target = null;
         $this->parent_id = null;
         $this->order = null;
-        $this->route = null;
+        $this->name = null;
+        $this->slug = null;
     }
 }

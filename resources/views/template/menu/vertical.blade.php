@@ -14,7 +14,6 @@
                 x-transition:enter-start="opacity-0 scale-30" x-transition:enter-end="opacity-100 scale-100"
                 x-transition:leave="transition ease-in duration-75 transform"
                 x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
-                {{-- class="relative z-50 flex flex-col mt-2 mb-3 bg-gray-300 rounded-md shadow-sm w-44" --}}
                 class="relative z-10 flex flex-col font-normal divide-y divide-gray-100 rounded shadow bg-gray-50 md:absolute w-44 dark:bg-gray-700 dark:divide-gray-600">
                 @include('component::template.menu.vertical', [
                     'items' => $item->children,
@@ -25,30 +24,30 @@
         </li>
     @else
         @if (isset($type) && $type == 'children')
-            @if (isset($item->route))
-                @if (Route::has($item->route))
+            @if ($item->type == 'route' or $item->type == 'page')
+                @if (Route::has($item->name))
                     <li>
-                        <a href="{{ route($item->route) }}"
+                        <a href="{{ route($item->name) }}" target="{{ $item->target }}"
                             class="block px-4 py-2 text-gray-600 hover:text-dashboard-500">{{ $item->title }}</a>
                     </li>
                 @endif
             @else
                 <li>
-                    <a href="{{ url($item->url) }}"
+                    <a href="{{ url($item->name) }}" target="{{ $item->target }}"
                         class="block px-4 py-2 text-gray-600 hover:text-dashboard-500">{{ $item->title }}</a>
                 </li>
             @endif
         @else
-            @if (isset($item->route))
-                @if (Route::has($item->route))
+            @if ($item->type == 'route' or $item->type == 'page')
+                @if (Route::has($item->name))
                     <li>
-                        <a href="{{ route($item->route) }}"
+                        <a href="{{ route($item->name) }}" target="{{ $item->target }}"
                             class="block px-4 py-2 text-gray-600 hover:text-dashboard-500">{{ $item->title }}</a>
                     </li>
                 @endif
             @else
                 <li>
-                    <a href="{{ url($item->url) }}"
+                    <a href="{{ url($item->url) }}" target="{{ $item->target }}"
                         class="block px-4 py-2 text-gray-600 hover:text-dashboard-500">{{ $item->title }}</a>
                 </li>
             @endif

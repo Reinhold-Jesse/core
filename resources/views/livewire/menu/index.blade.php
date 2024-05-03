@@ -9,7 +9,7 @@
 
     <div class="py-12">
 
-        <div class="container px-3 mx-auto">
+        <div class="container px-3 mx-auto pb-14">
 
             <div class="flex justify-end gap-5 pb-12">
                 <button wire:click="create" type="button"

@@ -22,7 +22,7 @@ return [
 
     'components' => [
         'component::layouts.app' => AppLayout::class,
-        'component::layouts.dashboard' => DashboardLayout::class,
+        config('core.template.dashboard') => DashboardLayout::class,
         'component::layouts.guest' => GuestLayout::class,
 
         'component::element.modal' => Modal::class,

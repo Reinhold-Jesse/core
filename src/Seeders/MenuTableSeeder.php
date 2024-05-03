@@ -23,11 +23,29 @@ class MenuTableSeeder extends Seeder
             ])->save();
         }
 
-        $value = $this->findName('site');
+        $value = $this->findName('auth');
         if (! $value->exists) {
             $value->fill([
                 'id' => 2,
+                'name' => 'auth',
+                'created_at' => date('Y-m-d H:i:s'),
+            ])->save();
+        }
+
+        $value = $this->findName('site');
+        if (! $value->exists) {
+            $value->fill([
+                'id' => 3,
                 'name' => 'site',
+                'created_at' => date('Y-m-d H:i:s'),
+            ])->save();
+        }
+
+        $value = $this->findName('account-manager');
+        if (! $value->exists) {
+            $value->fill([
+                'id' => 4,
+                'name' => 'account-manager',
                 'created_at' => date('Y-m-d H:i:s'),
             ])->save();
         }
